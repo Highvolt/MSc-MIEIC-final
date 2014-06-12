@@ -1,29 +1,32 @@
 #!/bin/bash
 
+unset LANG
+unset LC_CTYPE
+unset LC_ALL
 # Remove existent PDF file.
-rm pdis-en.pdf 2> /dev/null
+rm mieic-en.pdf 2> /dev/null
 
 # Build report.
 if [[ "$#" -eq 1 ]]; then
 
   if [[ "$1" =~ s|S ]]; then
-    make pdis-en._show
+    make mieic-en._show
   else
-    make pdis-en
+    make mieic-en
   fi
 
 else
-  make pdis-en
+  make mieic-en
 fi
 
 # Clean compilation files.
 make clean
-cp pdis-en.pdf techreport.pdf
+cp mieic-en.pdf finalReport.pdf
 
 if [[ "$#" -eq 1 ]]; then
 
   if [[ "$1" =~ o|O ]]; then
-    open techreport.pdf
+    open finalReport.pdf
   fi
 fi
 
