@@ -1,118 +1,97 @@
-\chapter{Introdução} \label{chap:intro}
+\chapter{Introduction} \label{chap:intro}
 
-\section*{}
 
-O primeiro capítulo da dissertação deve servir para apresentar o
-enquadramento e a moti\-va\-ção do trabalho e para identificar e
-definir os problemas que a dissertação aborda.
-Deve resumir as metodologias utilizadas no trabalho e termina
-apresentando um breve resumo de cada um dos capítulos
-posteriores.
+\section{Context and Framing} \label{sec:context}
 
-Este documento ilustra o formato a usar em dissertações na \Feup, não
-servindo de exemplo sobre os conteúdos a usar.
-São dados exemplos de margens, cabeçalhos, títulos, paginação, estilos
-de índices, etc. 
-São ainda dados exemplos de formatação de citações, figuras e tabelas,
-equações, referências cruzadas, lista de referências e índices.
+The online marketing is a growing multibillion-dollar industry \cite{PricewaterhouseCoopers2013}
+which is expected to continue its fast growth\cite{PricewaterhouseCoopers2013a}.
 
-Uma recolha de normas existentes sobre este assunto pode ser
-encontrada em~\cite{kn:Mat93}. 
+This industry is always trying to get more efficient by getting more profit from
+assets it already owns. 
+Web users are the major assets of this industry, which makes money by exploiting the user behavior and characteristics, in order to target them with the
+perfect campaign. Each campaign has its own target parameters, which limit the target user universe.
+Online marketing industry core business is centered in web users and this industry has recorded almost every footprint each user makes on the web.
+Future footprints of the web users allows the measurement of the behavior of an
+upcoming campaign and, with this data, it is possible to make the inventory more
+profitable. Therefore, using future user data allows the adtech industry to be able to fine tune its campaigns. 
+Campaigns are composed by a series of ads that share the same main idea that
+want to transmit. The campaigns have a targeting typically defined as a set of
+parameter definitions and rules. To be able to run the campaigns in a
+simulator, their targeting can be defined as
+queries over the ad requests' data. The utilization of a simulation allows to
+get the results fast, test concurrent campaigns and test multiple scenarios.
+The utilization of a simulation is the main reason behind
+why is so important to be able to generate future ad requests' data.
 
-\begin{quote}
-  ``Like the Abstract, the Introduction should be written to engage the
-  interest of the reader. It should also give the reader an idea of
-  how the dissertation is structured, and in doing so, define the
-  thread of the contents.''~\cite[chap.\ Introduction]{kn:Tha01} 
-\end{quote}
+The most common platforms that will benefit from this data are Custom-Built Ad
+Servers and \hyperref[itm:adex]{Exchanges}, \hyperref[itm:ssp]{Sell-Side Platforms} (SSPs) and
+\hyperref[itm:dsp]{Demand-Side Platforms}
+(DSPs). These platforms are further explored in section~\ref{sec:adover}.
 
-Neste primeiro capítulo ilustra-se a utilização de citações e de
-referências biblio\-grá\-fi\-cas.
-Para além de dar um exemplo de utilização de uma citação, a citação
-anterior, introduz uma referência que pode ser consultada, entre
-muitas outras referências bibliográficas
-interessantes~\cite{kn:Tha01,kn:PP05}. 
 
-\section{Contexto/Enquadramento} \label{sec:context}
+\section{Project} \label{sec:proj}
 
-Esta secção descreve a área em que o trabalho se insere, podendo
-referir um eventual projeto de que faz parte e apresentar uma breve
-descrição da empresa onde o trabalho decorreu.
+The main objective of this project is to develop a library capable of generating
+future ad requests' logs from past recorded requests.
+To solve this problem, multiple data mining classification and clustering
+techniques will be explored in order to find the fastest and more accurate way
+to do it. 
+This generator will use real ad request' logs from various sources stored in files.
+The generated files will need to respect the same structure as the given file.
 
-Lorem ipsum~\cite{kn:Lip08} dolor sit amet, consectetuer adipiscing
-elit. 
-Sed eget nunc. Phasellus interdum, risus viverra mollis laoreet, felis
-justo iaculis ante, eget ornare purus augue non urna. Nam in magna. In a
-est. Phasellus a tellus vitae enim vehicula imperdiet. Etiam sit amet
-elit. In hac habitasse platea dictumst. Quisque eget turpis vel felis
-elementum tempus. Curabitur sit amet tortor id libero dapibus
-pretium. Integer mattis eros eu lorem. Duis erat tellus, porttitor
-sed, blandit eget, fringilla et, lacus. Phasellus tristique nibh nec
-orci. Mauris sed leo. Suspendisse fringilla tempor dolor. Donec sapien
-enim, congue in, porta et, sollicitudin in, quam. Curabitur semper,
-mauris ut vestibulum eleifend, diam ipsum tincidunt quam, et
-vestibulum velit mauris ut risus. 
+The focus of this thesis is generating future ad requests' logs, which is just
+one part of the more complex problem of
+forecasting the behaviour of campaigns in the future. The resultant ad request log
+will be validated using a simulator supplied by ShiftForward.
 
-Sed eget libero. Nulla facilisi. Proin eget tortor. Morbi
-gravida. Donec arcu risus, blandit a, rutrum at, ornare ut,
-nisl. Etiam consectetuer tortor eu odio. Etiam blandit molestie
-ligula. Nulla facilisi. Nam a augue non justo laoreet hendrerit. Nam
-aliquam, purus eu ultricies dictum, urna purus posuere neque, vel
-tempus tellus enim a arcu. 
 
-\section{Projeto} \label{sec:proj}
+%The project consists of creating a library capable of predicting the future access data logs based only on data logs of previous months.
+%The hearth of the project lies in applying various data mining techniques to identify what will be the behavior of the users on the future,
+%based on their behavior on the past.
 
-Na continuação da secção anterior, e apenas no caso de ser um Projeto
-e não uma Dissertação, esta secção apresenta resumidamente o projeto.
+%There are three main components on this project
+%\begin{itemize}
+%\item \textbf{The original dataset}, which is a CSV file with registry of accesses for a given network. Usually, there is 
+  %a time, an user ID, a location ID, a URL and some additional parameters (cookies,etc. which may or may not be present from dataset to dataset) per entry.
+%\item \textbf{A library capable of generating real like data} logs of future data based only on the past data. This is the work that will be developed during
+  %this dissertation. The generation of this data logs must rely on the utilization of data mining techniques.
+%\item \textbf{A simulator} capable of running campaigns over the generated dataset, to give advertising performance metrics to compare with real data for validation.
+%\end{itemize}
 
-Nulla nec eros et pede vehicula aliquam. Aenean sodales pede vel
-ante. Fusce sollicitudin sodales lacus. Maecenas justo mauris,
-adipiscing vitae, ornare quis, convallis nec, eros. Etiam laoreet
-venenatis ipsum. In tellus odio, eleifend ac, ultrices vel, lobortis
-sed, nibh. Fusce nunc augue, dictum non, pulvinar sed, consectetuer
-eu, ipsum. Vivamus nec pede. Pellentesque pulvinar fringilla dolor. In
-sit amet pede. Proin orci justo, semper vel, vulputate quis, convallis
-ac, nulla. Nulla at justo. Mauris feugiat dolor. Etiam posuere
-fermentum eros. Morbi nisl ipsum, tempus id, ornare quis, mattis id,
-dolor. Aenean molestie metus suscipit dolor. Aliquam id lectus sed
-nisl lobortis rhoncus. Curabitur vitae diam sed sem aliquet
-tempus. Sed scelerisque nisi nec sem. 
+\section{Motivation and Goals} \label{sec:goals}
 
-\section{Motivação e Objetivos} \label{sec:goals}
+In the last few years, the online marketing has been getting more complex. In
+such a way that today campaigns have a very well defined target, with
+sets of rules and limitations. This poses a big problem to
+simpler prediction models that normally don't predict all the parameters of the
+ad request, this way limiting the parameters where queries can be done.
 
-Apresenta a motivação e enumera os objetivos do trabalho terminando
-com um resumo das metodologias para a prossecução dos objetivos.
 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi sit
-amet nibh. Fusce faucibus, enim vel ultrices ornare, est mauris
-ultricies velit, vitae consequat sem erat vel nunc. Nam libero eros,
-mattis eget, sagittis nec, imperdiet at, sapien. Aliquam lacus. Aenean
-adipiscing nibh in orci. Aliquam vestibulum, elit at fringilla
-dignissim, metus diam lobortis urna, a laoreet nunc odio ac ipsum. Sed
-at urna. Integer vehicula fringilla augue. Nulla lacus eros, rhoncus
-sit amet, posuere ut, vehicula ac, nibh. Ut eleifend, eros eu placerat
-vehicula, justo turpis blandit dolor, eu tincidunt felis risus at
-ante. Aenean suscipit nisl eget eros. Ut laoreet libero eget
-enim. Cras tempus pellentesque felis. Vestibulum vitae erat ac nibh
-posuere eleifend. 
+Nowadays, some online ads can only be imprinted if a set of very specific requirements has been fulfilled, for example,
+the users had to visit an e-commerce site in the last 24 hours. This brings causality into the equation, creating a new paradigm that makes 
+the more traditional methods of prediction ineffective. To solve this problem
+and to be able to get fast responses to complex queries of concurrent campaigns,
+simulate the algorithms executed by ad servers of the client
+and ultimately parallelize the computation of the results for the
+queries,
+the complete future data has to be predicted. This generated data
+can be used in simulations and the online campaigns can run on top of the future population.
 
-Integer nec quam. Sed fermentum. Nunc vitae leo. Etiam sit amet
-quam. Nunc vestibulum massa in mauris. Duis eget nulla. Fusce
-ultricies arcu eu nibh volutpat feugiat. Maecenas urna pede, commodo
-quis, porta eu, bibendum elementum, pede. Sed eros massa, molestie
-eget, mattis non, rutrum ac, magna. Duis dui. Maecenas eget tortor ut
-dolor semper mattis. Maecenas auctor, tellus et ultricies tempor, elit
-est placerat lacus, in posuere mauris lorem et arcu. 
+The objective of this thesis is to develop a library capable of generating
+future ad request logs using past data from the same network.
+This library will have as one of its main goals the prediction of all the parameters that characterize an
+ad request with the purpose of being able to query over any parameter, in other
+words, the generated dataset (ad requests log) must have the same attributes as the original.
 
-\section{Estrutura da Dissertação} \label{sec:struct}
+The prediction of this kind of future data is rather complex since it is
+necessary to find out which users will appear in the future and which websites they
+will visit and when will they do it.
 
-Para além da introdução, esta dissertação contém mais x capítulos.
-No capítulo~\ref{chap:sota}, é descrito o estado da arte e são
-apresentados trabalhos relacionados. 
-%\todoline{Complete the document structure.}
-No capítulo~\ref{chap:chap3}, ipsum dolor sit amet, consectetuer
-adipiscing elit.
-No capítulo~\ref{chap:chap4} praesent sit amet sem. 
-No capítulo~\ref{chap:concl}  posuere, ante non tristique
-consectetuer, dui elit scelerisque augue, eu vehicula nibh nisi ac
-est. 
+\section{Report Structure} \label{sec:struct}
+
+Besides this first introductory chapter, this report is divided in three additional chapters.
+In Chapter~\ref{chap:sota} it is explained some basic knowledge about online marketing. In addiction, there is
+a small conclusion of which of those methods seem more fit to help solve this problem.
+Chapter~\ref{chap:chap3} focus on the main steps that need to be taken during the development of this thesis. A schedule of the work is also
+presented on this chapter.
+Chapter~\ref{chap:chap4} sums up the report, giving a better context of all the review done in the final project.
