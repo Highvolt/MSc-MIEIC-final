@@ -585,8 +585,8 @@ Similar approaches can be applied to other measures described before.
 The main advantages of these approaches is their interpretability, since if
 \emph{RelMAE}<1 then the proposed method is better than the baseline and when
 the \emph{RelMAE}>1 then the proposed method is worst than the baseline.
-A related approach is to use the percentage which a given model is better than
-the baseline method. Can be defined as:
+A related approach is to use the percentage of forecasts which a given model is better than
+the baseline method.\cite{Armstrong199269} Can be defined as:
 \\
 
 \Large
@@ -595,9 +595,45 @@ the baseline method. Can be defined as:
  \begin{cases}\text{1 if }e_{t,m} < e_{t,b}\\ \text{0 otherwise }\end{cases}
 \end{math}
 \normalsize
+\\
+
+This approach describes a method \emph{m} with a \emph{PB} score relative to the
+baseline.
 
 \subsubsection{Scaled errors}
 
+The author of the paper \cite{Hyndman2006679} propose this approach to address
+the situations where more traditional scaled accuracy measures fail (as
+described before). So the scaled error is described as it follows:
+
+\begin{center}
+\Large
+\begin{math}
+  q_t = \frac{e_t}{\frac{1}{n-1}*\sum\limits_{i=2}^n\left|Y_i - Y_{i-1}\right|}
+\end{math}
+\normalsize
+\end{center}
+
+A scaled error is less than one if the method forecast is better than the
+average one-step na\"{i}ve forecast computed in sample. Otherwise, if the error
+is greater than one the method is worst than the na\"{i}ve approach.
+So the \textbf{Mean Absolute Scaled Error} (MASE) is defined simply by
+
+\begin{center}
+\Large
+\begin{math}
+  MASE = mean(\left|qt\right|)
+\end{math}
+\normalsize
+\end{center}
+
+In a similar manner the results of \emph{MASE} for a method, if less than one
+the method is better than the na\"{i}ve approach and worse otherwise.
+Related methods such as \emph{Root Mean Squared Scaled Error} (RMSSE) and
+\emph{Median Absolute Scaled Error} (MdASE) can be defined in a similar manner.
+The only situation where this method falls short is when the historical data has
+always the same value since the denominator would be 0 and make the result of
+\emph{MASE} infinite or undefined.
 
 
 \section{Web Usage Mining}\label{sec:network}
