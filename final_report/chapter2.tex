@@ -470,6 +470,15 @@ recommends the usage of \emph{MASE} in favor of the others because the
 situations where this measure gives undefined or infinite results are almost
 irrelevant.
 
+\subsubsection{Overview}
+\begin{figure}[h] \begin{center} \leavevmode
+\includegraphics[width=0.96\textwidth]{tsp_comparison} \caption{Guidelines for
+selecting error measures \cite{Armstrong199269} } \label{fig:ts_error_selection}
+\end{center} \end{figure}
+
+In the figure \ref{fig:ts_error_selection} the author tries to make easier to
+choose between the methods described forward.
+
 \subsubsection{Scale-dependent measures}
 
 These accuracy measures are commonly used whose scale depends on the scale of
@@ -533,11 +542,62 @@ use of another percentage error based measures. The "symmetric" measures
       200 * \frac{\left| Y_t - F_t \right|}{Y_t + F_t}\end{math})
 \end{itemize}
 
+In case of the time series used have negative values, there are the risk of
+divide by zero. Furthermore these measures also are reported as not as
+"symmetric" as the name suggests. Mostly because the penalty is heavier when the
+forecasts are low when compared with when the forecasts are high. \cite{Goodwin1999405}
+
 \subsubsection{Measures based on relative errors}
+
+Another approach for scaling is to divide each error by the error obtained by
+another standard method of forecasting. So relative error is defined by
+\begin{math} r_t = \frac{e_t}{e_t^*} \end{math}, where \begin{math} e_t^*
+\end{math} is the forecast error obtained from the benchmark method. Usually
+this baseline method is the random walk where \begin{math}F_t\end{math} is equal
+to the value of the last observation.
+So the measures can be defined:
+\begin{itemize}
+  \item \textbf{Mean Relative Absolute Error} (MRAE) =
+  mean(\begin{math}\left|r_t\right|\end{math})
+  \item \textbf{Median Relative Absolute Error} (MdRAE) =
+  median(\begin{math}\left|r_t\right|\end{math})
+  \item \textbf{Geometric Mean Relative Absolute Error} (GMRAE) =
+  gmean(\begin{math}\left|r_t\right|\end{math})
+\end{itemize}
 
 \subsubsection{Relative measures}
 
+As a substitute of the usage of relative error is the usage of relative
+measures. One example, is calculate the \emph{MAE} of the baseline
+(\begin{math}MAE_b\end{math}) and use the result to calculate the relative
+\emph{MAE} defined by:
+\\
+
+\begin{center}
+\Large
+\begin{math}
+  RelMAE = \frac{MAE}{MAE_b}
+\end{math}
+\normalsize
+\end{center}
+
+Similar approaches can be applied to other measures described before.
+The main advantages of these approaches is their interpretability, since if
+\emph{RelMAE}<1 then the proposed method is better than the baseline and when
+the \emph{RelMAE}>1 then the proposed method is worst than the baseline.
+A related approach is to use the percentage which a given model is better than
+the baseline method. Can be defined as:
+\\
+
+\Large
+\begin{math}
+ PB_m=\frac{\sum\limits_{t=1}^n j_t}{n}*100\\ \text{where }j_t =
+ \begin{cases}\text{1 if }e_{t,m} < e_{t,b}\\ \text{0 otherwise }\end{cases}
+\end{math}
+\normalsize
+
 \subsubsection{Scaled errors}
+
 
 
 \section{Web Usage Mining}\label{sec:network}
