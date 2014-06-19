@@ -47,21 +47,81 @@ web activity on the target network.
 \includegraphics[]{segmentation} \caption{ High level overview
 of Data Segmentation} \label{fig:segmentation_arch} \end{center} \end{figure}
 
-Goals:
-- Try to give more granularity to the time series 
-- Try to aggregate similar data in order to make it more predictable
+The \emph{Data Segmentation} phase was designed in order to achieve better
+results in the following phases. 
 
-How its done:
-- parameters:
- - able to be use datasets from different sources no param is garanted to be
- available so it is configurable. 
-   -Pros:
-     -Can achive great results if enough data and seasonal data available 
-  - Cons:
-    - Manual selection of the parameters
-- Datastream
-  - based on join similar entries together.
-  - Main disadvantage no garantee that similar data gives better results
+In order to get better results in the second phase it is need that the time
+series obtained from the dataset has certain characteristics that allow it to be
+more predictable, a trend and/or a recurring pattern. One way of get the results
+is by split the data by some \textbf{parameter} that is known to have effect on the
+seasonality of the traffic, for example the website that is being accessed.
+
+As the figure~\ref{fig:segmentation_arch} shows the method described before was
+one of the approaches chosen to achieve a more predictable time series. This
+method allows to select any parameter available in the dataset and distribute
+the impressions clusters. All the members of each cluster share the same value
+of the selected parameter. To achieve a good result using this method a great
+knowledge about the available impressions is needed.
+
+The other approach that was implemented on this phase is a simplified and
+striped down version of a \emph{data stream clustering} algorithm. This
+algorithm is distance based, and since the structure of the datasets used on
+this thesis are not guaranteed the distance measure used is na\"{i}ve. The
+distance between any to impressions can be described as:
+
+\begin{center}
+\begin{equation*}
+  distance_{x,y}= \sum\limits_{i=0}^n d_i
+\end{equation*}
+\begin{equation*}
+\text{where } d_i = \begin{cases} \text{1 if } x_i = y_x\\
+\text{0 otherwise}\end{cases} \text{ and x, y are two impressions from the
+dataset}
+\end{equation*}
+\end{center}
+
+\begin{algorithm}
+  \LinesNumbered
+  \SetNlSty{texttt}{(}{)}
+  \KwData{$lines$, all impressions available on the dataset; $threshold$,
+  maximum distance to be considered member of a certain cluster.}
+  \KwResult{A list of clusters, each one characterized by the $centroid$ and a list of
+  offsets representing the position of each impression on the dataset.}
+  \BlankLine
+
+  \Repeat{no more impressions}{
+    compare each impression with the existing list of clusters\;
+    if $dist < threshold$ then add to the selected cluster, else create a new
+    cluster and use the selected impression as the centroid for the new
+    cluster\;
+  }
+  \BlankLine
+
+  \caption[Data stream clustering]{
+    Data stream clustering simplified algorithm to aggregate the impressions by
+    the parameters that they have in common.
+  }
+  \label{alg:pam}
+\end{algorithm}
+
+This kind of algorithm was selected because of the constrains imposed by the
+problem, the most important ones the huge volume of data than this approach
+might need to process, the number and type of attributes that compose an
+impression can be different from dataset to dataset. The huge volume of data
+makes impossible the usage for example of a dissimilarity matrix due to memory
+constrains, the uncertainty of the parameters that are available also limit the
+quality of the distance measure that assumes that every parameter has the same
+weight as the others.
+
+This family of clustering algorithms has some known limitations, for example, the
+order in which the dataset is read directly influences the outcome of the
+algorithm. Also since the centroids are never updated, as they are represented
+by the attributes of the impression that originated that particular centroid,
+when a new impression has a distance lower than the threshold when compared with
+a certain centroid it is not assured that the respective cluster is the more
+similar to the new impression, to address that possible issue the possibility of
+search over all available centroids and select the one with a smaller distance
+is also available.
 
 \subsection{Volume Forecasting}
 
