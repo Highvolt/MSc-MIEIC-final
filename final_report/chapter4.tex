@@ -101,8 +101,7 @@ dataset}
     Data stream clustering simplified algorithm to aggregate the impressions by
     the parameters that they have in common.
   }
-  \label{alg:pam}
-\end{algorithm}
+  \label{alg:pam} \end{algorithm}
 
 This kind of algorithm was selected because of the constrains imposed by the
 problem, the most important ones the huge volume of data than this approach
@@ -125,11 +124,45 @@ is also available.
 
 \subsection{Volume Forecasting}
 
--Explain the metrics selected:
- - number impressions
- - percentage of uniques vs number  uniques
- - percentage of new entries
-Usage of arima
+\begin{figure}[h] \begin{center} \leavevmode
+\includegraphics[]{forecast_volumes_arch} \caption{ High level overview
+of Data Segmentation} \label{fig:forecast_volumes_arch} \end{center} \end{figure}
+
+One way of describe the impressions is by representing how many happen during a
+certain amount of time. So the impressions in the past can be described as time
+series, of volume of impressions in time spaced at uniform time intervals. 
+
+So to predict how many impressions will happen in the future time series
+analyses techniques can be used. 
+
+Although, the volume of impressions doesn't allow to fully characterize the future so
+ it is needed use more time series of different variables that can provide more
+ information about each epoch.
+
+The approach here described involves the usage of three time series, one for the
+number of impressions, other for the percentage unique users and a last one for
+the percentage of unique users that had never appeared in the past.
+
+\paragraph{Number of impressions}
+is how many entries are on the dataset during each time interval.
+
+\paragraph{Percentage of unique users}
+is described by $\frac{\text{Number of users}}{\text{Number of impressions}}
+* 100$, and represents how the number of users are related with the number of
+impressions.
+
+\paragraph{Percentage of new users}
+represents per unit of time how many users that had never appeared before are
+represented. It is described by $\frac{\text{Number of new users}}{\text{Number
+of unique users}}*100$.
+\\
+
+So each unit of time can be represented by this three values, now to
+characterize the future it is needed to forecast each one of this three values
+on future time units. To complete this task the \emph{ARIMA} approach was used.
+
+
+******WHY DID I USED ARIMA
 
 \subsection{Dataset Generator}
 
