@@ -122,7 +122,7 @@ similar to the new impression, to address that possible issue the possibility of
 search over all available centroids and select the one with a smaller distance
 is also available.
 
-\subsection{Volume Forecasting}
+\subsection{Volume Forecasting}\label{subsec:volume_forecast}
 
 \begin{figure}[h] \begin{center} \leavevmode
 \includegraphics[]{forecast_volumes_arch} \caption{ High level overview
@@ -170,17 +170,52 @@ on future time units. To complete this task the \emph{ARIMA} approach was used.
 \includegraphics[]{high_level_file_gen} \caption{ High level overview
 of the Dataset Generator } \label{fig:highlevel_arch_file_gen} \end{center} \end{figure}
 
-palceholder
+The last phase of the proposed approach generates a new dataset based on the
+original dataset and the values of the three time series generated on the
+previous phase.
 
-\subsubsection{Pre-process (i)}
+As shown on figure~\ref{fig:highlevel_arch_file_gen}, this phase was divided in
+three sub-phases the pre-process (\ref{subsubsec:pre_process}), calculate
+statistics (\ref{subsubsec:stats}) and fill future data
+(\ref{subsubsec:fill_data}).
+
+The pre-process sub-phase (\ref{subsubsec:pre_process}), breaks the old dataset in
+the interval size that was chosen on the volume prediction phase
+(\ref{subsec:volume_forecast}) and organizes the impressions per interval and
+users.
+
+The calculate statistics sub-phase (\ref{subsubsec:stats}), uses the processed data
+from the past dataset and the volumes from the volume prediction phase
+(\ref{subsec:volume_forecast}), verifies if the values make sense in the real
+world, for example the number of impressions is higher than the number of users
+(it is impossible for this type of dataset to have users with zero impressions,
+since the dataset represents impressions), and break the impressions in smaller
+intervals and use weekly historical data to predict the distribution of the
+interval volumes on the smaller intervals.
+
+The last sub-phase, fill future data (\ref{subsubsec:fill_data}), is the most
+crucial phase of this process. It uses the volumes from the last sub-phase, and
+then selects past impressions using the restrictions imposed by the calculated volumes. This
+phase is also responsible for the generation of new users.
+
+\subsubsection{Pre-process (i)}\label{subsubsec:pre_process}
 
 \begin{figure}[h] \begin{center} \leavevmode
 \includegraphics[]{pre_processing_i} \caption{ High level overview
 of the Dataset Pre-processing} \label{fig:pre_processing_i} \end{center} \end{figure}
 
-palceholder
+This phase can be considered the simpler phase of the whole approach, its main
+goal is to provide impressions organized by a defined time interval, and to
+place the first occurrence of each user in the correct interval, so the next
+phases have the data correctly organized.
+\\
 
-\subsubsection{Calculate Statistics (ii)}
+This is simply done by reading each line of the dataset and comparing with the
+start date of the dataset placing it on the correct interval, also identify
+which user is responsible for that impression and, if it was its first occurrence
+, place it as a new user for the interval where the impression belong.
+
+\subsubsection{Calculate Statistics (ii)}\label{subsubsec:stats}
 
 \begin{figure}[h] \begin{center} \leavevmode
 \includegraphics[]{calculate_stats} \caption{ High level overview
@@ -188,7 +223,7 @@ of statistics calculation} \label{fig:calculate_stats_ii} \end{center} \end{figu
 
 palceholder
 
-\subsubsection{Fill Future Data (iii)}
+\subsubsection{Fill Future Data (iii)}\label{subsubsec:fill_data}
 
 \begin{figure}[h] \begin{center} \leavevmode
 \includegraphics[]{fill_future} \caption{ High level overview
