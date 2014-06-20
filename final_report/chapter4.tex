@@ -91,9 +91,11 @@ dataset}
 
   \Repeat{no more impressions}{
     compare each impression with the existing list of clusters\;
-    if $dist < threshold$ then add to the selected cluster, else create a new
+    \eIf{ $dist < threshold$ }{
+    add to the selected cluster\;
+    }{create a new
     cluster and use the selected impression as the centroid for the new
-    cluster\;
+    cluster\;}
   }
   \BlankLine
 
@@ -204,7 +206,7 @@ phase is also responsible for the generation of new users.
 \includegraphics[]{pre_processing_i} \caption{ High level overview
 of the Dataset Pre-processing} \label{fig:pre_processing_i} \end{center} \end{figure}
 
-This phase can be considered the simpler phase of the whole approach, its main
+This phase (figure~\ref{fig:pre_processing_i}) can be considered the simpler phase of the whole approach, its main
 goal is to provide impressions organized by a defined time interval, and to
 place the first occurrence of each user in the correct interval, so the next
 phases have the data correctly organized.
@@ -212,7 +214,7 @@ phases have the data correctly organized.
 
 This is simply done by reading each line of the dataset and comparing with the
 start date of the dataset placing it on the correct interval, also identify
-which user is responsible for that impression and, if it was its first occurrence
+which user is responsible for that impression and, if it is its first occurrence
 , place it as a new user for the interval where the impression belong.
 
 \subsubsection{Calculate Statistics (ii)}\label{subsubsec:stats}
@@ -221,7 +223,81 @@ which user is responsible for that impression and, if it was its first occurrenc
 \includegraphics[]{calculate_stats} \caption{ High level overview
 of statistics calculation} \label{fig:calculate_stats_ii} \end{center} \end{figure}
 
-palceholder
+The main purpose of the sub-phase represented in the figure~\ref{fig:calculate_stats_ii} is
+to distribute the volumes predict for a certain interval in smaller periods
+based on historical distribution of the volumes for the same period.
+
+In order to obtain better resolution of how the data is distributed on the
+interval, this intervals are broke done in periods of one hour each. Now to
+understand how the volumes of the interval are distributed through the periods,
+the data from the same interval up to two weeks before the interval which is
+being processed is used. For each one hour period of historical interval the
+percentage of the total volume is calculated. Then to calculate the distribution
+for the current interval the values are the mean of the values of the same interval from the week before
+and the week before that, if there is only one week available, then the value of
+the current period is the same as the week before, if there are no previous
+weeks available then the distribution of the interval volumes is done by
+dividing uniformly by each one hour period. After this percentages are
+calculated, they are multiplied by the total volumes to obtain the absolute
+values for each interval.
+\\
+For each hour period the following values are calculated:
+\begin{itemize}
+  \item \textbf{Number of impressions}, this value represents how many requests
+    where done during that space in time;
+  \item \textbf{Number of users}, number of different users present during that
+    space in time;
+  \item \textbf{Number of first occurence users}, number of different users that
+    occur for the first time in the interval during that specific hour period;
+  \item \textbf{Number of new users}, number of different users that are
+    completely new to the dataset and occur for the first time in that specific
+    hour period.
+\end{itemize}
+
+This variables have to respect some constrains in order to be valid. The number
+of impressions must be equal or greater than the number of users for a specific
+period, the number of users must be less or equal to the sum of number of first
+occurrence users, number of new users and number of users that appear on the one
+hour periods prior to this period that belong to the same interval. The number
+of first occurrence users plus the number of new users must be equal or less
+than the number of users for the time period.
+
+So to guarantee integrity of the result that those conditions have to be
+fulfilled. So after, the results for the every hour period of a certain interval
+of time are calculated, a constrain check must be done and the results must be
+adjusted. And to do so the approach implemented on
+algorithm~\ref{alg:adjust_values} can be used to fulfil this task.
+
+\begin{algorithm}
+  \LinesNumbered
+  \SetNlSty{texttt}{(}{)}
+  \KwData{$periods$, a list of one tuple for each period; $volumes$,
+  a tuple containing the expected values for the interval}
+  \KwResult{A list of one tuple for each period, containing the adjusted values
+  to meet the imposed constrains}
+  \BlankLine
+
+  \While{the sum tuples for all periods != $volumes$}{
+    $diff$ = volume - $sum(periods)$\;
+    \For{each element of $periods$}{
+      To each constrain not respected, change the value acording to the rule and
+      then add the difference to the respective $diff$\;
+      \If{any constrain not violated and the respective value of $diff$ is not
+      0}{ 
+        change the respective value while still respect the imposed constrain\;
+      }
+    }
+  }
+  \BlankLine
+
+  \caption[Contrain adjustement for statistics]{
+    Values adjustment to meet the imposed constrains algorithm
+  }
+  \label{alg:adjust_values} \end{algorithm}
+
+At the end of this phase we have calculated all the four
+values for every future interval for which we want to predict the impressions.
+
 
 \subsubsection{Fill Future Data (iii)}\label{subsubsec:fill_data}
 
