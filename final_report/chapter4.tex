@@ -7,7 +7,7 @@ description and a brief description of the main phases that take part of the
 proposed approach.
 
 This section is followed by a more low level architecture of each one of the phases.
-Of each phase, its main flow is described, its principal variables, constrains and
+Of each phase, its main flow is described, its principal variables, constraints and
 used methods, algorithms and their objective.
 
 It concludes with a description of the experimental setup for the whole approach
@@ -105,12 +105,12 @@ dataset}
   }
   \label{alg:pam} \end{algorithm}
 
-This kind of algorithm was selected because of the constrains imposed by the
+This kind of algorithm was selected because of the constraints imposed by the
 problem, the most important ones the huge volume of data than this approach
 might need to process, the number and type of attributes that compose an
 impression can be different from dataset to dataset. The huge volume of data
 makes impossible the usage for example of a dissimilarity matrix due to memory
-constrains, the uncertainty of the parameters that are available also limit the
+constraints, the uncertainty of the parameters that are available also limit the
 quality of the distance measure that assumes that every parameter has the same
 weight as the others.
 
@@ -254,7 +254,7 @@ For each hour period the following values are calculated:
     hour period.
 \end{itemize}
 
-This variables have to respect some constrains in order to be valid. The number
+This variables have to respect some constraints in order to be valid. The number
 of impressions must be equal or greater than the number of users for a specific
 period, the number of users must be less or equal to the sum of number of first
 occurrence users, number of new users and number of users that appear on the one
@@ -264,34 +264,35 @@ than the number of users for the time period.
 
 So to guarantee integrity of the result that those conditions have to be
 fulfilled. So after, the results for the every hour period of a certain interval
-of time are calculated, a constrain check must be done and the results must be
+of time are calculated, a constraint check must be done and the results must be
 adjusted. And to do so the approach implemented on
 algorithm~\ref{alg:adjust_values} can be used to fulfil this task.
+\\
 
-\begin{algorithm}
+\begin{algorithm}[H]
   \LinesNumbered
   \SetNlSty{texttt}{(}{)}
   \KwData{$periods$, a list of one tuple for each period; $volumes$,
   a tuple containing the expected values for the interval}
   \KwResult{A list of one tuple for each period, containing the adjusted values
-  to meet the imposed constrains}
+  to meet the imposed constraints}
   \BlankLine
 
   \While{the sum tuples for all periods != $volumes$}{
-    $diff$ = volume - $sum(periods)$\;
+    $diff$ = $volumes$ - $sum(periods)$\;
     \For{each element of $periods$}{
-      To each constrain not respected, change the value acording to the rule and
+      To each constraint not respected, change the value according to the rule and
       then add the difference to the respective $diff$\;
-      \If{any constrain not violated and the respective value of $diff$ is not
+      \If{any constraint not violated and the respective value of $diff$ is not
       0}{ 
-        change the respective value while still respect the imposed constrain\;
+        change the respective value while still respect the imposed constraint\;
       }
     }
-  }
+}
   \BlankLine
 
-  \caption[Contrain adjustement for statistics]{
-    Values adjustment to meet the imposed constrains algorithm
+  \caption[Constraint adjustement for statistics]{
+    Values adjustment to meet the imposed constraints algorithm
   }
   \label{alg:adjust_values} \end{algorithm}
 
@@ -305,8 +306,59 @@ values for every future interval for which we want to predict the impressions.
 \includegraphics[]{fill_future} \caption{ High level overview
 of fill future data} \label{fig:fill_future_iii} \end{center} \end{figure}
 
-placeholder
+The last sub-phase of the dataset generation phase, is responsible for selecting
+which users and impressions, from the dataset that represents past activity,
+that will reappear in the future with some changes.
 
+To be able to capture the correct characteristics, so the future follow the
+trends of the past, the first step must be selecting the relevant periods of
+time in the past that are equivalent to the one which is currently being filled.
+This approach uses the same period from previous weeks ranked by proximity to
+the date, which makes more likely to use users from the previous week than two
+weeks ago.
+
+After the correct dates are found, the users that will reappear in a given
+period must be selected taking into account the limits imposed by the volumes
+predicted on the previous sub-phase (\ref{subsubsec:stats}).
+
+The process of old users selection is non-deterministic (uses random generated
+values to select which past users will reappear), but assures that do not enter
+an infinite loop by terminating if it spends more than a $threshold$ of cycles
+without getting a valid result. This is done in a reverse chronological order
+where we first select users from the week before and if there are not enough
+users we use data from previous weeks.
+
+To complete the process of selection of users, that will appear in the given
+period, we need to ''generate'' new users. Since we have no knowledge of the
+data that represents an impressions other than it has a date and an user
+identification token, this process is not really a generation but a selection of
+past users that occurred for the first time on similar periods of the past, and
+then their date and user identification are changed according to the period for
+where this user will reappear. Like the previous selection process this one also
+takes into account the chronological distance between events, first we use new
+occurrences from same period, starting on the previous week until the first date
+of the past dataset, if there are not enough users available users from the
+same interval\footnote{Note that an interval is composed by multiple one hour
+periods.} are used, if more users are needed then users from any interval of the
+dataset are used.
+
+To complete the process of filling the future impressions it is still needed to
+select which past impressions from the selected users will be used and modify
+them according to the period that is being computed. The first we randomly
+select one impression from each user since all the selected users must appear at
+least one time. After this all the impressions are sorted in a random order and
+the impressions are selected randomly one by one until the requirements are
+fulfilled. A user with many impressions in the past is more likely to have more
+impressions in the future and this selection take that fact into account since
+there are more chances that a random number selects one impression from him.
+After all impressions are select their time value is updated to a time inside
+the current period randomly.
+
+This steps must be executed for each period that we want to predict.
+
+At the end we have a complete dataset that represent the volumes predicted on
+the Volume Forecasting phase (\ref{subsec:volume_forecast}), giving it the
+possibility of being used on a simulator.
 
 \section{Component Testing}
 
