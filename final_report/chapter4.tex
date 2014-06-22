@@ -41,7 +41,7 @@ web activity on the target network.
 
 \section{Architecture for Web Activity Forecasting and Synthesising}
 
-\subsection{Data Segmentation}
+\subsection{Data Segmentation}\label{subsec:seg}
 
 \begin{figure}[h] \begin{center} \leavevmode
 \includegraphics[]{segmentation} \caption{ High level overview
@@ -360,14 +360,103 @@ At the end we have a complete dataset that represent the volumes predicted on
 the Volume Forecasting phase (\ref{subsec:volume_forecast}), giving it the
 possibility of being used on a simulator.
 
-\section{Component Testing}
+\section{Experimental Setup}
 
-\subsection{Data Segmentation}
+\subsection{Dataset format}
 
-\subsection{Volume Forecasting}
+To develop this approach a dataset containing the time of the occurrence, user
+id token and other information, like the browser, location, cookies, etc. was
+used, an example of this dataset in on the table~\ref{tab:dataset}.
 
-\subsection{Dataset Generator}
+\begin{table}[h]
+\tiny
+\begin{tabular}{lllll}
+\multicolumn{1}{l|}{\textbf{Time}}                    & \multicolumn{1}{l|}{\textbf{UserId}}                      & \multicolumn{1}{l|}{\textbf{AdvertiserId}}     & \multicolumn{1}{l|}{\textbf{OrderId}}  & \textbf{LineItemId}         \\ \hline
+\multicolumn{1}{l|}{2013-11-26-00:00:01}              & \multicolumn{1}{l|}{89e3b953-4422-49cb-bc10-8e869b30f0ab} & \multicolumn{1}{l|}{26621901}                  & \multicolumn{1}{l|}{138907941}         & 107293701                   \\
+                                                      &                                                           &                                                &                                        &                             \\
+\multicolumn{1}{l|}{\textbf{CreativeId}}              & \multicolumn{1}{l|}{\textbf{CreativeVersion}}             & \multicolumn{1}{l|}{\textbf{CreativeSize}}     & \multicolumn{1}{l|}{\textbf{AdUnitId}} & \textbf{CustomTargeting}    \\ \hline
+\multicolumn{1}{l|}{32278541781}                      & \multicolumn{1}{l|}{1}                                    & \multicolumn{1}{l|}{1x2}                       & \multicolumn{1}{l|}{27191421}          & pos=0;showroom=ab           \\
+                                                      &                                                           &                                                &                                        &                             \\
+\multicolumn{1}{l|}{\textbf{Domain}}                  & \multicolumn{1}{l|}{\textbf{CountryId}}                   & \multicolumn{1}{l|}{\textbf{Country}}          & \multicolumn{1}{l|}{\textbf{RegionId}} & \textbf{Region}             \\ \hline
+\multicolumn{1}{l|}{2e07dc054c5bdcec109605689ec8e11f} & \multicolumn{1}{l|}{2276}                                 & \multicolumn{1}{l|}{Germany}                   & \multicolumn{1}{l|}{20240}             & Saxony-Anhalt               \\
+                                                      &                                                           &                                                &                                        &                             \\
+\multicolumn{1}{l|}{\textbf{CityId}}                  & \multicolumn{1}{l|}{\textbf{City}}                        & \multicolumn{1}{l|}{\textbf{BrowserId}}        & \multicolumn{1}{l|}{\textbf{Browser}}  & \textbf{OSId}               \\ \hline
+\multicolumn{1}{l|}{1004957}                          & \multicolumn{1}{l|}{Hettstedt}                            & \multicolumn{1}{l|}{500072}                    & \multicolumn{1}{l|}{Google Chrome}     & 501011                      \\
+                                                      &                                                           &                                                &                                        &                             \\
+\multicolumn{1}{l|}{\textbf{OS}}                      & \multicolumn{1}{l|}{\textbf{OSVersion}}                   & \multicolumn{1}{l|}{\textbf{BandWidth}}        & \multicolumn{1}{l|}{\textbf{TimeUsec}} & \textbf{AudienceSegmentIds} \\ \hline
+\multicolumn{1}{l|}{Microsoft Windows 7}              & \multicolumn{1}{l|}{}                                     & \multicolumn{1}{l|}{adsl-8mbps}                & \multicolumn{1}{l|}{1384817822}        &                             \\
+                                                      &                                                           &                                                &                                        &                             \\
+\multicolumn{1}{l|}{\textbf{Product}}                 & \multicolumn{1}{l|}{\textbf{RequestedAdUnitSizes}}        & \multicolumn{1}{l|}{\textbf{BandwidthGroupId}} &                                        &                             \\ \cline{1-3}
+\multicolumn{1}{l|}{Ad Server}                        & \multicolumn{1}{l|}{1x2}                                  & \multicolumn{1}{l|}{3}                         &                                        &                            
+\end{tabular}
+\caption{Example data from the dataset used with the respective label}\label{tab:dataset}
+\end{table}
 
+The only fields that the solution depends on are the time and the user id token,
+all the other fields are optional and the approach described above does not have
+any specific knowledge about them nor it depends of it. Although this parameters
+can be used on the segmentation phase to divide the dataset in smaller datasets
+in order to capture more specific characteristics.
 
-\section{Results and Conclusions}
+The design decision, of not use anything besides the time and user id, was made
+because the proposed solution should be agnostic of the data that it analyses.
+Mostly because the data available is not standardised and the solution should be
+able to be used on data from multiple sources, and each source has its own way
+of save this activities.
+
+\subsection{Experimental Setup configurations}
+
+In order to be able to test the approach described before, it was implement
+using $Python$ . The experimental setup is completely modular, every phase is
+totally independent of each other and the data that any phase process can come
+from other sources other than the implement ones.
+Other than $Python$, $R$ was used in order to use the $ARIMA$ model.
+
+\subsubsection*{Segmentation}
+
+In this phase there are two implement methods, like explained
+before on ~\ref{subsec:seg}. The $data stream$ based algorithm does not have any
+configuration parameters, so every test done has done using the same parameters.
+On the other hand, the segmentation by parameters, the parameter to be used for
+the division can be changed, so different configurations were tested.
+
+This phase cannot be directly validated nor compared, so the results were
+only validated and compared after the forecast phase.
+
+\subsubsection*{Volume Forecast}
+
+On this phase, the $ARIMA$ model is used to predict the behaviour of the time
+series for the time interval where we want to predict the volume values. To use
+the $ARIMA$ model, the function $auto.arima$ the package $forecast$ \cite{hyndman2007automatic} for $R$
+was used, using a $Python$ wrapper in order to process the data. The $R$ is only
+responsible for the predict.
+
+The function used allow to configure various parameters, the tests cover some of
+them like the usage of $drift$ $terms$. The frequency of the time series object in
+$R$ is also configurable.
+
+Different time intervals were also tested in order to understand which can help
+to get better results.
+
+To compare this results, $RMSE$ and $MASE$ where used.
+
+\subsubsection*{Dataset Generation}
+
+This last phase does not take any additional parameters. It uses the values
+that had been forecast in the volume forecast phase and the old dataset in order to build
+a dataset which represents the future.
+
+This phase was tested using synthetic generated past datasets which certain
+changes in some parameters like the change on the browser usage, a usage of a
+new domain and verify if it captures and mimics the real behaviour.
+
+???SIMULATOR???
+
+\section{Conclusion}
+
+As mentioned before, this process has multiple phases were it tries to capture the
+maximum amount of information about the past in order to more accurately predict
+the future.
+This chapter ends with an high level overview of the experimental setup, for which
+the results will be presented and analysed on the next chapter.
 
