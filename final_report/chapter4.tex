@@ -1,18 +1,15 @@
 \chapter{Approach}\label{chap:chap4}
 
 \section*{}
-This chapter focus on the description of the approach used to solve the
-problem presented for this thesis. It begins with an high level architecture
-description and a brief description of the main phases that take part of the
-proposed approach.
 
-This section is followed by a more low level architecture of each one of the phases.
-Of each phase, its main flow is described, its principal variables, constraints and
-used methods, algorithms and their objective.
+This chapter describes the developed approach during the course of this
+dissertation. First we describe its high level architecture, and then we move on
+to describe each of the main phases that comprise it. For each phase, we
+describe the phase both at a general level and its materialization (its main
+goal, the most important variables, constraints, and methods). 
 
-It concludes with a description of the experimental setup for the whole approach
-and for each component; this last part is an introduction to the next
-chapter where the results are discussed and analysed.
+Finally, we describe the experimental setup of the approach, and the setup for
+each component, and introduce the next chapter.
 
 \section{High-level Architecture}
 
@@ -21,14 +18,14 @@ chapter where the results are discussed and analysed.
 of the approach } \label{fig:highlevel_arch} \end{center} \end{figure}
 
 As the figure~\ref{fig:highlevel_arch} makes clear, the goal of the
-proposed approach is to use a past dataset containing the log of the web
-activity of an online advertising related network to generate a representation of a
-possible future web activity on the same network. In such a way, that the
+proposed approach is to use a dataset containing logs of the web
+activity from an online advertising related network and use this information 
+to generate a possible future web activity logs on the same network. In such a way, that the
 tendencies and the data coherency is preserved.
 
-This approach can be divided three main phases, the first, \emph{segmentation}, is
-optional, its main purpose is divide the dataset in smaller and more predictable
-datasets in order to improve the results of the second phase, mostly when there
+This approach can be divided three main phases: \emph{segmentation},
+which its main purpose is divide the dataset in smaller and more predictable
+datasets, in order to improve the results obtained after the second phase, mostly when there
 are large quantities of data available.
 
 The second phase is where the \emph{forecast of the volumes} that characterize the traffic on
@@ -50,24 +47,24 @@ of Data Segmentation} \label{fig:segmentation_arch} \end{center} \end{figure}
 The \emph{Data Segmentation} phase was designed in order to achieve better
 results in the following phases. 
 
-In order to get better results in the second phase it is need that the time
-series obtained from the dataset has certain characteristics that allow it to be
-more predictable, a trend and/or a recurring pattern. One way of get the results
-is by split the data by some \textbf{parameter} that is known to have effect on the
-seasonality of the traffic, for example the website that is being accessed.
+In order to get better results in the second phase (Volumes Forecast) the dataset needs to possess
+certain characteristics that improve its predictability, or in other words, it
+needs to have recurring trends and /or patterns.
+One way of getting results is by splitting data by parameters known to have an
+effect on traffic seasonality (for example the website that is being accessed).
 
-As the figure~\ref{fig:segmentation_arch} shows the method described before was
-one of the approaches chosen to achieve a more predictable time series. This
-method allows to select any parameter available in the dataset and distribute
-the impressions clusters. All the members of each cluster share the same value
-of the selected parameter. To achieve a good result using this method a great
-knowledge about the available impressions is needed.
+As shown on figure~\ref{fig:segmentation_arch} the method described before was
+one of the approaches chosen to achieve a more predictable time series.
+This method allows clustering of the dataset via a selected parameter, which
+returns \emph{impression clusters} in which all members of a cluster share the
+same value in the parameter. This method requires great knowledge about the
+available impressions to be successful.
 
 The other approach that was implemented on this phase is a simplified and
 striped down version of a \emph{data stream clustering} algorithm. This
 algorithm is distance based, and since the structure of the datasets used on
-this thesis are not guaranteed the distance measure used is na\"{i}ve. The
-distance between any to impressions can be described as:
+this thesis are not guaranteed, the distance measure used is na\"{i}ve. The
+distance between impressions can be described as:
 
 \begin{center}
 \begin{equation*}
@@ -105,24 +102,26 @@ dataset}
   }
   \label{alg:pam} \end{algorithm}
 
-This kind of algorithm was selected because of the constraints imposed by the
-problem, the most important ones the huge volume of data than this approach
-might need to process, the number and type of attributes that compose an
-impression can be different from dataset to dataset. The huge volume of data
-makes impossible the usage for example of a dissimilarity matrix due to memory
-constraints, the uncertainty of the parameters that are available also limit the
-quality of the distance measure that assumes that every parameter has the same
-weight as the others.
+This kind of algorithm was selected because, of the constraints imposed by the
+problem, the most important ones are the huge volume of data this approach
+needs to process, and the number and type of attributes that compose an
+impression which may vary from dataset to dataset.
+
+The huge volume of data invalidates the usage of a
+dissimilarity matrices due to memory constraints, the uncertainty of the
+parameters that are available also limit the quality of the distance measure,
+since it assumes that every parameter has the same weight as the others.
 
 This family of clustering algorithms has some known limitations, for example, the
 order in which the dataset is read directly influences the outcome of the
-algorithm. Also since the centroids are never updated, as they are represented
+algorithm. There is also a problem with the centroids, since they are represented
 by the attributes of the impression that originated that particular centroid,
+and as such are never updated,
 when a new impression has a distance lower than the threshold when compared with
-a certain centroid it is not assured that the respective cluster is the more
-similar to the new impression, to address that possible issue the possibility of
-search over all available centroids and select the one with a smaller distance
-is also available.
+a certain centroid, it is not assured that the respective cluster is the most
+similar to the new impression. To address that possible issue the possibility of
+search over all available centroids and select the one with the smallest distance
+available.
 
 \subsection{Volume Forecasting}\label{subsec:volume_forecast}
 
@@ -130,15 +129,15 @@ is also available.
 \includegraphics[]{forecast_volumes_arch} \caption{ High level overview
 of Data Segmentation} \label{fig:forecast_volumes_arch} \end{center} \end{figure}
 
-One way of describe the impressions is by representing how many happen during a
+One way to describe the impressions is by representing how many happen during a
 certain amount of time. So the impressions in the past can be described as time
-series, of volume of impressions in time spaced at uniform time intervals. 
+series of volume of impressions, composed by uniformly spaced time intervals. 
 
-So to predict how many impressions will happen in the future time series
-analyses techniques can be used. 
+So to predict how many impressions will happen in the future \emph{time series
+analyses} techniques can be used. 
 
-Although, the volume of impressions doesn't allow to fully characterize the future so
- it is needed use more time series of different variables that can provide more
+Since the volume of impressions doesn't allow to fully characterize the future
+we need to use more time series of different variables which can provide more
  information about each epoch.
 
 The approach here described involves the usage of three time series, one for the
@@ -146,7 +145,7 @@ number of impressions, other for the percentage unique users and a last one for
 the percentage of unique users that had never appeared in the past.
 
 \paragraph{Number of impressions}
-is how many entries are on the dataset during each time interval.
+is number of entries on the dataset during each time interval.
 
 \paragraph{Percentage of unique users}
 is described by $\frac{\text{Number of users}}{\text{Number of impressions}}
@@ -159,9 +158,9 @@ represented. It is described by $\frac{\text{Number of new users}}{\text{Number
 of unique users}}*100$.
 \\
 
-So each unit of time can be represented by this three values, now to
-characterize the future it is needed to forecast each one of this three values
-on future time units. To complete this task the \emph{ARIMA} approach was used.
+So each unit of time can be represented by these three values, now to
+characterize the future, we need to forecast each one of this three values
+on future time intervals. To complete this task the \emph{ARIMA} approach was used.
 
 
 ******WHY DID I USED ARIMA
@@ -174,11 +173,11 @@ of the Dataset Generator } \label{fig:highlevel_arch_file_gen} \end{center} \end
 
 The last phase of the proposed approach generates a new dataset based on the
 original dataset and the values of the three time series generated on the
-previous phase.
+previous phase (Volume Forecasting).
 
 As shown on figure~\ref{fig:highlevel_arch_file_gen}, this phase was divided in
-three sub-phases the pre-process (\ref{subsubsec:pre_process}), calculate
-statistics (\ref{subsubsec:stats}) and fill future data
+three sub-phases the \emph{pre-process} (\ref{subsubsec:pre_process}), \emph{calculate
+statistics} (\ref{subsubsec:stats}) and \emph{fill future data}
 (\ref{subsubsec:fill_data}).
 
 The pre-process sub-phase (\ref{subsubsec:pre_process}), breaks the old dataset in
@@ -186,13 +185,13 @@ the interval size that was chosen on the volume prediction phase
 (\ref{subsec:volume_forecast}) and organizes the impressions per interval and
 users.
 
-The calculate statistics sub-phase (\ref{subsubsec:stats}), uses the processed data
+The statistics calculation sub-phase, takes as input the processed data
 from the past dataset and the volumes from the volume prediction phase
-(\ref{subsec:volume_forecast}), verifies if the values make sense in the real
+(\ref{subsec:volume_forecast}), verifies if the values makes sense in the real
 world, for example the number of impressions is higher than the number of users
 (it is impossible for this type of dataset to have users with zero impressions,
-since the dataset represents impressions), and break the impressions in smaller
-intervals and use weekly historical data to predict the distribution of the
+since the dataset represents impressions), break the impressions in smaller
+intervals, and use weekly historical data to predict the distribution of the
 interval volumes on the smaller intervals.
 
 The last sub-phase, fill future data (\ref{subsubsec:fill_data}), is the most
@@ -206,10 +205,10 @@ phase is also responsible for the generation of new users.
 \includegraphics[]{pre_processing_i} \caption{ High level overview
 of the Dataset Pre-processing} \label{fig:pre_processing_i} \end{center} \end{figure}
 
-This phase (figure~\ref{fig:pre_processing_i}) can be considered the simpler phase of the whole approach, its main
-goal is to provide impressions organized by a defined time interval, and to
-place the first occurrence of each user in the correct interval, so the next
-phases have the data correctly organized.
+This phase (figure~\ref{fig:pre_processing_i}) can be considered the simpler phase of the whole approach. Its main
+goal is to provide impressions organized by a defined time interval and 
+place the first occurrence of each user in the correct interval, to better
+organize data for the next phases.
 \\
 
 This is simply done by reading each line of the dataset and comparing with the
@@ -228,23 +227,26 @@ to distribute the volumes predict for a certain interval in smaller periods
 based on historical distribution of the volumes for the same period.
 
 In order to obtain better resolution of how the data is distributed on the
-interval, this intervals are broke done in periods of one hour each. Now to
-understand how the volumes of the interval are distributed through the periods,
+interval, these intervals are broken down in periods of one hour each. Now to
+understand how the volumes of the interval are distributed through the time periods,
 the data from the same interval up to two weeks before the interval which is
-being processed is used. For each one hour period of historical interval the
-percentage of the total volume is calculated. Then to calculate the distribution
-for the current interval the values are the mean of the values of the same interval from the week before
-and the week before that, if there is only one week available, then the value of
-the current period is the same as the week before, if there are no previous
-weeks available then the distribution of the interval volumes is done by
-dividing uniformly by each one hour period. After this percentages are
+currently
+being processed is used. For each hour period of historical interval the
+percentage of the total volume is calculated.
+To calculate the distribution , the input is the mean of the values from the
+same interval, the week before, and two weeks before. If there is only one
+previous week available, then the value of the current period is the same as the
+value from the week before; if there are no previous weeks available, the
+distribution of the interval volumes is done by dividing uniformly by each hour
+period.
+After the percentages are
 calculated, they are multiplied by the total volumes to obtain the absolute
 values for each interval.
 \\
 For each hour period the following values are calculated:
 \begin{itemize}
   \item \textbf{Number of impressions}, this value represents how many requests
-    where done during that space in time;
+    were done during that space in time;
   \item \textbf{Number of users}, number of different users present during that
     space in time;
   \item \textbf{Number of first occurence users}, number of different users that
@@ -254,18 +256,23 @@ For each hour period the following values are calculated:
     hour period.
 \end{itemize}
 
-This variables have to respect some constraints in order to be valid. The number
-of impressions must be equal or greater than the number of users for a specific
-period, the number of users must be less or equal to the sum of number of first
-occurrence users, number of new users and number of users that appear on the one
-hour periods prior to this period that belong to the same interval. The number
-of first occurrence users plus the number of new users must be equal or less
-than the number of users for the time period.
+In order to be valid, these variables have to respect these constraints:
+\begin{itemize}
+\item the number of impressions must be equal or greater than the number of
+  users for a specific period;
+\item the number of users must be less or equal to the sum of number of first
+  occurrence users;
+\item the number of new users and number of users that appear on the one hour
+periods prior to this period that belong to the same interval;
+\item the number of first occurrence users plus the number of new users must be
+  equal or less than the number of users for the time period.
+\end{itemize}
 
-So to guarantee integrity of the result that those conditions have to be
-fulfilled. So after, the results for the every hour period of a certain interval
-of time are calculated, a constraint check must be done and the results must be
-adjusted. And to do so the approach implemented on
+To guarantee the integrity of the result, these conditions have to be verified.
+So, after the results for every hour period of a certain interval of time are
+calculated, a constraint check is performed and the results are adjusted
+accordingly. 
+And to do so the approach implemented on
 algorithm~\ref{alg:adjust_values} can be used to fulfil this task.
 \\
 
@@ -290,7 +297,7 @@ algorithm~\ref{alg:adjust_values} can be used to fulfil this task.
     }
 }
   \BlankLine
-
+  \vspace{0.5cm}
   \caption[Constraint adjustement for statistics]{
     Values adjustment to meet the imposed constraints algorithm
   }
@@ -306,12 +313,12 @@ values for every future interval for which we want to predict the impressions.
 \includegraphics[]{fill_future} \caption{ High level overview
 of fill future data} \label{fig:fill_future_iii} \end{center} \end{figure}
 
-The last sub-phase of the dataset generation phase, is responsible for selecting
+The last sub-phase of the dataset generation phase is responsible for selecting
 which users and impressions, from the dataset that represents past activity,
 that will reappear in the future with some changes.
 
-To be able to capture the correct characteristics, so the future follow the
-trends of the past, the first step must be selecting the relevant periods of
+To be able to capture the correct characteristics, so that the future follows the
+trends of the past, the first step must be the selecting of the relevant periods of
 time in the past that are equivalent to the one which is currently being filled.
 This approach uses the same period from previous weeks ranked by proximity to
 the date, which makes more likely to use users from the previous week than two
@@ -321,51 +328,51 @@ After the correct dates are found, the users that will reappear in a given
 period must be selected taking into account the limits imposed by the volumes
 predicted on the previous sub-phase (\ref{subsubsec:stats}).
 
-The process of old users selection is non-deterministic (uses random generated
-values to select which past users will reappear), but assures that do not enter
-an infinite loop by terminating if it spends more than a $threshold$ of cycles
-without getting a valid result. This is done in a reverse chronological order
-where we first select users from the week before and if there are not enough
+The process of the selection of old users is non-deterministic (uses random generated
+values to select which past users will reappear), but assures that does not enter
+an infinite loop, by terminating if it spends more than a $threshold$ of cycles
+without getting a valid result. This is done in reverse chronological order,
+where we first select users from the week before. If there are not enough
 users we use data from previous weeks.
 
-To complete the process of selection of users, that will appear in the given
+To complete the process of selection of users that will appear in the given
 period, we need to ''generate'' new users. Since we have no knowledge of the
-data that represents an impressions other than it has a date and an user
-identification token, this process is not really a generation but a selection of
+data that represents an impression other than it has a date and an user
+identification token, this process is more a selection, than a generation, of
 past users that occurred for the first time on similar periods of the past, and
 then their date and user identification are changed according to the period for
-where this user will reappear. Like the previous selection process this one also
-takes into account the chronological distance between events, first we use new
+where this user will reappear. Like the previous selection process, this one also
+takes into account the chronological distance between events. First we use new
 occurrences from same period, starting on the previous week until the first date
-of the past dataset, if there are not enough users available users from the
+of the past dataset (if there are not enough users available users from the
 same interval\footnote{Note that an interval is composed by multiple one hour
 periods.} are used, if more users are needed then users from any interval of the
-dataset are used.
+dataset are used).
 
-To complete the process of filling the future impressions it is still needed to
-select which past impressions from the selected users will be used and modify
-them according to the period that is being computed. The first we randomly
-select one impression from each user since all the selected users must appear at
-least one time. After this all the impressions are sorted in a random order and
+To complete the process of filling the future impressions, we still needed to
+select which past impressions from the selected users will be used, and modify
+them according to the period that is being computed. First we randomly
+select one impression from each user, since all the selected users must appear at
+least one time. Afterwards, all the impressions are sorted in a random order, and
 the impressions are selected randomly one by one until the requirements are
-fulfilled. A user with many impressions in the past is more likely to have more
-impressions in the future and this selection take that fact into account since
-there are more chances that a random number selects one impression from him.
-After all impressions are select their time value is updated to a time inside
-the current period randomly.
+fulfilled.
+The selection process takes into account the number of impressions associated
+with a user; a user with many impressions in the past has more chances for one
+of his impressions to be selected.
+After all impressions are select, their time value is updated to a random time
+inside the current time interval.
 
-This steps must be executed for each period that we want to predict.
+These steps must be executed for each period that we want to predict.
 
 At the end we have a complete dataset that represent the volumes predicted on
-the Volume Forecasting phase (\ref{subsec:volume_forecast}), giving it the
-possibility of being used on a simulator.
+the Volume Forecasting phase (\ref{subsec:volume_forecast}), which are ready to be used on a simulator.
 
 \section{Experimental Setup}
 
 \subsection{Dataset format}
 
 To develop this approach a dataset containing the time of the occurrence, user
-id token and other information, like the browser, location, cookies, etc. was
+id token, and other information, like the browser, location, cookies, etc. was
 used, an example of this dataset in on the table~\ref{tab:dataset}.
 
 \begin{table}[h]
@@ -394,30 +401,32 @@ used, an example of this dataset in on the table~\ref{tab:dataset}.
 
 The only fields that the solution depends on are the time and the user id token,
 all the other fields are optional and the approach described above does not have
-any specific knowledge about them nor it depends of it. Although this parameters
-can be used on the segmentation phase to divide the dataset in smaller datasets
-in order to capture more specific characteristics.
+any specific knowledge about them, nor it depends of it. The optional parameters
+can be useful on the segmentation phase, to divide the dataset in smaller
+datasets in order to capture more specific characteristics.
 
-The design decision, of not use anything besides the time and user id, was made
+The design decision of not using anything besides the time and user id, was made
 because the proposed solution should be agnostic of the data that it analyses.
-Mostly because the data available is not standardised and the solution should be
-able to be used on data from multiple sources, and each source has its own way
-of save this activities.
+Mostly because the data available is not standardised, and the solution should be
+able to be used on data from multiple sources, with each source having its own
+way of saving activities.
 
 \subsection{Experimental Setup configurations}
 
-In order to be able to test the approach described before, it was implement
-using $Python$ . The experimental setup is completely modular, every phase is
-totally independent of each other and the data that any phase process can come
-from other sources other than the implement ones.
+In order to be able to test the previously described approach, it was
+implemented
+using $Python$ . The experimental setup is completely modular, with every phase
+being
+totally independent of the other and the data that any phase process can come
+from other sources other than the implemented ones.
 Other than $Python$, $R$ was used in order to use the $ARIMA$ model.
 
 \subsubsection*{Segmentation}
 
-In this phase there are two implement methods, like explained
-before on ~\ref{subsec:seg}. The $data stream$ based algorithm does not have any
-configuration parameters, so every test done has done using the same parameters.
-On the other hand, the segmentation by parameters, the parameter to be used for
+In this phase there are two implement methods, as explained
+before on ~\ref{subsec:seg}. The $data stream-based$ algorithm does not have any
+configuration parameters, so every test done was executed using the same parameters.
+On the other hand for the segmentation by parameters, the parameters to be used for
 the division can be changed, so different configurations were tested.
 
 This phase cannot be directly validated nor compared, so the results were
@@ -429,16 +438,17 @@ On this phase, the $ARIMA$ model is used to predict the behaviour of the time
 series for the time interval where we want to predict the volume values. To use
 the $ARIMA$ model, the function $auto.arima$ the package $forecast$ \cite{hyndman2007automatic} for $R$
 was used, using a $Python$ wrapper in order to process the data. The $R$ is only
-responsible for the predict.
+responsible for the prediction.
 
-The function used allow to configure various parameters, the tests cover some of
-them like the usage of $drift$ $terms$. The frequency of the time series object in
+The function used allows the configuration of various parameters, most of which
+were covered by the tests (for example, the usage of \emph{drift terms}).
+The frequency of the time series object in
 $R$ is also configurable.
 
-Different time intervals were also tested in order to understand which can help
-to get better results.
+Different time intervals were also tested, in order to understand which interval
+produces better results.
 
-To compare this results, $RMSE$ and $MASE$ where used.
+To compare these results, $RMSE$ and $MASE$ where used.
 
 \subsubsection*{Dataset Generation}
 
@@ -446,15 +456,14 @@ This last phase does not take any additional parameters. It uses the values
 that had been forecast in the volume forecast phase and the old dataset in order to build
 a dataset which represents the future.
 
-This phase was tested using synthetic generated past datasets which certain
-changes in some parameters like the change on the browser usage, a usage of a
-new domain and verify if it captures and mimics the real behaviour.
+This phase was tested using synthetic generated past datasets which contained certain
+changes in some parameters (examples being changes in browser usage and addition of new domains)
 
 ???SIMULATOR???
 
 \section{Conclusion}
 
-As mentioned before, this process has multiple phases were it tries to capture the
+As mentioned before, this process has multiple phases where it tries to capture the
 maximum amount of information about the past in order to more accurately predict
 the future.
 This chapter ends with an high level overview of the experimental setup, for which

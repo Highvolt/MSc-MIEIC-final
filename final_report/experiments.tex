@@ -8,8 +8,8 @@ To test which interval of time gets better results for predicting time series
 used on the approach, a dataset containing real data from 26-09-2013 to
 27-01-2014 was used. The interval sizes tested were 4 hours, 6 hours, 8 hours,
 12 hours and 24 hours. The intervals used for the test were 26-09-2013 to
-26-11-2013 for training and 27-11-2013 to 27-01-2014 for validation (case 1) and
-26-09-2013 to 26-12-2013 for testing and 27-12-2013 to 27-01-2014 for validation
+26-11-2013 for training and 27-11-2013 to 25-01-2014 for validation (case 1) and
+26-09-2013 to 26-12-2013 for testing and 27-12-2013 to 25-01-2014 for validation
 (case 2).
 
 \begin{table}[h]
@@ -52,9 +52,9 @@ placeholder
 \footnotesize
 \begin{tabular}{c|ccccccccc}
               & 4h baseline & 4h allow drift & 4h     &  & 6h baseline & 6h allow drift & 6h     &  &  \\ \hline
-$\sigma$ (Real Data) & \multicolumn{3}{c}{946.25}           &  & \multicolumn{3}{c}{1358.24}           &  &  \\
-RMSE          & 690.87      & 562.80         & 562.80 &  & 945.70      & 742.57         & 742.57 &  &  \\
-MASE          & 0.5227      & 0.4397         & 0.4397 &  & 0.3659      & 0.3003         & 0.3003 &  & 
+$\sigma$ (Real Data) & \multicolumn{3}{c}{908.70}           &  & \multicolumn{3}{c}{1293.78}           &  &  \\
+RMSE          & 727.31      & 1083.22        & 834.32 &  & 967.46      & 740.73         & 740.73 &  &  \\
+MASE          & 0.1922      & 0.3152         & 0.2348 &  & 0.1312      & 0.0947         & 0.0947 &  & 
 \end{tabular}
 
 \vspace{0.5cm}
@@ -62,18 +62,18 @@ MASE          & 0.5227      & 0.4397         & 0.4397 &  & 0.3659      & 0.3003 
 \begin{tabular}{c|ccccccccc}
               & 8h baseline & 8h allow drift & 8h     &  & 12h baseline & 12h
               allow drift & 12h     &  &  \\ \hline
-$\sigma$ (Real Data) & \multicolumn{3}{c}{946.25}           &  & \multicolumn{3}{c}{1358.24}           &  &  \\
-RMSE          & 690.87      & 562.80         & 562.80 &  & 945.70      & 742.57         & 742.57 &  &  \\
-MASE          & 0.5227      & 0.4397         & 0.4397 &  & 0.3659      & 0.3003         & 0.3003 &  & 
+$\sigma$ (Real Data) & \multicolumn{3}{c}{1691.32}           &  & \multicolumn{3}{c}{2154.85}           &  &  \\
+RMSE          & 1205.49      & 999.47        & 999.47 &  & 1565.43     & 1722.83        & 1722.83 &  &  \\
+MASE          & 0.0983      & 0.0905         & 0.0905 &  & 0.0857      & 0.0953         & 0.0953 &  & 
 \end{tabular}
 
 \vspace{0.5cm}
 
 \begin{tabular}{c|ccc}
               & 24h baseline & 24h allow drift & 24h  \\ \hline
-$\sigma$ (Real Data) & \multicolumn{3}{c}{946.25}     \\
-RMSE          & 690.87      & 562.80         & 562.80   \\
-MASE          & 0.5227      & 0.4397         & 0.4397 \\
+$\sigma$ (Real Data) & \multicolumn{3}{c}{1752.65}     \\
+RMSE          & 2329.76     & 1646.92         & 1646.92   \\
+MASE          & 0.4198      & 0.2925         & 0.2925 \\
 \end{tabular}
 
 \vspace{0.5cm}
