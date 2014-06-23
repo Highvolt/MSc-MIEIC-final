@@ -7,10 +7,26 @@
 To test which interval of time gets better results for predicting time series
 used on the approach, a dataset containing real data from 26-09-2013 to
 27-01-2014 was used. The interval sizes tested were 4 hours, 6 hours, 8 hours,
-12 hours and 24 hours. The intervals used for the test were 26-09-2013 to
-26-11-2013 for training and 27-11-2013 to 25-01-2014 for validation (case 1) and
-26-09-2013 to 26-12-2013 for testing and 27-12-2013 to 25-01-2014 for validation
-(case 2).
+12 hours and 24 hours.
+
+The time intervals used for the test were:
+\begin{itemize}
+\item case 1 - 26-09-2013 to 26-11-2013 for training;
+27-11-2013 to 25-01-2014 for validation;
+\item case 2 - 26-09-2013 to 26-12-2013 for testing; 27-12-2013 to 25-01-2014
+for validation;
+\item case 3 - 26-09-2013 to 31-12-2013 for testing; 01-01-2014 to 25-01-2014
+for validation;
+\end{itemize}
+
+On tables ~\ref{tab:case1_interval}, ~\ref{tab:case2_interval} and
+~\ref{tab:case3_interval}, for each one of the three cases the error of the
+impressions volume forecasting for every test interval is shown.
+In every case, the interval that got better results was the 12 hour interval
+(minimum \emph{MASE}).
+
+Additional errors values and graphs for this test are available on appendix
+~\ref{ap:tests_result}
 
 \begin{table}[h]
 \footnotesize
@@ -24,11 +40,10 @@ MASE          & 0.5227      & 0.4397         & 0.4397 &  & 0.3659      & 0.3003 
 \vspace{0.5cm}
 
 \begin{tabular}{c|ccccccccc}
-              & 8h baseline & 8h allow drift & 8h     &  & 12h baseline & 12h
-              allow drift & 12h     &  &  \\ \hline
+              & 8h baseline & 8h allow drift & 8h     &  & 12h baseline & \color{red}{12h allow drift} & 12h     &  &  \\ \hline
 $\sigma$ (Real Data) & \multicolumn{3}{c}{1785.84}           &  & \multicolumn{3}{c}{2224.74}           &  &  \\
-RMSE          & 1150.43     & 955.35         & 955.35 &  & 1555.01     & 1233.82      & 1233.82 &  &  \\
-MASE          & 0.2712      & 0.2473         & 0.2473 &  & 0.2253      & 0.1967       & 0.1967 &  & 
+RMSE          & 1150.43     & 955.35         & 955.35 &  & 1555.01     & \color{red}{1233.82}     & 1233.82 &  &  \\
+MASE          & 0.2712      & 0.2473         & 0.2473 &  & 0.2253      & \color{red}{0.1967}      & 0.1967 &  & 
 \end{tabular}
 
 \vspace{0.5cm}
@@ -42,10 +57,11 @@ MASE          & 1.4338      & 1.2725         & 1.2725 \\
 
 \vspace{0.5cm}
 
-\caption{Case 1 impressions results}
-\end{table}\label{tab:case1_interval}
+\caption{Case 1: Forecast errors for different interval sizes (best result in
+red)}\label{tab:case1_interval}
+\end{table}
 
-placeholder
+
 
 
 \begin{table}[h]
@@ -60,11 +76,11 @@ MASE          & 0.1922      & 0.3152         & 0.2348 &  & 0.1312      & 0.0947 
 \vspace{0.5cm}
 
 \begin{tabular}{c|ccccccccc}
-              & 8h baseline & 8h allow drift & 8h     &  & 12h baseline & 12h
+              & 8h baseline & 8h allow drift & 8h     &  & \color{red}{12h baseline} & 12h
               allow drift & 12h     &  &  \\ \hline
 $\sigma$ (Real Data) & \multicolumn{3}{c}{1691.32}           &  & \multicolumn{3}{c}{2154.85}           &  &  \\
-RMSE          & 1205.49      & 999.47        & 999.47 &  & 1565.43     & 1722.83        & 1722.83 &  &  \\
-MASE          & 0.0983      & 0.0905         & 0.0905 &  & 0.0857      & 0.0953         & 0.0953 &  & 
+RMSE          & 1205.49      & 999.47        & 999.47 &  & \color{red}{1565.43}    & 1722.83        & 1722.83 &  &  \\
+MASE          & 0.0983      & 0.0905         & 0.0905 &  & \color{red}{0.0857}     & 0.0953         & 0.0953 &  & 
 \end{tabular}
 
 \vspace{0.5cm}
@@ -78,8 +94,42 @@ MASE          & 0.4198      & 0.2925         & 0.2925 \\
 
 \vspace{0.5cm}
 
-\caption{Case 2 impressions results}
-\end{table}\label{tab:case2_interval}
+\caption{Case 2: Forecast errors for different interval sizes (best result in
+red)}\label{tab:case2_interval}
+\end{table}
 
-placeholder
+
+\begin{table}[h]
+\footnotesize
+\begin{tabular}{c|ccccccccc}
+              & 4h baseline & 4h allow drift & 4h     &  & 6h baseline & 6h allow drift & 6h     &  &  \\ \hline
+$\sigma$ (Real Data) & \multicolumn{3}{c}{929.73}           &  & \multicolumn{3}{c}{1334.01}           &  &  \\
+RMSE          & 737.22      & 692.61         & 692.61 &  & 985.86      & 930.13        & 930.13 &  &  \\
+MASE          & 0.1548      & 0.1441         & 0.1441 &  & 0.1071      & 0.0998        & 0.0998 &  & 
+\end{tabular}
+
+\vspace{0.5cm}
+
+\begin{tabular}{c|ccccccccc}
+              & 8h baseline & 8h allow drift & 8h     &  & 12h baseline & \color{red}{12h allow drift} & 12h     &  &  \\ \hline
+$\sigma$ (Real Data) & \multicolumn{3}{c}{1738.75}           &  & \multicolumn{3}{c}{2203.12}           &  &  \\
+RMSE          & 1197.45     & 1165.13        & 1165.13  &  & 1581.66     & \color{red}{1453.84}      & 1453.84 &  &  \\
+MASE          & 0.0778      & 0.0763         & 0.0763  &  & 0.0695      & \color{red}{0.0595}        & 0.0595 &  & 
+\end{tabular}
+
+\vspace{0.5cm}
+
+\begin{tabular}{c|ccc}
+              & 24h baseline & 24h allow drift & 24h  \\ \hline
+$\sigma$ (Real Data) & \multicolumn{3}{c}{1686.92}     \\
+RMSE          & 2275.91     & 2547.73         & 2260.99   \\
+MASE          & 0.3304      & 0.3525         & 0.3044 \\
+\end{tabular}
+
+\vspace{0.5cm}
+
+\caption{Case 3: Forecast errors for different interval sizes (best result in
+red)}\label{tab:case3_interval}
+\end{table}
+
 
