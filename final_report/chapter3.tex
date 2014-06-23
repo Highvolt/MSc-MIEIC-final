@@ -11,12 +11,29 @@ and users that are target for their campaigns.
 Our goal is to forecast the availability of the users in the future so we can
 simulate the value of future campaigns over them.
 
-The main problem is to predict how the future will be.
-Can came from many sources
+Since we do not know which characteristics the future campaigns will have, there
+is the need to forecast every detail available on the impressions, in order to
+obtain the correct values when the queries are executed over the generated data.
 
-\section{Forecast Inventory Statistics}
+So main goal is to be able to generate a dataset able to be used on a campaign
+simulator, so we must me able to predict the values with the maximum detail
+possible.
 
-\section{Agnostic input data processing}
+This simulator needs to have available every detail possible about every
+impression in order to identify which impressions are compatible with each
+campaign. The result would be express by number of impressions per campaign and
+users target by every campaign, over time.
 
-\section{Objectives}
+The approach should also be independent on any parameter other than the
+date and the user id of the impression, since that would be feed to this
+approach can have multiple sources and each source stores only the relevant
+parameters to then. The approach should be able to generate data for any source
+with any parameters, based only on historical information.
 
+In form of conclusion, the main objectives are:
+\begin{itemize}
+\item Correctly predict volumes of activity on an ad network for a given time in
+  the future based only past data;
+\item Fill the volumes with impressions, with the maximum detail possible, to be
+  able to use the obtained result on a simulator.
+\end{itemize}
