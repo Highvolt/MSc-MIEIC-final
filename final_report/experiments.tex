@@ -2,6 +2,12 @@
 
 \section*{}
 
+In this chapter, some results of experiments done using the approach developed
+(~\ref{chap:chap4}) and multiple datasets (with different characteristics).
+
+There are also some experiments in order to understand which values are better
+for some parameters and in which situations they work better or worst.
+
 \section{Interval size without segmentation}
 
 To test which interval of time gets better results for predicting time series
@@ -30,7 +36,7 @@ In every case, the interval that got better results was the 12 hour interval
 Additional errors values and graphs for this test are available on appendix
 ~\ref{ap:tests_result}
 
-\begin{table}[h]
+\begin{table}[!ht]
 \footnotesize
 \begin{tabular}{c|ccccccccc}
               & 4h baseline & 4h allow drift & 4h     &  & 6h baseline & 6h allow drift & 6h     &  &  \\ \hline
@@ -66,7 +72,7 @@ red)}\label{tab:case1_interval}
 
 
 
-\begin{table}[h]
+\begin{table}[!ht]
 \footnotesize
 \begin{tabular}{c|ccccccccc}
               & 4h baseline & 4h allow drift & 4h     &  & 6h baseline & 6h allow drift & 6h     &  &  \\ \hline
@@ -101,7 +107,7 @@ red)}\label{tab:case2_interval}
 \end{table}
 
 
-\begin{table}[h]
+\begin{table}[!ht]
 \footnotesize
 \begin{tabular}{c|ccccccccc}
               & 4h baseline & 4h allow drift & 4h     &  & 6h baseline & 6h allow drift & 6h     &  &  \\ \hline
@@ -135,3 +141,9 @@ red)}\label{tab:case3_interval}
 \end{table}
 
 
+\section{Segmentation}
+
+The experiments described on this section use all the phases of the approach.
+This experiments will use datasets generated on artificial environment in order to
+test the ability of the approach to capture changes on the volumes of some
+characteristics of the dataset.
