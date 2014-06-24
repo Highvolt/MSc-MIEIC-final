@@ -148,14 +148,64 @@ This experiments will use datasets generated on artificial environment in order 
 test the ability of the approach to capture changes on the volumes of some
 characteristics of the dataset.
 
+For the first test was used an artificial generated dataset containing a constant overall
+volume of impressions, but with the particularity of an increasing volume of
+impressions from users using ''Safari 4.0'' browser. 
+
 \begin{figure}[!ht] \begin{center} \leavevmode
 \includegraphics[width=0.96\textwidth]{forecast_12_wo_clustering} \caption[Volume
 impression forecast, safari]{Volume impression
 forecast, using 12h period without clustering (blue: real; green: forecast)}
 \label{fig:vol_safari_12h_wo_clustering} \end{center} \end{figure}
 
+\begin{table}[!ht]
+\centering
+\footnotesize
+\begin{tabular}{ccc}
+ $\sigma$ (Real Data) & RMSE & MASE   \\ \hline
+ 3.33      & 19.61        & 0.6760   \\
+\end{tabular}
+
+\vspace{0.5cm}
+
+\caption[Volume
+impression forecast, safari]{Error for impression volume
+forecast, using a 12h period without clustering}
+\label{tab:err_forecast_12_safari}
+\end{table}
+
+As shown in the figure~\ref{fig:vol_safari_12h_wo_clustering} and in the
+table~\ref{tab:err_forecast_12_safari}, without the segmentation phase the
+proposed approach was able to forecast with a small error the behavior of the
+impressions on the future.
+
+In order to be able to see the result of the approach for the behavior of the
+''Safari 4.0'' users we need to generate a future dataset (last phase of the
+approach). The result for the query for the ''Safari 4.0'' browser can be seen
+on the figure~\ref{fig:vol_safari_12h_wo_clustering_safari_4}.
+
 \begin{figure}[!ht] \begin{center} \leavevmode
 \includegraphics[width=0.96\textwidth]{safari4_wo_clustering_12} \caption[Volume
 impression forecast, safari 4]{Volume impression
 forecast, using 12h period without clustering, filtered by "Safari 4.0" (blue: real; green: forecast)}
 \label{fig:vol_safari_12h_wo_clustering_safari_4} \end{center} \end{figure}
+
+\begin{table}[!ht]
+\centering
+\footnotesize
+\begin{tabular}{ccc}
+ $\sigma$ (Real Data) & RMSE & MASE   \\ \hline
+72.28      &  155.42       & 19.5770   \\
+\end{tabular}
+
+\vspace{0.5cm}
+
+\caption[Volume
+impression forecast, safari]{Error for impression volume
+forecast, using a 12h period without clustering, query for ''Safari 4.0''}
+\label{tab:err_forecast_12_safari_wo_clustering_safari_4}
+\end{table}
+
+As shown on the figure~\ref{fig:vol_safari_12h_wo_clustering_safari_4}, the
+dataset generation phased mimic the behavior of that particular characteristic
+from the previous week, which in this case is not a good result.
