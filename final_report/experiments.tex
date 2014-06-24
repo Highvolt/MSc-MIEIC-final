@@ -209,3 +209,70 @@ forecast, using a 12h period without clustering, query for ''Safari 4.0''}
 As shown on the figure~\ref{fig:vol_safari_12h_wo_clustering_safari_4}, the
 dataset generation phased mimic the behavior of that particular characteristic
 from the previous week, which in this case is not a good result.
+
+In order to try to capture this kind of behavior we can use the clustering by
+parameter, in this case by the browser attribute, this will forecast the volumes
+values for each browser present on the dataset allowing to get better results in
+predicting the traffic volumes for each browser.
+
+As we can see on picture~\ref{fig:vol_safari_12h_w_clustering}, the overall error
+(table~\ref{tab:err_forecast_12_safari_w_clustering}) for impression volume
+forecasting is worst than without the clustering phase this is due to the error
+for prediction associated with each cluster is amplified when the data is joined
+back together.
+
+\begin{figure}[!ht] \begin{center} \leavevmode
+\includegraphics[width=0.96\textwidth]{forecast_12_w_clustering_per_browser} \caption[Volume
+impression forecast, safari 4]{Volume impression
+forecast, using 12h period with clustering by the browser attribute (blue: real; green: forecast)}
+\label{fig:vol_safari_12h_w_clustering} \end{center} \end{figure}
+
+\begin{table}[!ht]
+\centering
+\footnotesize
+\begin{tabular}{ccc}
+ $\sigma$ (Real Data) & RMSE & MASE   \\ \hline
+3.33 & 136.78 & 4.4253 \\
+\end{tabular}
+
+\vspace{0.5cm}
+
+\caption[Volume
+impression forecast, safari]{Error for impression volume
+forecast, using a 12h period with clustering by browser attribute}
+\label{tab:err_forecast_12_safari_w_clustering}
+\end{table}
+
+In the other hand, in the
+figure~\ref{fig:vol_safari_12h_w_clustering_safari_4}, which show the results
+filtered by ''Safari 4.0'' browser, we get a better result prediction for this
+characteristic, as shown by the error values on
+table~\ref{tab:err_forecast_12_safari_w_clustering_safari_4}. So the
+\emph{clustering by parameter} allow to get better prediction for certain
+characteristics by capturing the volume for each one in the past and propagate
+it into the future.
+
+\begin{figure}[!ht] \begin{center} \leavevmode
+\includegraphics[width=0.96\textwidth]{safari4_w_clustering_12} \caption[Volume
+impression forecast, safari 4]{Volume impression
+forecast, using 12h period with clustering by the browser parameter, filtered by "Safari 4.0" (blue: real; green: forecast)}
+\label{fig:vol_safari_12h_w_clustering_safari_4} \end{center} \end{figure}
+
+\begin{table}[!ht]
+\centering
+\footnotesize
+\begin{tabular}{ccc}
+ $\sigma$ (Real Data) & RMSE & MASE   \\ \hline
+72.28 & 2.58 & 0.2892 \\
+\end{tabular}
+
+\vspace{0.5cm}
+
+\caption[Volume
+impression forecast, safari]{Error for impression volume
+forecast, using a 12h period with clustering by browser attribute, query for ''Safari 4.0''}
+\label{tab:err_forecast_12_safari_w_clustering_safari_4}
+\end{table}
+
+Placeholder
+
