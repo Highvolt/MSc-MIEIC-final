@@ -148,7 +148,7 @@ This experiments will use datasets generated on artificial environment in order 
 test the ability of the approach to capture changes on the volumes of some
 characteristics of the dataset.
 
-\subsubsection*{Without segmentation}
+\subsection*{Without segmentation}
 
 For the first test was used an artificial generated dataset containing a constant overall
 volume of impressions, but with the particularity of an increasing volume of
@@ -221,6 +221,68 @@ on the figure~\ref{fig:vol_safari_12h_wo_clustering_safari_4}.
 As shown on the figure~\ref{fig:vol_safari_12h_wo_clustering_safari_4}, the
 dataset generation phased mimic the behavior of that particular characteristic
 from the previous week, which in this case is not a good result.
+
+\subsection*{Clustering Baseline}
+
+
+\begin{figure}[!ht]
+\centering
+\begin{minipage}[t]{0.45\linewidth}
+\includegraphics[width=0.96\textwidth]{forecast_12_w_clustering_baseline} \caption[Volume
+impression forecast, safari 4]{Volume impression
+forecast, using 12h period with baseline clustering  (blue: real; green: forecast)}
+\label{fig:vol_safari_12h_w_clustering_baseline}
+\end{minipage}
+\quad
+\begin{minipage}[t]{0.45\linewidth}
+\includegraphics[width=0.96\textwidth]{forecast_12_w_clustering_baseline_safari4} \caption[Volume
+impression forecast, safari 4]{Volume impression
+forecast, using 12h period with baseline clustering, filtered by "Safari 4.0" (blue: real; green: forecast)}
+\label{fig:vol_safari_12h_w_clustering_baseline_safari_4}
+\end{minipage}
+
+\end{figure}
+
+\begin{table}[!ht]
+\centering
+\footnotesize
+\begin{minipage}[t]{0.45\linewidth}
+\centering
+\footnotesize
+\begin{tabular}{ccc}
+ $\sigma$ (Real Data) & RMSE & MASE   \\ \hline
+3.33 & 3.38 & 0.0931 \\
+\end{tabular}
+
+\vspace{0.5cm}
+
+\caption[Volume
+impression forecast, safari]{Error for impression volume
+forecast, using 12h period with baseline clustering}
+\label{tab:err_forecast_12_safari_w_clustering_datastream_14}
+\end{minipage}
+\quad
+\begin{minipage}[t]{0.45\linewidth}
+\centering
+\footnotesize
+\begin{tabular}{ccc}
+ $\sigma$ (Real Data) & RMSE & MASE   \\ \hline
+72.28 & 154.99 & 19.5144 \\
+\end{tabular}
+
+\vspace{0.5cm}
+
+\caption[Volume
+impression forecast, safari]{Error for impression volume
+forecast, using 12h period with baseline clustering, filtered by "Safari 4.0"}
+\label{tab:err_forecast_12_safari_w_clustering_datastream_14}
+\end{minipage}
+
+\end{table}
+
+
+Placeholder
+
 
 \subsection*{Segmentation by Parameter}
 
@@ -303,7 +365,7 @@ table~\ref{tab:err_forecast_12_safari_w_clustering_safari_4}. So the
 characteristics by capturing the volume for each one in the past and propagate
 it into the future.
 
-\subsubsection*{Using datastream-based clustering}
+\subsection*{Using datastream-based clustering}
 
 For values 14.
 
@@ -314,7 +376,7 @@ For values 14.
 impression forecast, safari 4]{Volume impression
 forecast, using 12h period with clustering based datastream-based clustering,
 with a \emph{threshold} of 14 maximum distance  (blue: real; green: forecast)}
-\label{fig:vol_safari_12h_w_clustering_safari_4}
+\label{fig:vol_safari_12h_w_clustering_datastream_14}
 \end{minipage}
 \quad
 \begin{minipage}[t]{0.45\linewidth}
@@ -322,7 +384,7 @@ with a \emph{threshold} of 14 maximum distance  (blue: real; green: forecast)}
 impression forecast, safari 4]{Volume impression
 forecast, using 12h period with clustering based datastream-based clustering,
 with a \emph{threshold} of 14 maximum distance, filtered by "Safari 4.0" (blue: real; green: forecast)}
-\label{fig:vol_safari_12h_w_clustering_safari_4}
+\label{fig:vol_safari_12h_w_clustering_datastream_14_safari_4}
 \end{minipage}
 
 \end{figure}
