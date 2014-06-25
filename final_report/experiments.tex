@@ -514,7 +514,7 @@ Without any segmentation phase we obtained a good result for the overall
 impression volume prediction. If we filter the results for the particular
 domain,
 that we know will be decreasing, the result mimics the behaviour of the previous
-week since the information that it was about that particular domain is limited.
+weeks since the information that it was about that particular domain is limited.
 
 \subsection*{Clustering Baseline}
 
@@ -574,9 +574,18 @@ forecast, using 12h period with baseline segmentation, filtered by the domain ''
 \end{table}
 
 
-Placeholder
+In the figure~\ref{fig:domain_w_baseline} and
+table~\ref{tab:err_domain_w_segmentation_baseline} we can take a look at the
+results given by the segmentation baseline method for the total volume of
+impressions forecast for this dataset, as we can assess the results are better
+than without segmentation, and when we filter the data for the domain that is
+decreasing in volume of impressions (figure~\ref{fig:domain_w_baseline_filtered}
+and table~\ref{tab:err_domain_w_segmentation_baseline_filtered}) we also obtain
+a slightly better result.
 
 \subsection*{Segmentation by Parameter}
+
+\subsubsection*{Segmentation by Domain}
 
 \begin{figure}[!ht]
 \centering
@@ -643,8 +652,16 @@ forecast, using 12h period with segmentation by domain, filtered by the domain '
 
 \end{table}
 
+Like we did for the previous test group where we knew that a particular browser
+was increasing its value in volume impressions we segmented the data by browser,
+in this case we know that a domain is decreasing, so we tested segment the data
+by domain. In the figure~\ref{fig:domain_w_domain_filtered} the results where
+not as expected, although we got a better result in the filtered data, when
+compared to the previous methods, the result for the total volume of that is
+much worse. This is probably due to small volumes in each domain since in this
+dataset was about 4300 domains in about 3000 impressions in each 12h period
+which can result in a very difficult to predict time series.
 
-Placeholder
 
 \subsection*{Using datastream-based clustering}
 
@@ -715,12 +732,20 @@ forecast, using 12h period using datastream-based clustering with a
 
 \end{table}
 
-
-Placeholder
-
-
+The datastream-based segmentation approach using a \emph{threshold} 14 of
+maximum distance, we get a slightly worse result than without segmentation and
+the baseline segmentation approach, as shown by
+figure~\ref{fig:domain_w_datastream} and
+table~\ref{tab:err_domain_w_datastream}. Is by using this method that we got the
+better results on this series, in terms of capturing the peculiarity of this
+dataset, as shown by figure~\ref{fig:domain_w_datastream_filtered} and
+table~\ref{tab:err_domain_w_segmentation_datastream_filtered}.
 
 \subsection{Real Data}
+
+For this last series of tests we used a dataset containing real data, since we
+don't know any particular characteristic to search for we will compare the
+results for the query for ''Portugal'' as country of origin of each impression.
 
 \subsection*{Without Segmentation}
 
@@ -780,8 +805,13 @@ forecast, using 12h period without clustering, filtered by country = Portugal}
 
 \end{table}
 
+Like in the other datasets we start by testing the result without any
+segmentation. In overall volume of impressions we get a good result
+(figure~\ref{fig:vol_real_data_wo_clustering} and
+table~\ref{tab:err_real_data_wo_clustering}), and when over the result a query
+for origin country ''Portugal'' is done, the result mimics the past
+characteristics and the result on this case is not bad.
 
-Placeholder
 
 \subsection*{Clustering Baseline}
 
@@ -842,10 +872,15 @@ Portugal}
 
 \end{table}
 
+The baseline segmentation, in this case gets a worse result than the
+non-segmented approach in terms of total volume, but a better approximation
+in terms of the results for the query ''Portugal'', probably due to additional
+granularity gained by the data division.
 
-Placeholder
 
 \subsection*{Segmentation by Parameter}
+
+\subsubsection*{Segmentation by browser}
 
 \begin{figure}[!ht]
 \centering
@@ -890,7 +925,7 @@ forecast, using 12h period with segmentation by browser}
 \footnotesize
 \begin{tabular}{ccc}
  $\sigma$ (Real Data) & RMSE & MASE   \\ \hline
-6.70 & 9.24 & 1.2511 \\
+6.70 & 10.75 & 1.3883 \\
 \end{tabular}
 
 \vspace{0.5cm}
@@ -904,8 +939,11 @@ Portugal}
 
 \end{table}
 
-
-Placeholder
+Since, in the case of this dataset we do not know for which particular parameter
+we might want to segment by, the browser parameter was randomly selected as the
+segmentation parameter. For the overall volume result this was the best result
+over the other approaches over this particular dataset. In terms of the query
+for ''Portugal'' the result was slightly worse than previous approaches.
 
 \subsection*{Using datastream-based clustering}
 
@@ -968,6 +1006,16 @@ forecast, using 12h period with datastream-based segmentation using
 
 \end{table}
 
+For this dataset the \emph{threshold} for the distance needed to be increased to
+20 (out of 28) because with a smaller \emph{threshold} we would get to many
+groups, and some of them with data in the future not represented on the training
+dataset.
 
-Placeholder
+In overall analysis this was the worst result for this dataset for impression
+volume forecast and for the queried data. This bad result can be associated with
+the associated results did not have any particular characteristic in terms of
+volume trend that made sense together, but were group because they had similar
+parameters.
+
+\section{Conclusion}
 
