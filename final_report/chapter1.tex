@@ -33,16 +33,25 @@ Servers and \hyperref[itm:adex]{Exchanges}, \hyperref[itm:ssp]{Sell-Side Platfor
 
 The main objective of this project is to develop a library capable of generating
 future ad requests' logs from past recorded requests.
-To solve this problem, multiple data mining classification and clustering
-techniques will be explored in order to find the fastest and more accurate way
-to do it. 
+
+In order to address this problem multiple ways to aggregate impressions
+will be used,
+so they become more predictable. This aggregated impressions will be transformed in time
+series where time series analyse techniques will be used in order to predict
+their values in the future.
+In order to give more detail to the results the generator will also be able to
+mimic past characteristics of the dataset into the future in order to capture
+behaviours that were invisible to the time series.
+
 This generator will use real ad request' logs from various sources stored in files.
 The generated files will need to respect the same structure as the given file.
 
 The focus of this thesis is generating future ad requests' logs, which is just
 one part of the more complex problem of
-forecasting the behaviour of campaigns in the future. The resultant ad request log
-will be validated using a simulator supplied by ShiftForward.
+forecasting the behaviour of campaigns in the future. So this results can be
+used on a simulator of online advertising campaigns.
+%The resultant ad request log
+%will be validated using a simulator supplied by ShiftForward.
 
 
 %The project consists of creating a library capable of predicting the future access data logs based only on data logs of previous months.

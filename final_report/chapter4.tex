@@ -163,7 +163,7 @@ characterize the future, we need to forecast each one of this three values
 on future time intervals. To complete this task the \emph{ARIMA} approach was used.
 
 
-******WHY DID I USED ARIMA
+%******WHY DID I USED ARIMA
 
 \subsection{Dataset Generator}
 
@@ -432,6 +432,9 @@ the division can be changed, so different configurations were tested.
 This phase cannot be directly validated nor compared, so the results were
 only validated and compared after the forecast phase.
 
+The baseline method for this phase, divides the impressions on a chronological
+order into 100 groups.
+
 \subsubsection*{Volume Forecast}
 
 On this phase, the $ARIMA$ model is used to predict the behaviour of the time
@@ -450,6 +453,10 @@ produces better results.
 
 To compare these results, $RMSE$ and $MASE$ where used.
 
+The baseline method for this phase, copies data from the furthest date of the
+dataset into the starting date of the forecast, respecting the day of the week
+and the hour.
+
 \subsubsection*{Dataset Generation}
 
 This last phase does not take any additional parameters. It uses the values
@@ -457,9 +464,11 @@ that had been forecast in the volume forecast phase and the old dataset in order
 a dataset which represents the future.
 
 This phase was tested using synthetic generated past datasets which contained certain
-changes in some parameters (examples being changes in browser usage and addition of new domains)
+changes in some parameters (examples being changes in browser usage and addition
+of new domains).
 
-???SIMULATOR???
+Since a simulator was not available during the test phase, some queries over the
+data were done to test the capability of this phase.
 
 \section{Conclusion}
 
