@@ -148,6 +148,8 @@ This experiments will use datasets generated on artificial environment in order 
 test the ability of the approach to capture changes on the volumes of some
 characteristics of the dataset.
 
+\subsection{Particular browser increasing}
+
 \subsection*{Without segmentation}
 
 For the first test was used an artificial generated dataset containing a constant overall
@@ -156,14 +158,14 @@ impressions from users using ''Safari 4.0'' browser.
 
 \begin{figure}[!ht]
 \centering
-\begin{minipage}[b]{0.45\linewidth}
+\begin{minipage}[t]{0.45\linewidth}
 \includegraphics[width=0.96\textwidth]{forecast_12_wo_clustering} \caption[Volume
 impression forecast, safari]{Volume impression
 forecast, using 12h period without clustering (blue: real; green: forecast)}
 \label{fig:vol_safari_12h_wo_clustering}
 \end{minipage}
 \quad
-\begin{minipage}[b]{0.45\linewidth}
+\begin{minipage}[t]{0.45\linewidth}
 \includegraphics[width=0.96\textwidth]{safari4_wo_clustering_12} \caption[Volume
 impression forecast, safari 4]{Volume impression
 forecast, using 12h period without clustering, filtered by "Safari 4.0" (blue: real; green: forecast)}
@@ -176,7 +178,7 @@ forecast, using 12h period without clustering, filtered by "Safari 4.0" (blue: r
 \begin{table}[!ht]
 \centering
 \footnotesize
-\begin{minipage}[b]{0.45\linewidth}
+\begin{minipage}[t]{0.45\linewidth}
 \centering
 \begin{tabular}{ccc}
  $\sigma$ (Real Data) & RMSE & MASE   \\ \hline
@@ -191,7 +193,7 @@ forecast, using a 12h period without clustering}
 \label{tab:err_forecast_12_safari}
 \end{minipage}
 \quad
-\begin{minipage}[b]{0.45\linewidth}
+\begin{minipage}[t]{0.45\linewidth}
 \centering
 \begin{tabular}{ccc}
  $\sigma$ (Real Data) & RMSE & MASE   \\ \hline
@@ -430,4 +432,266 @@ with a \emph{threshold} of 14 maximum distance, filtered by "Safari 4.0"}
 
 
 Placeholder
+
+\subsection{Particular Domain decreasing}
+
+\subsection*{Without Segmentation}
+
+\begin{figure}[!ht]
+\centering
+\begin{minipage}[t]{0.45\linewidth}
+\includegraphics[width=0.96\textwidth]{results_3/wo_clustering} \caption[Volume
+impression forecast, safari 4]{Volume impression
+forecast, using 12h period with clustering based datastream-based clustering,
+with a \emph{threshold} of 14 maximum distance  (blue: real; green: forecast)}
+\label{fig:vol_safari_12h_w_clustering_datastream_14}
+\end{minipage}
+\quad
+\begin{minipage}[t]{0.45\linewidth}
+\includegraphics[width=0.96\textwidth]{results_3/host_wo_clustering} \caption[Volume
+impression forecast, safari 4]{Volume impression
+forecast, using 12h period with clustering based datastream-based clustering,
+with a \emph{threshold} of 14 maximum distance, filtered by "Safari 4.0" (blue: real; green: forecast)}
+\label{fig:vol_safari_12h_w_clustering_datastream_14_safari_4}
+\end{minipage}
+
+\end{figure}
+
+\begin{table}[!ht]
+\centering
+\footnotesize
+\begin{minipage}[t]{0.45\linewidth}
+\centering
+\footnotesize
+\begin{tabular}{ccc}
+ $\sigma$ (Real Data) & RMSE & MASE   \\ \hline
+4.33 & 5.00 & 0.1392 \\
+\end{tabular}
+
+\vspace{0.5cm}
+
+\caption[Volume
+impression forecast, safari]{Error for impression volume
+forecast, using 12h period with clustering based datastream-based clustering,
+with a \emph{threshold} of 14 maximum distance }
+\label{tab:err_forecast_12_safari_w_clustering_datastream_14}
+\end{minipage}
+\quad
+\begin{minipage}[t]{0.45\linewidth}
+\centering
+\footnotesize
+\begin{tabular}{ccc}
+ $\sigma$ (Real Data) & RMSE & MASE   \\ \hline
+72.50 & 152.78 & 12.8542 \\
+\end{tabular}
+
+\vspace{0.5cm}
+
+\caption[Volume
+impression forecast, safari]{Error for impression volume
+forecast, using 12h period with clustering based datastream-based clustering,
+with a \emph{threshold} of 14 maximum distance, filtered by "Safari 4.0"}
+\label{tab:err_forecast_12_safari_w_clustering_datastream_14}
+\end{minipage}
+
+\end{table}
+
+
+Placeholder
+
+\subsection*{Clustering Baseline}
+
+\begin{figure}[!ht]
+\centering
+\begin{minipage}[t]{0.45\linewidth}
+\includegraphics[width=0.96\textwidth]{results_3/baseline} \caption[Volume
+impression forecast, safari 4]{Volume impression
+forecast, using 12h period with clustering based datastream-based clustering,
+with a \emph{threshold} of 14 maximum distance  (blue: real; green: forecast)}
+\label{fig:vol_safari_12h_w_clustering_datastream_14}
+\end{minipage}
+\quad
+\begin{minipage}[t]{0.45\linewidth}
+\includegraphics[width=0.96\textwidth]{results_3/host_baseline} \caption[Volume
+impression forecast, safari 4]{Volume impression
+forecast, using 12h period with clustering based datastream-based clustering,
+with a \emph{threshold} of 14 maximum distance, filtered by "Safari 4.0" (blue: real; green: forecast)}
+\label{fig:vol_safari_12h_w_clustering_datastream_14_safari_4}
+\end{minipage}
+
+\end{figure}
+
+\begin{table}[!ht]
+\centering
+\footnotesize
+\begin{minipage}[t]{0.45\linewidth}
+\centering
+\footnotesize
+\begin{tabular}{ccc}
+ $\sigma$ (Real Data) & RMSE & MASE   \\ \hline
+4.33 & 4.30 & 0.1176 \\
+\end{tabular}
+
+\vspace{0.5cm}
+
+\caption[Volume
+impression forecast, safari]{Error for impression volume
+forecast, using 12h period with clustering based datastream-based clustering,
+with a \emph{threshold} of 14 maximum distance }
+\label{tab:err_forecast_12_safari_w_clustering_datastream_14}
+\end{minipage}
+\quad
+\begin{minipage}[t]{0.45\linewidth}
+\centering
+\footnotesize
+\begin{tabular}{ccc}
+ $\sigma$ (Real Data) & RMSE & MASE   \\ \hline
+72.50 & 150.7442 & 12.6627 \\
+\end{tabular}
+
+\vspace{0.5cm}
+
+\caption[Volume
+impression forecast, safari]{Error for impression volume
+forecast, using 12h period with clustering based datastream-based clustering,
+with a \emph{threshold} of 14 maximum distance, filtered by "Safari 4.0"}
+\label{tab:err_forecast_12_safari_w_clustering_datastream_14}
+\end{minipage}
+
+\end{table}
+
+
+Placeholder
+
+\subsection*{Segmentation by Parameter}
+
+\begin{figure}[!ht]
+\centering
+\begin{minipage}[t]{0.45\linewidth}
+\includegraphics[width=0.96\textwidth]{results_3/per_host} \caption[Volume
+impression forecast, safari 4]{Volume impression
+forecast, using 12h period with clustering based datastream-based clustering,
+with a \emph{threshold} of 14 maximum distance  (blue: real; green: forecast)}
+\label{fig:vol_safari_12h_w_clustering_datastream_14}
+\end{minipage}
+\quad
+\begin{minipage}[t]{0.45\linewidth}
+\includegraphics[width=0.96\textwidth]{results_3/host_per_host} \caption[Volume
+impression forecast, safari 4]{Volume impression
+forecast, using 12h period with clustering based datastream-based clustering,
+with a \emph{threshold} of 14 maximum distance, filtered by "Safari 4.0" (blue: real; green: forecast)}
+\label{fig:vol_safari_12h_w_clustering_datastream_14_safari_4}
+\end{minipage}
+
+\end{figure}
+
+\begin{table}[!ht]
+\centering
+\footnotesize
+\begin{minipage}[t]{0.45\linewidth}
+\centering
+\footnotesize
+\begin{tabular}{ccc}
+ $\sigma$ (Real Data) & RMSE & MASE   \\ \hline
+4.33 & 283.20 & 9.9304 \\
+\end{tabular}
+
+\vspace{0.5cm}
+
+\caption[Volume
+impression forecast, safari]{Error for impression volume
+forecast, using 12h period with clustering based datastream-based clustering,
+with a \emph{threshold} of 14 maximum distance }
+\label{tab:err_forecast_12_safari_w_clustering_datastream_14}
+\end{minipage}
+\quad
+\begin{minipage}[t]{0.45\linewidth}
+\centering
+\footnotesize
+\begin{tabular}{ccc}
+ $\sigma$ (Real Data) & RMSE & MASE   \\ \hline
+72.50 & 137.93 & 11.2913 \\
+\end{tabular}
+
+\vspace{0.5cm}
+
+\caption[Volume
+impression forecast, safari]{Error for impression volume
+forecast, using 12h period with clustering based datastream-based clustering,
+with a \emph{threshold} of 14 maximum distance, filtered by "Safari 4.0"}
+\label{tab:err_forecast_12_safari_w_clustering_datastream_14}
+\end{minipage}
+
+\end{table}
+
+
+Placeholder
+
+\subsection*{Using datastream-based clustering}
+
+\begin{figure}[!ht]
+\centering
+\begin{minipage}[t]{0.45\linewidth}
+\includegraphics[width=0.96\textwidth]{results_3/datastream_14} \caption[Volume
+impression forecast, safari 4]{Volume impression
+forecast, using 12h period with clustering based datastream-based clustering,
+with a \emph{threshold} of 14 maximum distance  (blue: real; green: forecast)}
+\label{fig:vol_safari_12h_w_clustering_datastream_14}
+\end{minipage}
+\quad
+\begin{minipage}[t]{0.45\linewidth}
+\includegraphics[width=0.96\textwidth]{results_3/host_datastream_14.png} \caption[Volume
+impression forecast, safari 4]{Volume impression
+forecast, using 12h period with clustering based datastream-based clustering,
+with a \emph{threshold} of 14 maximum distance, filtered by "Safari 4.0" (blue: real; green: forecast)}
+\label{fig:vol_safari_12h_w_clustering_datastream_14_safari_4}
+\end{minipage}
+
+\end{figure}
+
+\begin{table}[!ht]
+\centering
+\footnotesize
+\begin{minipage}[t]{0.45\linewidth}
+\centering
+\footnotesize
+\begin{tabular}{ccc}
+ $\sigma$ (Real Data) & RMSE & MASE   \\ \hline
+4.33 & 32.48 & 1.0613 \\
+\end{tabular}
+
+\vspace{0.5cm}
+
+\caption[Volume
+impression forecast, safari]{Error for impression volume
+forecast, using 12h period with clustering based datastream-based clustering,
+with a \emph{threshold} of 14 maximum distance }
+\label{tab:err_forecast_12_safari_w_clustering_datastream_14}
+\end{minipage}
+\quad
+\begin{minipage}[t]{0.45\linewidth}
+\centering
+\footnotesize
+\begin{tabular}{ccc}
+ $\sigma$ (Real Data) & RMSE & MASE   \\ \hline
+72.50 & 123.27 & 10.3919 \\
+\end{tabular}
+
+\vspace{0.5cm}
+
+\caption[Volume
+impression forecast, safari]{Error for impression volume
+forecast, using 12h period with clustering based datastream-based clustering,
+with a \emph{threshold} of 14 maximum distance, filtered by "Safari 4.0"}
+\label{tab:err_forecast_12_safari_w_clustering_datastream_14}
+\end{minipage}
+
+\end{table}
+
+
+Placeholder
+
+
+
+\subsection{Real Data}
 
