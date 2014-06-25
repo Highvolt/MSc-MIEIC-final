@@ -2,33 +2,32 @@
 
 \section*{}
 
-In this chapter, some results of experiments done using the approach developed
-(~\ref{chap:chap4}) and multiple datasets (with different characteristics).
+In this chapter, we present some results of experiments done using the approach developed
+(Chapter ~\ref{chap:chap4}) and with multiple datasets (with different characteristics).
 
-There are also some experiments in order to understand which values are better
-for some parameters and in which situations they work better or worst.
+We also present some experiments, made in order to understand which values are better
+for some parameters, and in which situations they work better or worst.
 
 \section{Interval size without segmentation}
 
-To test which interval of time gets better results for predicting time series
+To test which intervals of time get better results for predicting time series
 used on the approach, a dataset containing real data from 26-09-2013 to
-27-01-2014 was used. The interval sizes tested were 4 hours, 6 hours, 8 hours,
+27-01-2014 was used. The interval sizes tested were: 4 hours, 6 hours, 8 hours,
 12 hours and 24 hours.
 
-For this test only the \emph{Volume Forecasting} phase, was used.
+For this test only the \emph{Volume Forecasting}(Section~\ref{subsec:volume_forecast}) phase, was used.
 
 The time intervals used for the test were:
 \begin{itemize}
-\item case 1 - 26-09-2013 to 26-11-2013 for training;
-27-11-2013 to 25-01-2014 for validation;
-\item case 2 - 26-09-2013 to 26-12-2013 for training; 27-12-2013 to 25-01-2014
-for validation;
-\item case 3 - 26-09-2013 to 31-12-2013 for training; 01-01-2014 to 25-01-2014
-for validation;
+\item case 1 - The results presented on table~\ref{tab:case1_interval} use
+26-09-2013 to 26-11-2013 for training; 27-11-2013 to 25-01-2014 for validation;
+\item case 2 - The results presented on table~\ref{tab:case2_interval} use
+26-09-2013 to 26-12-2013 for training; 27-12-2013 to 25-01-2014 for validation;
+\item case 3 - The results presented on table~\ref{tab:case3_interval} use
+26-09-2013 to 31-12-2013 for training; 01-01-2014 to 25-01-2014 for validation;
 \end{itemize}
 
-On tables ~\ref{tab:case1_interval}, ~\ref{tab:case2_interval} and
-~\ref{tab:case3_interval}, for each one of the three cases the error of the
+For each one of the three cases the error of the
 impressions volume forecasting for every test interval is shown.
 In every case, the interval that got better results was the 12 hour interval
 (minimum \emph{MASE}).
@@ -144,17 +143,17 @@ red)}\label{tab:case3_interval}
 \section{Segmentation}
 
 The experiments described on this section use all the phases of the approach.
-This experiments will use datasets generated on artificial environment in order to
+This experiments used datasets generated on an artificial environment, in order to
 test the ability of the approach to capture changes on the volumes of some
 characteristics of the dataset.
-It will also be used a real world dataset, in order to assess the result in a
+We also used a real world dataset, in order to assess the result in
 more realist conditions.
 
 \subsection{Particular browser increasing}
 
 \subsection*{Without segmentation}
 
-For the first test it was used an artificial generated dataset containing a constant overall
+For the first test an artificial generated dataset was used, containing a constant overall
 volume of impressions, but with the particularity of an increasing volume of
 impressions from users using ''Safari 4.0'' browser. 
 
@@ -221,15 +220,15 @@ In order to be able to see the result of the approach for the behavior of the
 ''Safari 4.0'' users we need to generate a future dataset (last phase of the
 approach). The result for the query for the ''Safari 4.0'' browser, over the
 resultant dataset, can be seen
-on the figure~\ref{fig:vol_safari_12h_wo_clustering_safari_4}.
+on figure~\ref{fig:vol_safari_12h_wo_clustering_safari_4}.
 
 As shown on the figure~\ref{fig:vol_safari_12h_wo_clustering_safari_4}, the
-dataset generation phased mimic the behavior of that particular characteristic
+dataset generation phased mimics the behavior of that particular characteristic
 from the previous week into the future, which in this case is not a good result.
 
 \subsection*{Clustering Baseline}
 
-In order to better compare the results of the different segmentation approaches
+In order to better compare the results of the different segmentation approaches,
 a baseline method was used\footnote{the original dataset was grouped in a
 chronological order on 100 different groups.}.
 
@@ -283,15 +282,15 @@ forecast, using 12h period with baseline clustering}
 \caption[Volume
 impression forecast, safari]{Error for impression volume
 forecast, using 12h period with baseline clustering, filtered by "Safari 4.0"}
-\label{tab:err_forecast_12_safari_w_clustering_datastream_14}
+\label{tab:err_forecast_12_safari_w_clustering_baseline_safari}
 \end{minipage}
 
 \end{table}
 
-On figure~\ref{fig:vol_safari_12h_w_clustering_baseline} and table~\ref{tab:err_forecast_12_safari_w_clustering_datastream_14}
-we can assess that this approach gets a slightly improvement over the
+On figure~\ref{fig:vol_safari_12h_w_clustering_baseline} and table~\ref{tab:err_forecast_12_safari_w_clustering_baseline_safari}
+we can assess that this approach gets a slight improvement over the
 non-segmented approach. If we look at the filtered data
-(figure~\ref{fig:vol_safari_12h_w_clustering_baseline_safari_4}) the improvement
+(Figure~\ref{fig:vol_safari_12h_w_clustering_baseline_safari_4}) the improvement
 is not that noticeable.
 
 
@@ -299,16 +298,17 @@ is not that noticeable.
 
 \subsubsection*{Segmentation by browser}
 
-Since we know that this particular dataset has a peculiarity in the browser
-parameter impression volume. We test how the prediction would react to the clustering by
-parameter, in this case by the browser attribute, this will forecast the volumes
-values for each browser present on the dataset allowing to get better results in
+Since we know that this particular dataset has a peculiarity, as previously seen
+on filtered results (for example Figure~\ref{fig:vol_safari_12h_w_clustering_safari_4}), in the browser
+parameter impression volume. To verify how the prediction would react to the clustering by
+parameter(specifically by the browser attribute) this will forecast the volumes
+values for each browser present on the dataset. This allow us to get better results in
 predicting the traffic volumes for each browser.
 
-As we can see on picture~\ref{fig:vol_safari_12h_w_clustering}, the overall error
-(table~\ref{tab:err_forecast_12_safari_w_clustering}) for impression volume
-forecasting is worst than without the clustering phase this is due to the error
-for prediction associated with each cluster is amplified when the volume data is joined
+As we can see on Figure~\ref{fig:vol_safari_12h_w_clustering}, the overall error
+(Table~\ref{tab:err_forecast_12_safari_w_clustering}) for impression volume
+forecasting is worse than without the clustering phase. This is due to the fact that the prediction error
+associated with each cluster is amplified when the volume data is joined
 back together.
 
 \begin{figure}[!ht]
@@ -369,13 +369,13 @@ forecast, using a 12h period with clustering by browser attribute, query for ''S
 \end{table}
 
 In the other hand, in the
-figure~\ref{fig:vol_safari_12h_w_clustering_safari_4}, which show the results
-filtered by ''Safari 4.0'' browser, we get a better result prediction for this
+Figure~\ref{fig:vol_safari_12h_w_clustering_safari_4}(which show the results
+filtered by ''Safari 4.0'' browser) we get a better result prediction for this
 characteristic, as shown by the error values on
-table~\ref{tab:err_forecast_12_safari_w_clustering_safari_4}. So the
-\emph{clustering by parameter} allow to get better prediction for certain
-characteristics by capturing the volume for each one in the past and propagate
-it into the future.
+Table~\ref{tab:err_forecast_12_safari_w_clustering_safari_4}.
+This tells us that \emph{clustering by parameter} gives better predictions for certain
+characteristics, by capturing the volume for each one in the past and
+propagating it into the future.
 
 \subsection*{Using datastream-based clustering}
 
@@ -439,9 +439,9 @@ with a \emph{threshold} of 14 maximum distance, filtered by "Safari 4.0"}
 \end{table}
 
 Using the datastream-based clustering method, with a \emph{threshold} of 14
-(which means that each member of each groups will only what a maximum of 14
+(which means that each group member of each groups will only have a maximum of 14
 parameters different than the centroid of the group) the result for the overall
-impressions volume was worst than without clustering and the baseline clustering
+impressions volume was worse than methods without clustering and the baseline clustering
 method, but better than the clustering by browser. If we analyse the
 figure~\ref{fig:vol_safari_12h_w_clustering_datastream_14_safari_4}, we can
 assess than the result is only beat by the clustering for that specific
@@ -450,8 +450,7 @@ parameter, which ultimately is a good result.
 \subsection{Specific Domain decreasing linearly}
 
 For this set of tests another artificially generated dataset was used, in this
-particular case one of the domains represented on the dataset, decreases its
-volume following an linear function.
+particular case one of the domains represented on the dataset, with a steady linear decrease following a linear function.
 
 \subsection*{Without Segmentation}
 
@@ -512,9 +511,9 @@ forecast, using 12h period without segmentation, filtered by the domain ''ef4e08
 
 Without any segmentation phase we obtained a good result for the overall
 impression volume prediction. If we filter the results for the particular
-domain,
+domain
 that we know will be decreasing, the result mimics the behaviour of the previous
-weeks since the information that it was about that particular domain is limited.
+weeks since the information about that particular domain is limited.
 
 \subsection*{Clustering Baseline}
 
@@ -577,7 +576,7 @@ forecast, using 12h period with baseline segmentation, filtered by the domain ''
 In the figure~\ref{fig:domain_w_baseline} and
 table~\ref{tab:err_domain_w_segmentation_baseline} we can take a look at the
 results given by the segmentation baseline method for the total volume of
-impressions forecast for this dataset, as we can assess the results are better
+impressions forecast for this dataset. The figures show the results are better
 than without segmentation, and when we filter the data for the domain that is
 decreasing in volume of impressions (figure~\ref{fig:domain_w_baseline_filtered}
 and table~\ref{tab:err_domain_w_segmentation_baseline_filtered}) we also obtain
@@ -652,14 +651,16 @@ forecast, using 12h period with segmentation by domain, filtered by the domain '
 
 \end{table}
 
-Like we did for the previous test group where we knew that a particular browser
-was increasing its value in volume impressions we segmented the data by browser,
+Like we did for the previous test group (where we knew that a particular browser
+was increasing its value in volume impressions and so we segmented the data by
+browser),
 in this case we know that a domain is decreasing, so we tested segment the data
-by domain. In the figure~\ref{fig:domain_w_domain_filtered} the results where
-not as expected, although we got a better result in the filtered data, when
-compared to the previous methods, the result for the total volume of that is
-much worse. This is probably due to small volumes in each domain since in this
-dataset was about 4300 domains in about 3000 impressions in each 12h period
+by domain. In the figure~\ref{fig:domain_w_domain_filtered} the results were
+not as expected. Even though we got a better result in the filtered data, when
+compared to the previous methods, the result for the total volume is
+much worse. This is probably due to the small volumes in each domain, since in this
+dataset there was about 4300 domains in around 3000 impressions for each 12h
+period,
 which can result in a very difficult to predict time series.
 
 
@@ -732,20 +733,20 @@ forecast, using 12h period using datastream-based clustering with a
 
 \end{table}
 
-The datastream-based segmentation approach using a \emph{threshold} 14 of
-maximum distance, we get a slightly worse result than without segmentation and
+The datastream-based segmentation approach using a \emph{threshold} equal to 14 of
+maximum distance, we get a slightly worse result than the method without segmentation and
 the baseline segmentation approach, as shown by
-figure~\ref{fig:domain_w_datastream} and
-table~\ref{tab:err_domain_w_datastream}. Is by using this method that we got the
-better results on this series, in terms of capturing the peculiarity of this
+Figure~\ref{fig:domain_w_datastream} and
+Table~\ref{tab:err_domain_w_datastream}. This is the method responsible for the best results on this series,
+in terms of capturing the peculiarity of this
 dataset, as shown by figure~\ref{fig:domain_w_datastream_filtered} and
 table~\ref{tab:err_domain_w_segmentation_datastream_filtered}.
 
 \subsection{Real Data}
 
-For this last series of tests we used a dataset containing real data, since we
-don't know any particular characteristic to search for we will compare the
-results for the query for ''Portugal'' as country of origin of each impression.
+For this last series of tests we used a dataset containing real data. Since we
+don't know any particular characteristic to search for, we will compare the
+results for the query for ''Portugal'' as country of origin for each impression.
 
 \subsection*{Without Segmentation}
 
@@ -872,9 +873,9 @@ Portugal}
 
 \end{table}
 
-The baseline segmentation, in this case gets a worse result than the
+In this case the baseline segmentation gets a worse result than the
 non-segmented approach in terms of total volume, but a better approximation
-in terms of the results for the query ''Portugal'', probably due to additional
+in terms of the results for the query ''Portugal''. This is probably due to additional
 granularity gained by the data division.
 
 
@@ -939,11 +940,11 @@ Portugal}
 
 \end{table}
 
-Since, in the case of this dataset we do not know for which particular parameter
+Since in the case of this dataset we do not know for which particular parameter
 we might want to segment by, the browser parameter was randomly selected as the
 segmentation parameter. For the overall volume result this was the best result
 over the other approaches over this particular dataset. In terms of the query
-for ''Portugal'' the result was slightly worse than previous approaches.
+for ''Portugal'' the result was slightly worse than the previous approaches.
 
 \subsection*{Using datastream-based clustering}
 
@@ -1007,23 +1008,23 @@ forecast, using 12h period with datastream-based segmentation using
 \end{table}
 
 For this dataset the \emph{threshold} for the distance needed to be increased to
-20 (out of 28) because with a smaller \emph{threshold} we would get to many
-groups, and some of them with data in the future not represented on the training
+20 (out of 28) because with a smaller \emph{threshold} we would get too many
+groups, and some of them with data in the future were not represented on the training
 dataset.
 
 In overall analysis this was the worst result for this dataset for impression
-volume forecast and for the queried data. This bad result can be associated with
-the associated results did not have any particular characteristic in terms of
+volume forecast and for the queried data. This bad result is due to the fact that the results did not have
+any particular characteristic in terms of
 volume trend that made sense together, but were group because they had similar
 parameters.
 
 \section{Conclusion}
 
-In about every test case the results that used the segmentation phase got better
+In about every test case, the results that used the segmentation phase got better
 results.
 
-This results where only compared to a small number of queries so the result can
-be completely different when used in its really end use the prediction of the
+These results were only compared to a small number of queries, so the results can
+be completely different when used in its goal environment, the
 online advertising campaigns impact on that particular network.
 
 In order to be able to assess this impact a simulator should have been used to
