@@ -168,7 +168,7 @@ forecast, using 12h period without clustering (blue: real; green: forecast)}
 \quad
 \begin{minipage}[t]{0.45\linewidth}
 \includegraphics[width=0.96\textwidth]{safari4_wo_clustering_12} \caption[Volume
-impression forecast, safari 4]{Volume impression
+impression forecast, safari 4, without segmentation]{Volume impression
 forecast, using 12h period without clustering, filtered by "Safari 4.0" (blue: real; green: forecast)}
 \label{fig:vol_safari_12h_wo_clustering_safari_4} 
 \end{minipage}
@@ -189,7 +189,7 @@ forecast, using 12h period without clustering, filtered by "Safari 4.0" (blue: r
 \vspace{0.5cm}
 
 \caption[Volume
-impression forecast, safari]{Error for impression volume
+impression forecast error, safari]{Error for impression volume
 forecast, using a 12h period without clustering}
 \label{tab:err_forecast_12_safari}
 \end{minipage}
@@ -204,7 +204,7 @@ forecast, using a 12h period without clustering}
 \vspace{0.5cm}
 
 \caption[Volume
-impression forecast, safari]{Error for impression volume
+impression forecast error, safari, without segmentation]{Error for impression volume
 forecast, using a 12h period without clustering, query for ''Safari 4.0''}
 \label{tab:err_forecast_12_safari_wo_clustering_safari_4}
 
@@ -236,14 +236,14 @@ chronological order on 100 different groups.}.
 \centering
 \begin{minipage}[t]{0.45\linewidth}
 \includegraphics[width=0.96\textwidth]{forecast_12_w_clustering_baseline} \caption[Volume
-impression forecast, safari 4]{Volume impression
+impression forecast, safari 4, baseline clustering]{Volume impression
 forecast, using 12h period with baseline clustering  (blue: real; green: forecast)}
 \label{fig:vol_safari_12h_w_clustering_baseline}
 \end{minipage}
 \quad
 \begin{minipage}[t]{0.45\linewidth}
 \includegraphics[width=0.96\textwidth]{forecast_12_w_clustering_baseline_safari4} \caption[Volume
-impression forecast, safari 4]{Volume impression
+impression forecast, safari 4, baseline clustering, filtered]{Volume impression
 forecast, using 12h period with baseline clustering, filtered by "Safari 4.0" (blue: real; green: forecast)}
 \label{fig:vol_safari_12h_w_clustering_baseline_safari_4}
 \end{minipage}
@@ -264,7 +264,7 @@ forecast, using 12h period with baseline clustering, filtered by "Safari 4.0" (b
 \vspace{0.5cm}
 
 \caption[Volume
-impression forecast, safari]{Error for impression volume
+impression forecast error, safari, baseline clustering]{Error for impression volume
 forecast, using 12h period with baseline clustering}
 \label{tab:err_forecast_12_safari_w_clustering_datastream_14}
 \end{minipage}
@@ -280,7 +280,7 @@ forecast, using 12h period with baseline clustering}
 \vspace{0.5cm}
 
 \caption[Volume
-impression forecast, safari]{Error for impression volume
+impression forecast error, safari, baseline clustering, filtered]{Error for impression volume
 forecast, using 12h period with baseline clustering, filtered by "Safari 4.0"}
 \label{tab:err_forecast_12_safari_w_clustering_baseline_safari}
 \end{minipage}
@@ -315,14 +315,14 @@ back together.
 \centering
 \begin{minipage}[b]{0.45\linewidth}
 \includegraphics[width=0.96\textwidth]{forecast_12_w_clustering_per_browser} \caption[Volume
-impression forecast, safari 4]{Volume impression
+impression forecast, safari 4, clustering by browser]{Volume impression
 forecast, using 12h period with clustering by the browser attribute (blue: real; green: forecast)}
 \label{fig:vol_safari_12h_w_clustering}
 \end{minipage}
 \quad
 \begin{minipage}[b]{0.45\linewidth}
 \includegraphics[width=0.96\textwidth]{safari4_w_clustering_12} \caption[Volume
-impression forecast, safari 4]{Volume impression
+impression forecast, safari 4, clustering by browser, filtered]{Volume impression
 forecast, using 12h period with clustering by the browser parameter, filtered by "Safari 4.0" (blue: real; green: forecast)}
 \label{fig:vol_safari_12h_w_clustering_safari_4}
 \end{minipage}
@@ -344,7 +344,7 @@ forecast, using 12h period with clustering by the browser parameter, filtered by
 \vspace{0.5cm}
 
 \caption[Volume
-impression forecast, safari]{Error for impression volume
+impression forecast error, safari, clustering by browser]{Error for impression volume
 forecast, using a 12h period with clustering by browser attribute}
 \label{tab:err_forecast_12_safari_w_clustering}
 \end{minipage}
@@ -360,7 +360,7 @@ forecast, using a 12h period with clustering by browser attribute}
 \vspace{0.5cm}
 
 \caption[Volume
-impression forecast, safari]{Error for impression volume
+impression forecast error, safari, clustering by browser, filtered]{Error for impression volume
 forecast, using a 12h period with clustering by browser attribute, query for ''Safari 4.0''}
 \label{tab:err_forecast_12_safari_w_clustering_safari_4}
 
@@ -383,7 +383,7 @@ propagating it into the future.
 \centering
 \begin{minipage}[t]{0.45\linewidth}
 \includegraphics[width=0.96\textwidth]{forecast_12_w_clustering_datastream_14} \caption[Volume
-impression forecast, safari 4]{Volume impression
+impression forecast, safari 4, datastream]{Volume impression
 forecast, using 12h period with clustering based datastream-based clustering,
 with a \emph{threshold} of 14 maximum distance  (blue: real; green: forecast)}
 \label{fig:vol_safari_12h_w_clustering_datastream_14}
@@ -391,7 +391,7 @@ with a \emph{threshold} of 14 maximum distance  (blue: real; green: forecast)}
 \quad
 \begin{minipage}[t]{0.45\linewidth}
 \includegraphics[width=0.96\textwidth]{safari4_w_clustering_12_datastream14} \caption[Volume
-impression forecast, safari 4]{Volume impression
+impression forecast, safari 4, datastream, filtered]{Volume impression
 forecast, using 12h period with clustering based datastream-based clustering,
 with a \emph{threshold} of 14 maximum distance, filtered by "Safari 4.0" (blue: real; green: forecast)}
 \label{fig:vol_safari_12h_w_clustering_datastream_14_safari_4}
@@ -413,7 +413,7 @@ with a \emph{threshold} of 14 maximum distance, filtered by "Safari 4.0" (blue: 
 \vspace{0.5cm}
 
 \caption[Volume
-impression forecast, safari]{Error for impression volume
+impression forecast error, safari, datastream]{Error for impression volume
 forecast, using 12h period with clustering based datastream-based clustering,
 with a \emph{threshold} of 14 maximum distance }
 \label{tab:err_forecast_12_safari_w_clustering_datastream_14}
@@ -430,7 +430,7 @@ with a \emph{threshold} of 14 maximum distance }
 \vspace{0.5cm}
 
 \caption[Volume
-impression forecast, safari]{Error for impression volume
+impression forecast error, safari, datastream, filtered]{Error for impression volume
 forecast, using 12h period with clustering based datastream-based clustering,
 with a \emph{threshold} of 14 maximum distance, filtered by "Safari 4.0"}
 \label{tab:err_forecast_12_safari_w_clustering_datastream_14}
