@@ -441,18 +441,16 @@ Placeholder
 \centering
 \begin{minipage}[t]{0.45\linewidth}
 \includegraphics[width=0.96\textwidth]{results_3/wo_clustering} \caption[Volume
-impression forecast, safari 4]{Volume impression
-forecast, using 12h period with clustering based datastream-based clustering,
-with a \emph{threshold} of 14 maximum distance  (blue: real; green: forecast)}
-\label{fig:vol_safari_12h_w_clustering_datastream_14}
+impression forecast, without segmentation]{Impression volume
+forecast, using 12h period without segmentation (blue: real; green: forecast)}
+\label{fig:vol_domain_wo_segmentation}
 \end{minipage}
 \quad
 \begin{minipage}[t]{0.45\linewidth}
 \includegraphics[width=0.96\textwidth]{results_3/host_wo_clustering} \caption[Volume
-impression forecast, safari 4]{Volume impression
-forecast, using 12h period with clustering based datastream-based clustering,
-with a \emph{threshold} of 14 maximum distance, filtered by "Safari 4.0" (blue: real; green: forecast)}
-\label{fig:vol_safari_12h_w_clustering_datastream_14_safari_4}
+impression forecast, without segmentation]{Impression volume
+forecast, using 12h period without segmentation, filtered by the domain ''ef4e08fb71d96d19406663f8bb7ce6c0'' (blue: real; green: forecast)}
+\label{fig:vol_domain_wo_segmentation_filtered}
 \end{minipage}
 
 \end{figure}
@@ -472,9 +470,8 @@ with a \emph{threshold} of 14 maximum distance, filtered by "Safari 4.0" (blue: 
 
 \caption[Volume
 impression forecast, safari]{Error for impression volume
-forecast, using 12h period with clustering based datastream-based clustering,
-with a \emph{threshold} of 14 maximum distance }
-\label{tab:err_forecast_12_safari_w_clustering_datastream_14}
+forecast, using 12h period without segmentation }
+\label{tab:err_domain_wo_segmentation}
 \end{minipage}
 \quad
 \begin{minipage}[t]{0.45\linewidth}
@@ -489,9 +486,8 @@ with a \emph{threshold} of 14 maximum distance }
 
 \caption[Volume
 impression forecast, safari]{Error for impression volume
-forecast, using 12h period with clustering based datastream-based clustering,
-with a \emph{threshold} of 14 maximum distance, filtered by "Safari 4.0"}
-\label{tab:err_forecast_12_safari_w_clustering_datastream_14}
+forecast, using 12h period without segmentation, filtered by the domain ''ef4e08fb71d96d19406663f8bb7ce6c0'' }
+\label{tab:err_domain_wo_segmentation_filtered}
 \end{minipage}
 
 \end{table}
@@ -505,18 +501,16 @@ Placeholder
 \centering
 \begin{minipage}[t]{0.45\linewidth}
 \includegraphics[width=0.96\textwidth]{results_3/baseline} \caption[Volume
-impression forecast, safari 4]{Volume impression
-forecast, using 12h period with clustering based datastream-based clustering,
-with a \emph{threshold} of 14 maximum distance  (blue: real; green: forecast)}
-\label{fig:vol_safari_12h_w_clustering_datastream_14}
+impression forecast, domain, cluster by baseline]{Impression volume
+forecast, using 12h period using baseline segmentation  (blue: real; green: forecast)}
+\label{fig:domain_w_baseline}
 \end{minipage}
 \quad
 \begin{minipage}[t]{0.45\linewidth}
 \includegraphics[width=0.96\textwidth]{results_3/host_baseline} \caption[Volume
-impression forecast, safari 4]{Volume impression
-forecast, using 12h period with clustering based datastream-based clustering,
-with a \emph{threshold} of 14 maximum distance, filtered by "Safari 4.0" (blue: real; green: forecast)}
-\label{fig:vol_safari_12h_w_clustering_datastream_14_safari_4}
+impression forecast, domain, cluster by baseline, filtered]{Impression volume
+forecast, using 12h period using baseline segmentation, filtered by the domain ''ef4e08fb71d96d19406663f8bb7ce6c0'' (blue: real; green: forecast)}
+\label{fig:domain_w_baseline_filtered}
 \end{minipage}
 
 \end{figure}
@@ -534,11 +528,10 @@ with a \emph{threshold} of 14 maximum distance, filtered by "Safari 4.0" (blue: 
 
 \vspace{0.5cm}
 
-\caption[Volume
-impression forecast, safari]{Error for impression volume
-forecast, using 12h period with clustering based datastream-based clustering,
-with a \emph{threshold} of 14 maximum distance }
-\label{tab:err_forecast_12_safari_w_clustering_datastream_14}
+\caption[Error Volume
+impression forecast, domain, filtered]{Error for impression volume
+forecast, using 12h period with baseline segmentation}
+\label{tab:err_domain_w_segmentation_baseline}
 \end{minipage}
 \quad
 \begin{minipage}[t]{0.45\linewidth}
@@ -551,11 +544,10 @@ with a \emph{threshold} of 14 maximum distance }
 
 \vspace{0.5cm}
 
-\caption[Volume
-impression forecast, safari]{Error for impression volume
-forecast, using 12h period with clustering based datastream-based clustering,
-with a \emph{threshold} of 14 maximum distance, filtered by "Safari 4.0"}
-\label{tab:err_forecast_12_safari_w_clustering_datastream_14}
+\caption[Error Volume
+impression forecast, domain, filtered]{Error for impression volume
+forecast, using 12h period with baseline segmentation, filtered by the domain ''ef4e08fb71d96d19406663f8bb7ce6c0'' }
+\label{tab:err_domain_w_segmentation_baseline_filtered}
 \end{minipage}
 
 \end{table}
@@ -568,19 +560,23 @@ Placeholder
 \begin{figure}[!ht]
 \centering
 \begin{minipage}[t]{0.45\linewidth}
-\includegraphics[width=0.96\textwidth]{results_3/per_host} \caption[Volume
-impression forecast, safari 4]{Volume impression
-forecast, using 12h period with clustering based datastream-based clustering,
-with a \emph{threshold} of 14 maximum distance  (blue: real; green: forecast)}
-\label{fig:vol_safari_12h_w_clustering_datastream_14}
+\includegraphics[width=0.96\textwidth]{results_3/per_host}
+
+\caption[Volume
+impression forecast, domain, cluster by domain]{Impression volume
+forecast, using 12h period using segmentation by domain (blue: real; green: forecast)}
+\label{fig:domain_w_domain}
+
+
 \end{minipage}
 \quad
 \begin{minipage}[t]{0.45\linewidth}
-\includegraphics[width=0.96\textwidth]{results_3/host_per_host} \caption[Volume
-impression forecast, safari 4]{Volume impression
-forecast, using 12h period with clustering based datastream-based clustering,
-with a \emph{threshold} of 14 maximum distance, filtered by "Safari 4.0" (blue: real; green: forecast)}
-\label{fig:vol_safari_12h_w_clustering_datastream_14_safari_4}
+\includegraphics[width=0.96\textwidth]{results_3/host_per_host} 
+\caption[Volume
+impression forecast, domain, cluster by domain, filtered]{Impression volume
+forecast, using 12h period using segmentation by domain, filtered by the domain ''ef4e08fb71d96d19406663f8bb7ce6c0'' (blue: real; green: forecast)}
+\label{fig:domain_w_domain_filtered}
+
 \end{minipage}
 
 \end{figure}
@@ -598,11 +594,12 @@ with a \emph{threshold} of 14 maximum distance, filtered by "Safari 4.0" (blue: 
 
 \vspace{0.5cm}
 
-\caption[Volume
-impression forecast, safari]{Error for impression volume
-forecast, using 12h period with clustering based datastream-based clustering,
-with a \emph{threshold} of 14 maximum distance }
-\label{tab:err_forecast_12_safari_w_clustering_datastream_14}
+\caption[Error Volume
+impression forecast, domain]{Error for impression volume
+forecast, using 12h period with segmentation by domain}
+\label{tab:err_domain_w_segmentation_domain}
+
+
 \end{minipage}
 \quad
 \begin{minipage}[t]{0.45\linewidth}
@@ -615,11 +612,12 @@ with a \emph{threshold} of 14 maximum distance }
 
 \vspace{0.5cm}
 
-\caption[Volume
-impression forecast, safari]{Error for impression volume
-forecast, using 12h period with clustering based datastream-based clustering,
-with a \emph{threshold} of 14 maximum distance, filtered by "Safari 4.0"}
-\label{tab:err_forecast_12_safari_w_clustering_datastream_14}
+\caption[Error Volume
+impression forecast, domain, filtered]{Error for impression volume
+forecast, using 12h period with segmentation by domain, filtered by the domain ''ef4e08fb71d96d19406663f8bb7ce6c0'' }
+\label{tab:err_domain_w_segmentation_domain_filtered}
+
+
 \end{minipage}
 
 \end{table}
@@ -632,19 +630,23 @@ Placeholder
 \begin{figure}[!ht]
 \centering
 \begin{minipage}[t]{0.45\linewidth}
-\includegraphics[width=0.96\textwidth]{results_3/datastream_14} \caption[Volume
-impression forecast, safari 4]{Volume impression
-forecast, using 12h period with clustering based datastream-based clustering,
-with a \emph{threshold} of 14 maximum distance  (blue: real; green: forecast)}
-\label{fig:vol_safari_12h_w_clustering_datastream_14}
+\includegraphics[width=0.96\textwidth]{results_3/datastream_14} 
+\caption[Volume
+impression forecast, domain, cluster by datastream]{Impression volume
+forecast, using 12h period using datastream-based clustering with a
+\emph{threshold} of 14 (blue: real; green: forecast)}
+\label{fig:domain_w_datastream}
+
 \end{minipage}
 \quad
 \begin{minipage}[t]{0.45\linewidth}
-\includegraphics[width=0.96\textwidth]{results_3/host_datastream_14.png} \caption[Volume
-impression forecast, safari 4]{Volume impression
-forecast, using 12h period with clustering based datastream-based clustering,
-with a \emph{threshold} of 14 maximum distance, filtered by "Safari 4.0" (blue: real; green: forecast)}
-\label{fig:vol_safari_12h_w_clustering_datastream_14_safari_4}
+\includegraphics[width=0.96\textwidth]{results_3/host_datastream_14.png} 
+\caption[Volume
+impression forecast, domain, cluster by datastream, filtered]{Impression volume
+forecast, using 12h period using datastream-based clustering with a
+\emph{threshold} of 14, filtered by the domain ''ef4e08fb71d96d19406663f8bb7ce6c0'' (blue: real; green: forecast)}
+\label{fig:domain_w_datastream_filtered}
+
 \end{minipage}
 
 \end{figure}
@@ -662,11 +664,13 @@ with a \emph{threshold} of 14 maximum distance, filtered by "Safari 4.0" (blue: 
 
 \vspace{0.5cm}
 
-\caption[Volume
-impression forecast, safari]{Error for impression volume
-forecast, using 12h period with clustering based datastream-based clustering,
-with a \emph{threshold} of 14 maximum distance }
-\label{tab:err_forecast_12_safari_w_clustering_datastream_14}
+\caption[Error Volume
+impression forecast, datastream, filtered]{Error for impression volume
+forecast, using 12h period using datastream-based clustering with a
+\emph{threshold} of 14}
+\label{tab:err_domain_w_datastream}
+
+
 \end{minipage}
 \quad
 \begin{minipage}[t]{0.45\linewidth}
@@ -679,11 +683,13 @@ with a \emph{threshold} of 14 maximum distance }
 
 \vspace{0.5cm}
 
-\caption[Volume
-impression forecast, safari]{Error for impression volume
-forecast, using 12h period with clustering based datastream-based clustering,
-with a \emph{threshold} of 14 maximum distance, filtered by "Safari 4.0"}
-\label{tab:err_forecast_12_safari_w_clustering_datastream_14}
+\caption[Error Volume
+impression forecast, domain, filtered]{Error for impression volume
+forecast, using 12h period using datastream-based clustering with a
+\emph{threshold} of 14, filtered by the domain ''ef4e08fb71d96d19406663f8bb7ce6c0'' }
+\label{tab:err_domain_w_segmentation_datastream_filtered}
+
+
 \end{minipage}
 
 \end{table}
@@ -694,4 +700,253 @@ Placeholder
 
 
 \subsection{Real Data}
+
+\subsection*{Without Segmentation}
+
+\begin{figure}[!ht]
+\centering
+\begin{minipage}[t]{0.45\linewidth}
+\includegraphics[width=0.96\textwidth]{results_real/wo_clustering}
+\caption[Volume
+impression forecast, real data]{Impression volume
+forecast, using 12h period without clustering (blue: real; green: forecast)}
+\label{fig:vol_real_data_wo_clustering}
+\end{minipage}
+\quad
+\begin{minipage}[t]{0.45\linewidth}
+\includegraphics[width=0.96\textwidth]{results_real/wo_clustering_portugal} \caption[Volume
+impression forecast, real data, Portugal]{Impression volume
+forecast, using 12h period without clustering, filtered by country = Portugal (blue: real; green: forecast)}
+\label{fig:vol_real_data_wo_clustering_filtered}
+\end{minipage}
+
+\end{figure}
+
+\begin{table}[!ht]
+\centering
+\footnotesize
+\begin{minipage}[t]{0.45\linewidth}
+\centering
+\footnotesize
+\begin{tabular}{ccc}
+ $\sigma$ (Real Data) & RMSE & MASE   \\ \hline
+2224.74 & 1237.99 & 0.1958 \\
+\end{tabular}
+
+\vspace{0.5cm}
+
+\caption[Volume
+impression forecast, real data, without clustering]{Error for impression volume
+forecast, using 12h period without clustering}
+\label{tab:err_real_data_wo_clustering}
+\end{minipage}
+\quad
+\begin{minipage}[t]{0.45\linewidth}
+\centering
+\footnotesize
+\begin{tabular}{ccc}
+ $\sigma$ (Real Data) & RMSE & MASE   \\ \hline
+6.70 & 9.24 & 1.2511 \\
+\end{tabular}
+
+\vspace{0.5cm}
+
+\caption[Volume
+impression forecast, safari]{Error for impression volume
+forecast, using 12h period without clustering, filtered by country = Portugal}
+\label{tab:err_real_data_wo_clustering_filtered}
+\end{minipage}
+
+\end{table}
+
+
+Placeholder
+
+\subsection*{Clustering Baseline}
+
+\begin{figure}[!ht]
+\centering
+\begin{minipage}[t]{0.45\linewidth}
+\includegraphics[width=0.96\textwidth]{results_real/baseline} \caption[Volume
+impression forecast, real data, clustering baseline]{Impression Volume 
+forecast, using 12h period with baseline segmentation (blue: real; green: forecast)}
+\label{fig:vol_real_data_baseline}
+\end{minipage}
+\quad
+\begin{minipage}[t]{0.45\linewidth}
+\includegraphics[width=0.96\textwidth]{results_real/baseline_portugal} \caption[Volume
+impression forecast, real data, clustering baselinei, filtered]{Impression Volume 
+forecast, using 12h period with baseline segmentation, filtered by country =
+Portugal (blue: real; green: forecast)}
+\label{fig:vol_real_data_baseline_filtered}
+\end{minipage}
+
+\end{figure}
+
+\begin{table}[!ht]
+\centering
+\footnotesize
+\begin{minipage}[t]{0.45\linewidth}
+\centering
+\footnotesize
+\begin{tabular}{ccc}
+ $\sigma$ (Real Data) & RMSE & MASE   \\ \hline
+2224.74 & 1352.42 & 0.2174 \\
+\end{tabular}
+
+\vspace{0.5cm}
+
+\caption[Volume
+impression forecast, baseline]{Error for volume impression forecast, using 12h
+period with baseline clustering}
+\label{tab:err_forecast_12_real_data_baseline}
+\end{minipage}
+\quad
+\begin{minipage}[t]{0.45\linewidth}
+\centering
+\footnotesize
+\begin{tabular}{ccc}
+ $\sigma$ (Real Data) & RMSE & MASE   \\ \hline
+6.70 & 6.88 & 0.7896 \\
+\end{tabular}
+
+\vspace{0.5cm}
+
+\caption[Volume
+impression forecast, safari]{Error for impression volume
+forecast, using 12h period with baseline clustering, filtered by country =
+Portugal}
+\label{tab:err_forecast_12_real_data_baseline_filtered}
+\end{minipage}
+
+\end{table}
+
+
+Placeholder
+
+\subsection*{Segmentation by Parameter}
+
+\begin{figure}[!ht]
+\centering
+\begin{minipage}[t]{0.45\linewidth}
+\includegraphics[width=0.96\textwidth]{results_real/perbrowser} \caption[Volume
+impression forecast, real data, clustering by browser]{Impression Volume 
+forecast, using 12h period with segmentation by browser(blue: real; green: forecast)}
+\label{fig:vol_real_data_browser}
+\end{minipage}
+\quad
+\begin{minipage}[t]{0.45\linewidth}
+\includegraphics[width=0.96\textwidth]{results_real/perbrowser_portugal}\caption[Volume
+impression forecast, real data, clustering by browser, filtered]{Impression Volume 
+forecast, using 12h period with segmentation by browser, filtered by country =
+Portugal (blue: real; green: forecast)}
+\label{fig:vol_real_data_browser_filtered}
+\end{minipage}
+
+\end{figure}
+
+\begin{table}[!ht]
+\centering
+\footnotesize
+\begin{minipage}[t]{0.45\linewidth}
+\centering
+\footnotesize
+\begin{tabular}{ccc}
+ $\sigma$ (Real Data) & RMSE & MASE   \\ \hline
+2224.74 & 1226.60 & 0.1884 \\
+\end{tabular}
+
+\vspace{0.5cm}
+
+\caption[Volume
+impression forecast, real data, browser]{Error for impression volume
+forecast, using 12h period with segmentation by browser}
+\label{tab:err_forecast_12_real_data_browser}
+\end{minipage}
+\quad
+\begin{minipage}[t]{0.45\linewidth}
+\centering
+\footnotesize
+\begin{tabular}{ccc}
+ $\sigma$ (Real Data) & RMSE & MASE   \\ \hline
+6.70 & 9.24 & 1.2511 \\
+\end{tabular}
+
+\vspace{0.5cm}
+
+\caption[Volume
+impression forecast, real data, browser, filtered]{Error for impression volume
+forecast, using 12h period with segmentation by browser, filtered by country =
+Portugal}
+\label{tab:err_forecast_12_real_data_browser_filtered}
+\end{minipage}
+
+\end{table}
+
+
+Placeholder
+
+\subsection*{Using datastream-based clustering}
+
+\begin{figure}[!ht]
+\centering
+\begin{minipage}[t]{0.45\linewidth}
+\includegraphics[width=0.96\textwidth]{results_real/datastream_20} \caption[Volume
+impression forecast, real data, clustering datastream]{Impression Volume 
+forecast, using 12h period with datastream-based segmentation using
+\emph{threshold} of 20 (blue: real; green: forecast)}
+\label{fig:vol_real_data_datastream}
+\end{minipage}
+\quad
+\begin{minipage}[t]{0.45\linewidth}
+\includegraphics[width=0.96\textwidth]{results_real/datastream_20_portugal} \caption[Volume
+impression forecast, real data, clustering datastream, filtered]{Volume impression
+forecast, using 12h period with datastream-based segmentation using
+\emph{threshold} of 20, filtered by country = Portugal  (blue: real; green: forecast)}
+\label{fig:vol_real_data_datastream_filtered}
+\end{minipage}
+
+\end{figure}
+
+\begin{table}[!ht]
+\centering
+\footnotesize
+\begin{minipage}[t]{0.45\linewidth}
+\centering
+\footnotesize
+\begin{tabular}{ccc}
+ $\sigma$ (Real Data) & RMSE & MASE   \\ \hline
+2224.74 & 1786.43 & 0.2927 \\
+\end{tabular}
+
+\vspace{0.5cm}
+
+\caption[Volume
+impression forecast, real data, datastream]{Error for impression volume
+forecast, using 12h period with datastream-based segmentation using
+\emph{threshold} of 20}
+\label{tab:err_forecast_12_real_datastream_filtered}
+\end{minipage}
+\quad
+\begin{minipage}[t]{0.45\linewidth}
+\centering
+\footnotesize
+\begin{tabular}{ccc}
+ $\sigma$ (Real Data) & RMSE & MASE   \\ \hline
+6.70 & 15.93 & 2.5960 \\
+\end{tabular}
+
+\vspace{0.5cm}
+
+\caption[Volume
+impression forecast, real data, datastream, filtered]{Error for impression volume
+forecast, using 12h period with datastream-based segmentation using
+\emph{threshold} of 20, filtered by country = Portugal}
+\label{tab:err_forecast_12_real_datastream_filtered}
+\end{minipage}
+
+\end{table}
+
+
+Placeholder
 
