@@ -147,12 +147,14 @@ The experiments described on this section use all the phases of the approach.
 This experiments will use datasets generated on artificial environment in order to
 test the ability of the approach to capture changes on the volumes of some
 characteristics of the dataset.
+It will also be used a real world dataset, in order to assess the result in a
+more realist conditions.
 
 \subsection{Particular browser increasing}
 
 \subsection*{Without segmentation}
 
-For the first test was used an artificial generated dataset containing a constant overall
+For the first test it was used an artificial generated dataset containing a constant overall
 volume of impressions, but with the particularity of an increasing volume of
 impressions from users using ''Safari 4.0'' browser. 
 
@@ -211,21 +213,25 @@ forecast, using a 12h period without clustering, query for ''Safari 4.0''}
 \end{table}
 
 As shown in the figure~\ref{fig:vol_safari_12h_wo_clustering} and in the
-table~\ref{tab:err_forecast_12_safari}, without the segmentation phase the
-proposed approach was able to forecast with a small error the behavior of the
-impressions on the future.
+table~\ref{tab:err_forecast_12_safari}, (without the segmentation phase) the
+proposed approach was able to forecast the total volume of impressions only with
+a small error.
 
 In order to be able to see the result of the approach for the behavior of the
 ''Safari 4.0'' users we need to generate a future dataset (last phase of the
-approach). The result for the query for the ''Safari 4.0'' browser can be seen
+approach). The result for the query for the ''Safari 4.0'' browser, over the
+resultant dataset, can be seen
 on the figure~\ref{fig:vol_safari_12h_wo_clustering_safari_4}.
 
 As shown on the figure~\ref{fig:vol_safari_12h_wo_clustering_safari_4}, the
 dataset generation phased mimic the behavior of that particular characteristic
-from the previous week, which in this case is not a good result.
+from the previous week into the future, which in this case is not a good result.
 
 \subsection*{Clustering Baseline}
 
+In order to better compare the results of the different segmentation approaches
+a baseline method was used\footnote{the original dataset was grouped in a
+chronological order on 100 different groups.}.
 
 \begin{figure}[!ht]
 \centering
@@ -282,15 +288,19 @@ forecast, using 12h period with baseline clustering, filtered by "Safari 4.0"}
 
 \end{table}
 
-
-Placeholder
+On figure~\ref{fig:vol_safari_12h_w_clustering_baseline} and table~\ref{tab:err_forecast_12_safari_w_clustering_datastream_14}
+we can assess that this approach gets a slightly improvement over the
+non-segmented approach. If we look at the filtered data
+(figure~\ref{fig:vol_safari_12h_w_clustering_baseline_safari_4}) the improvement
+is not that noticeable.
 
 
 \subsection*{Segmentation by Parameter}
 
 \subsubsection*{Segmentation by browser}
 
-In order to try to capture this kind of behavior we can use the clustering by
+Since we know that this particular dataset has a peculiarity in the browser
+parameter impression volume. We test how the prediction would react to the clustering by
 parameter, in this case by the browser attribute, this will forecast the volumes
 values for each browser present on the dataset allowing to get better results in
 predicting the traffic volumes for each browser.
@@ -298,7 +308,7 @@ predicting the traffic volumes for each browser.
 As we can see on picture~\ref{fig:vol_safari_12h_w_clustering}, the overall error
 (table~\ref{tab:err_forecast_12_safari_w_clustering}) for impression volume
 forecasting is worst than without the clustering phase this is due to the error
-for prediction associated with each cluster is amplified when the data is joined
+for prediction associated with each cluster is amplified when the volume data is joined
 back together.
 
 \begin{figure}[!ht]
@@ -369,8 +379,6 @@ it into the future.
 
 \subsection*{Using datastream-based clustering}
 
-For values 14.
-
 \begin{figure}[!ht]
 \centering
 \begin{minipage}[t]{0.45\linewidth}
@@ -430,10 +438,20 @@ with a \emph{threshold} of 14 maximum distance, filtered by "Safari 4.0"}
 
 \end{table}
 
+Using the datastream-based clustering method, with a \emph{threshold} of 14
+(which means that each member of each groups will only what a maximum of 14
+parameters different than the centroid of the group) the result for the overall
+impressions volume was worst than without clustering and the baseline clustering
+method, but better than the clustering by browser. If we analyse the
+figure~\ref{fig:vol_safari_12h_w_clustering_datastream_14_safari_4}, we can
+assess than the result is only beat by the clustering for that specific
+parameter, which ultimately is a good result.
 
-Placeholder
+\subsection{Specific Domain decreasing linearly}
 
-\subsection{Particular Domain decreasing}
+For this set of tests another artificially generated dataset was used, in this
+particular case one of the domains represented on the dataset, decreases its
+volume following an linear function.
 
 \subsection*{Without Segmentation}
 
@@ -492,8 +510,11 @@ forecast, using 12h period without segmentation, filtered by the domain ''ef4e08
 
 \end{table}
 
-
-Placeholder
+Without any segmentation phase we obtained a good result for the overall
+impression volume prediction. If we filter the results for the particular
+domain,
+that we know will be decreasing, the result mimics the behaviour of the previous
+week since the information that it was about that particular domain is limited.
 
 \subsection*{Clustering Baseline}
 
