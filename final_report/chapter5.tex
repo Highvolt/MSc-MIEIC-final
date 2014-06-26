@@ -4,35 +4,36 @@
 
 \section{Objectives Fulfilment}
 
-We proposed the used of the three phase approach (Chapter~\ref{chap:chap4}) in
-order to obtain a more rich future prediction of the web activity on a network.
-The first phase allow to obtain better prediction for certain characteristics,
-the second phase allow to predict their volumes in the future, lastly the third
-phase fill the future data with additional information from the past while follow
+We proposed the use of the three phase approach (Chapter~\ref{chap:chap4}) in
+order to obtain a richer future prediction of web activity on a network.
+The first phase allows better predictions for certain characteristics,
+the second phase allows the prediction of volumes in the future, and lastly the third
+phase fills the predicted future data with additional information from the past
+while following
 the tends of the predicted volumes.
 
-Our results show that the usage of dataset segmentation allow to get moderate to
-good improvements while predicting the volumes.
+Our results show that the usage of dataset segmentation returns good to moderate
+improvements while predicting the volumes.
 
-At the end we get a dataset with the same format as the inputed, but with future
-data following the main characteristics of the past while amplifying some of the
+At the end we get a dataset with the same format as the one given as input, but with future
+data that follows the main characteristics of the past while amplifying some of the
 more important characteristics for the future.
 
-This dataset completely ready to be used on simulations of online advertising
+This dataset is completely ready to be used on simulations of online advertising
 campaigns in order to perceive their behaviour in the future.
 
 \section{Future Work}
 
-In order, to achieve better results some other approaches could be explored. For
-example, use $MLP$, multilayer perceptron to predict the time series values
+In order to achieve better results, some other approaches could be explored. For
+example, we could use $MLP$, multilayer perceptron to predict the time series values
 instead of the $ARIMA$.
 
 It would also make sense to explore the usage of additional time series for new
-entries of each parameter in order to correctly predict the occurrence of a new
-website, for example. This phase will also need an additional knowledge about
-some of the parameters to get better results, for example know how to generate a
-new domain. This knowledge should be optional in order to maintain the data
-agnostic approach, but when available probably would improve the results.
+entries of each parameter, for example in order to correctly predict the occurrence of a new
+website. This phase will also need additional knowledge about
+some of the parameters to get better results (for example know how to generate a
+new domain). This knowledge should be optional in order to maintain the data
+agnostic approach, but when available it would probably would improve the results.
 
 Another road to be explored is segmentation phase for example the usage
 recursive parameter segmentation. For example, segment the whole dataset by
