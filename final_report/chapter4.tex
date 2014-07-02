@@ -351,7 +351,70 @@ occurrences from the same period, starting on the previous week until the first 
 of the past dataset (if there are not enough users available, users from the
 same interval\footnote{Note that an interval is composed by multiple one hour
 periods.} are used, if more users are needed then users from any interval of the
-dataset are used).
+dataset are used)(Algorithm~\ref{alg:user_selection}).
+\\
+
+\begin{algorithm}[!htb]
+  \LinesNumbered
+  \SetNlSty{texttt}{(}{)}
+  \KwData{
+        \textbf{users\_period}, a list of lists of users reverse chronologically
+    ordered\;\\
+    \textbf{users\_from\_same\_interval},
+  list of lists of users from the same interval as the one to be filled, also in
+  reverse chronological order\;\\
+  \textbf{all\_users}, list of all users from the past\;\\
+  \textbf{period}, date and time interval which the new users will be part of\;
+  \textbf{target\_new\_users}, number of new users\;
+  }
+  \KwResult{A list of new users, containing the impressions with user
+    identification token, modified and timestamp,
+    adjusted to the given period.}
+  \BlankLine
+
+  \emph{selected\_users} is initialized as an empty list\;
+
+  \For{each \emph{date} in the past, in reverse chronological order}{
+    \eIf{length of \emph{selected\_users} less than \emph{target\_new\_users}}{
+    Randomly select users from \emph{users\_period} for the \emph{date} that are not in \emph{selected\_users}, until there
+      are no more users or the \emph{target\_new\_users} is reached\;
+    }{
+      break\;
+    }
+  }
+  \BlankLine
+
+  \If{length of \emph{selected\_users} less than \emph{target\_new\_users}}{
+  \For{each \emph{date} in the past, in reverse chronological order}{
+    \eIf{length of \emph{selected\_users} less than \emph{target\_new\_users}}{
+      Randomly select users from \emph{users\_from\_same\_interval} for \emph{date} that are not in \emph{selected\_users}, until there
+      are no more users or the \emph{target\_new\_users} is reached\;
+    }{
+      break\;
+    }
+}}
+  \BlankLine
+
+  \If{length of \emph{selected\_users} less than \emph{target\_new\_users}}{
+  \For{each \emph{date} in the past, in reverse chronological order}{
+    \eIf{length of \emph{selected\_users} less than \emph{target\_new\_users}}{
+      Randomly select users from \emph{all\_users} for \emph{date} that are not in \emph{selected\_users}, until there
+      are no more users or the \emph{target\_new\_users} is reached\;
+    }{
+      break\;
+    }
+}}
+\BlankLine
+For all \emph{selected\_users} replaces the UUID and timestamp with a randomly
+generated ones (timestamp belongs to given \emph{period})\;
+  \BlankLine
+  \vspace{0.5cm}
+  \caption[User Generation Process]{
+    User ''generation'' process.
+  }
+  \label{alg:user_selection}
+\end{algorithm}
+
 
 To complete the process of filling the future impressions, we still need to
 select which past impressions from the selected users will be used, and modify
