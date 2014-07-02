@@ -1,4 +1,5 @@
 MSc-MIEIC-final
 ===============
 
-asdasda
+### Author: 
+Pedro Borges
