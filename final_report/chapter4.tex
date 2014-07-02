@@ -347,13 +347,13 @@ past users that occurred for the first time on similar periods of the past, and
 then their date and user identification are changed according to the period for
 where this user will reappear. Like the previous selection process, this one also
 takes into account the chronological distance between events. First we use new
-occurrences from same period, starting on the previous week until the first date
-of the past dataset (if there are not enough users available users from the
+occurrences from the same period, starting on the previous week until the first date
+of the past dataset (if there are not enough users available, users from the
 same interval\footnote{Note that an interval is composed by multiple one hour
 periods.} are used, if more users are needed then users from any interval of the
 dataset are used).
 
-To complete the process of filling the future impressions, we still needed to
+To complete the process of filling the future impressions, we still need to
 select which past impressions from the selected users will be used, and modify
 them according to the period that is being computed. First we randomly
 select one impression from each user, since all the selected users must appear at
@@ -363,7 +363,7 @@ fulfilled.
 The selection process takes into account the number of impressions associated
 with a user; a user with many impressions in the past has more chances for one
 of his impressions to be selected.
-After all impressions are select, their time value is updated to a random time
+After all impressions are selected, their time value are updated to a random time
 inside the current time interval.
 
 These steps must be executed for each period that we want to predict.
@@ -405,8 +405,8 @@ used, an example of this dataset in on the table~\ref{tab:dataset}.
 
 The only fields that the solution depends on are the time and the user id token,
 all the other fields are optional and the approach described above does not have
-any specific knowledge about them, nor it depends of it. The optional parameters
-can be useful on the segmentation phase, to divide the dataset in smaller
+any specific knowledge about them, nor it depends on it. The optional parameters
+can be useful on the segmentation phase, to divide the dataset into smaller
 datasets in order to capture more specific characteristics.
 
 The design decision of not using anything besides the time and user id, was made
@@ -417,20 +417,19 @@ way of saving activities.
 
 \subsection{Experimental Setup configurations}
 
-In order to be able to test the previously described approach, it was
-implemented
-using $Python$ . The experimental setup is completely modular, with every phase
-being
-totally independent of the other and the data that any phase process can come
-from other sources other than the implemented ones.
-Other than $Python$, $R$ was used in order to use the $ARIMA$ model.
+In order to be able to test the previously described approach, the proposed
+approach was implemented using $Python$. The experimental setup is completely
+modular, with every phase being totally independent of the other. In other
+words, any phase can use as input data from other sources other than the implemented
+ones. Other than $Python$, $R$ was used in order to use the $ARIMA$ model.
 
 \subsubsection*{Segmentation}
 
 In this phase there are two implement methods, as explained
-before on ~\ref{subsec:seg}. The $data stream-based$ algorithm does not have any
-configuration parameters, so every test done was executed using the same parameters.
-On the other hand for the segmentation by parameters, the parameters to be used for
+before in section~\ref{subsec:seg}. The $data stream-based$ algorithm has a
+single configuration parameter, the threshold for the distance between the
+impression that defines the clusters and the one that is being tested.
+In the case of segmentation by parameters, the parameters to be used for
 the division can be changed, so different configurations were tested.
 
 This phase cannot be directly validated nor compared, so the results were
@@ -443,7 +442,8 @@ order into 100 groups.
 
 On this phase, the $ARIMA$ model is used to predict the behaviour of the time
 series for the time interval where we want to predict the volume values. To use
-the $ARIMA$ model, the function $auto.arima$ the package $forecast$ \cite{hyndman2007automatic} for $R$
+the $ARIMA$ model, the function $auto.arima$ from the package $forecast$
+\cite{hyndman2007automatic} (from $R$)
 was used, using a $Python$ wrapper in order to process the data. The $R$ is only
 responsible for the prediction.
 
@@ -468,7 +468,7 @@ that had been forecast in the volume forecast phase and the old dataset in order
 a dataset which represents the future.
 
 This phase was tested using synthetic generated past datasets which contained certain
-changes in some parameters (examples being changes in browser usage and addition
+changes in some parameters (examples: changes in browser usage and addition
 of new domains).
 
 Since a simulator was not available during the test phase, some queries over the
