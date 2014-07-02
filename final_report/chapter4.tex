@@ -20,22 +20,24 @@ of the approach } \label{fig:highlevel_arch} \end{center} \end{figure}
 As the figure~\ref{fig:highlevel_arch} makes clear, the goal of the
 proposed approach is to use a dataset containing logs of the web
 activity from an online advertising related network and use this information 
-to generate a possible future web activity logs on the same network. In such a way, that the
-tendencies and the data coherency is preserved.
+to generate a possible future web activity logs on the same network. 
+This should be done in order to preserve tendencies and into data coherency.
 
-This approach can be divided three main phases: \emph{segmentation},
+This approach can be divided into three main phases:
+\begin{enumerate}
+\item \emph{Segmentation},
 which its main purpose is divide the dataset in smaller and more predictable
 datasets, in order to improve the results obtained after the second phase, mostly when there
 are large quantities of data available.
 
-The second phase is where the \emph{forecast of the volumes} that characterize the traffic on
-the network are done, using time series prediction method.
+\item The second phase is where the \emph{forecast of the volumes} that characterize the traffic on
+the network are done, using time series prediction methods.
 
-The third an last phase of the process, the more complex one, is where the volumes
+\item The third and last phase of the process, the more complex one, is where the volumes
 generated from the phase two combined with the data provided by the original
 dataset are used to \emph{generate a dataset} that represent a possible future of the
 web activity on the target network.
-
+\end{enumerate}
 \section{Architecture for Web Activity Forecasting and Synthesising}
 
 \subsection{Data Segmentation}\label{subsec:seg}
@@ -53,14 +55,14 @@ needs to have recurring trends and /or patterns.
 One way of getting results is by splitting data by parameters known to have an
 effect on traffic seasonality (for example the website that is being accessed).
 
-As shown on figure~\ref{fig:segmentation_arch} the method described before was
+As shown in figure~\ref{fig:segmentation_arch} the method described before was
 one of the approaches chosen to achieve a more predictable time series.
 This method allows clustering of the dataset via a selected parameter, which
 returns \emph{impression clusters} in which all members of a cluster share the
 same value in the parameter. This method requires great knowledge about the
 available impressions to be successful.
 
-The other approach that was implemented on this phase is a simplified and
+The other approach that was implemented in this phase is a simplified and
 striped down version of a \emph{data stream clustering} algorithm. This
 algorithm is distance based, and since the structure of the datasets used on
 this thesis are not guaranteed, the distance measure used is na\"{i}ve. The
@@ -107,8 +109,8 @@ problem, the most important ones are the huge volume of data this approach
 needs to process, and the number and type of attributes that compose an
 impression which may vary from dataset to dataset.
 
-The huge volume of data invalidates the usage of a
-dissimilarity matrices due to memory constraints, the uncertainty of the
+The huge volume of data invalidates the usage of
+dissimilarity matrices due to memory constraints. The uncertainty of the
 parameters that are available also limit the quality of the distance measure,
 since it assumes that every parameter has the same weight as the others.
 
@@ -119,9 +121,10 @@ by the attributes of the impression that originated that particular centroid,
 and as such are never updated,
 when a new impression has a distance lower than the threshold when compared with
 a certain centroid, it is not assured that the respective cluster is the most
-similar to the new impression. To address that possible issue the possibility of
-search over all available centroids and select the one with the smallest distance
-available.
+similar to the new impression.
+In order to address this possible issue, the ability of calculate the distance
+between the new impression and the available centroids and then select the one
+with least distance was also implemented.
 
 \subsection{Volume Forecasting}\label{subsec:volume_forecast}
 
@@ -145,7 +148,7 @@ number of impressions, other for the percentage unique users and a last one for
 the percentage of unique users that had never appeared in the past.
 
 \paragraph{Number of impressions}
-is number of entries on the dataset during each time interval.
+is the number of entries on the dataset during each time interval.
 
 \paragraph{Percentage of unique users}
 is described by $\frac{\text{Number of users}}{\text{Number of impressions}}
@@ -158,9 +161,10 @@ represented. It is described by $\frac{\text{Number of new users}}{\text{Number
 of unique users}}*100$.
 \\
 
-So each unit of time can be represented by these three values, now to
-characterize the future, we need to forecast each one of this three values
-on future time intervals. To complete this task the \emph{ARIMA} approach was used.
+So each unit of time can be represented by these three values. Now to
+characterize the future, we need to forecast of these three values
+on future time intervals. To complete this task the \emph{ARIMA} approach was
+used separately for each of the three variables.
 
 
 %******WHY DID I USED ARIMA
@@ -175,22 +179,22 @@ The last phase of the proposed approach generates a new dataset based on the
 original dataset and the values of the three time series generated on the
 previous phase (Volume Forecasting).
 
-As shown on figure~\ref{fig:highlevel_arch_file_gen}, this phase was divided in
-three sub-phases the \emph{pre-process} (\ref{subsubsec:pre_process}), \emph{calculate
-statistics} (\ref{subsubsec:stats}) and \emph{fill future data}
+As shown in figure~\ref{fig:highlevel_arch_file_gen}, this phase was divided
+into three sub-phases: the \emph{pre-process} (\ref{subsubsec:pre_process}), \emph{calculate
+statistics} (\ref{subsubsec:stats}), and \emph{fill future data}
 (\ref{subsubsec:fill_data}).
 
-The pre-process sub-phase (\ref{subsubsec:pre_process}), breaks the old dataset in
-the interval size that was chosen on the volume prediction phase
+The pre-process sub-phase (\ref{subsubsec:pre_process}), breaks the old dataset
+by interval size that was chosen on the volume forecasting phase
 (\ref{subsec:volume_forecast}) and organizes the impressions per interval and
 users.
 
 The statistics calculation sub-phase, takes as input the processed data
 from the past dataset and the volumes from the volume prediction phase
-(\ref{subsec:volume_forecast}), verifies if the values makes sense in the real
+(\ref{subsec:volume_forecast}), verifies whether the values makes sense in the real
 world, for example the number of impressions is higher than the number of users
 (it is impossible for this type of dataset to have users with zero impressions,
-since the dataset represents impressions), break the impressions in smaller
+since the dataset represents impressions), break the impressions into smaller
 intervals, and use weekly historical data to predict the distribution of the
 interval volumes on the smaller intervals.
 
@@ -212,9 +216,9 @@ organize data for the next phases.
 \\
 
 This is simply done by reading each line of the dataset and comparing with the
-start date of the dataset placing it on the correct interval, also identify
-which user is responsible for that impression and, if it is its first occurrence
-, place it as a new user for the interval where the impression belong.
+start date of the dataset placing it on the correct interval. It also identifies
+which user is responsible for that impression and, if it is the first occurrence,
+place it as a new user for the interval where the impression belong.
 
 \subsubsection{Calculate Statistics (ii)}\label{subsubsec:stats}
 
@@ -223,8 +227,8 @@ which user is responsible for that impression and, if it is its first occurrence
 of statistics calculation} \label{fig:calculate_stats_ii} \end{center} \end{figure}
 
 The main purpose of the sub-phase represented in the figure~\ref{fig:calculate_stats_ii} is
-to distribute the volumes predict for a certain interval in smaller periods
-based on historical distribution of the volumes for the same period.
+to distribute the volumes predicted for a certain interval in smaller periods
+based on the historical distribution of the volumes for the same period.
 
 In order to obtain better resolution of how the data is distributed on the
 interval, these intervals are broken down in periods of one hour each. Now to
@@ -252,7 +256,7 @@ For each hour period the following values are calculated:
   \item \textbf{Number of first occurence users}, number of different users that
     occur for the first time in the interval during that specific hour period;
   \item \textbf{Number of new users}, number of different users that are
-    completely new to the dataset and occur for the first time in that specific
+    completely new to the dataset and that occur for the first time in that specific
     hour period.
 \end{itemize}
 
@@ -269,10 +273,10 @@ periods prior to this period that belong to the same interval;
 \end{itemize}
 
 To guarantee the integrity of the result, these conditions have to be verified.
-So, after the results for every hour period of a certain interval of time are
-calculated, a constraint check is performed and the results are adjusted
-accordingly. 
-And to do so the approach implemented on
+So, after the calculation of the results for every hour period of a certain
+interval of time, a constraint check is performed and the results
+are adjusted accordingly.
+And to do so the approach implemented according to
 algorithm~\ref{alg:adjust_values} can be used to fulfil this task.
 \\
 
@@ -315,10 +319,10 @@ of fill future data} \label{fig:fill_future_iii} \end{center} \end{figure}
 
 The last sub-phase of the dataset generation phase is responsible for selecting
 which users and impressions, from the dataset that represents past activity,
-that will reappear in the future with some changes.
+will reappear in the future with some changes.
 
 To be able to capture the correct characteristics, so that the future follows the
-trends of the past, the first step must be the selecting of the relevant periods of
+trends of the past, the first step must be the selection of the relevant periods of
 time in the past that are equivalent to the one which is currently being filled.
 This approach uses the same period from previous weeks ranked by proximity to
 the date, which makes more likely to use users from the previous week than two

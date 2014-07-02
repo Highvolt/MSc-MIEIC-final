@@ -70,6 +70,15 @@
         <g latexdraw:type="text" id="id144" fill="black" latexdraw:position="bl">
             <text x="425.0" y="376.25"><![CDATA[Dataset Generation]]></text>
         </g>
+        <g latexdraw:type="text" id="id13" fill="black" latexdraw:position="bl">
+            <text x="680.0" y="180.0"><![CDATA[(1)]]></text>
+        </g>
+        <g latexdraw:type="text" id="id15" fill="black" latexdraw:position="bl">
+            <text x="680.0" y="280.0"><![CDATA[(2)]]></text>
+        </g>
+        <g latexdraw:type="text" id="id18" fill="black" latexdraw:position="bl">
+            <text x="680.0" y="380.0"><![CDATA[(3)]]></text>
+        </g>
     </g>
     <defs>
         <marker overflow="visible" orient="auto" id="arrow1-68">
@@ -100,10 +109,9 @@
     </defs>
     <metadata>
         <latexdraw:metadata>
-            <latexdraw:latexIncludes><![CDATA[\usepackage[T1]{fontenc}
-\usepackage{charter}
-
-]]></latexdraw:latexIncludes>
+            <latexdraw:latexIncludes><![CDATA[
+\usepackage[T1]{fontenc}
+\usepackage{charter}]]></latexdraw:latexIncludes>
             <latexdraw:displayXScale>true</latexdraw:displayXScale>
             <latexdraw:displayYScale>true</latexdraw:displayYScale>
             <latexdraw:unit>CM</latexdraw:unit>

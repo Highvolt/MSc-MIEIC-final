@@ -103,7 +103,7 @@
             <text x="647.0" y="297.32470703125"><![CDATA[# new users]]></text>
         </g>
         <g latexdraw:type="text" id="id86" fill="black" latexdraw:position="bl">
-            <text x="445.0" y="407.75"><![CDATA[Break each interval in smaller periods]]></text>
+            <text x="438.0" y="407.75"><![CDATA[Break each interval into smaller periods]]></text>
         </g>
         <g latexdraw:type="text" id="id92" fill="black" latexdraw:position="bl">
             <text x="326.0" y="317.75"><![CDATA[per interval]]></text>
