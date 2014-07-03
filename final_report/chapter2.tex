@@ -480,24 +480,17 @@ mean is given due to a more intuitive result \cite{sasaki2007truth}. \\
 \subsection{Time Series Forecast Accuracy Evaluation}
 
 There are various methods of accuracy evaluation for time series. In
-\cite{Hyndman2006679} a large scale comparison of various methods such as
-\emph{Mean Absolute Percentage Error} (MAPE), \emph{Median Absolute Percentage
-Error} (MdAPE), \emph{Symmetric Mean Absolute Percentage Error} (sMAPE),
-\emph{Symmetric Median Absolute Percentage Error} (sMdAPE), \emph{Median
-Relative Absolute Error} (MdRAE), \emph{Geometric Mean Relative Absolute
-Error} (GMRAE) and \emph{Mean Absolute Scaled Error} (MASE). This publication
-recommends the usage of \emph{MASE} in favor of the others because the
-situations where this measure gives undefined or infinite results are almost
-irrelevant.
+\cite{Hyndman2006679} a large scale comparison of various methods, presented in
+Table~\ref{fig:ts_error_selection}, are described along this section. They are
+divided in five different groups: scale-dependent, based on percentage errors,
+based on relative errors, relative measures and lastly scaled errors.
+This section will help us to select the best method based on the presented state
+of the art.
 
-\subsubsection{Overview}
 \begin{table}[h] \begin{center} \leavevmode
 \includegraphics[width=0.96\textwidth]{tsp_comparison} \caption{Guidelines for
 selecting error measures \cite{Armstrong199269} } \label{fig:ts_error_selection}
 \end{center} \end{table}
-
-In the Table~\ref{fig:ts_error_selection} the author tries to make easier to
-choose between the methods described forward.
 
 \subsubsection{Scale-dependent measures}
 
@@ -660,12 +653,12 @@ always the same value since the denominator would be 0 and make the result of
 
 \nocite{UjwalaPatil}
 
-The main area which this project focus on is the utilization of ad requests logs
+The main area of this project on is the utilization of ad requests logs
 to predict future requests of the users. This is analogous to work which have
-been done in the area of user future requests prediction. Next, it will be done
-a little overview of what has been studying in the area of web usage data mining
-in the past years, in order to identify possible approaches to solve the problem
-of this thesis.
+been done in the area of user future requests prediction. Next, it will be
+presented a little overview of what has been studied in the area of web usage
+data mining in the past years, in order to identify possible approaches to solve
+the problem of this thesis.
 
 \paragraph{}
 
@@ -679,7 +672,7 @@ has been proposed a new algorithm, WM\begin{math}_0\end{math}, which takes into
 \paragraph{}
 
 In another paper \cite{Gery:2003:EWU:956699.956716}, three approaches to data
-mine from web logs are proposed. \textbf{Association Rule} (AR) is based on
+mine from web logs are proposed. \textbf{Association Rules} (AR) is based on
 association rule learning which is a very popular data mining family of
 algorithms to find relationships between variables. The problem of finding web
 pages together in a web log is similar to that problem. \textbf{Frequent
@@ -694,11 +687,11 @@ accuracy than AR and FGS.
 
 \paragraph{}
 
-In another paper, other author proposes a model that preserves sequentiality of
+In another paper, other authors propose a model that preserves the sequentiality of
 the clicks \cite{Frias-Martinez2003}. The rules maintain the sequence of the
 click stream between the antecedent and the consequent, to maintain
 sequentiality. This model also introduces the concept of temporality, which is
-reflected by the distance between the consequent and antecedent by number of
+reflected by the distance between the consequent and the antecedent by number of
 clicks to go from one to the other. This rule is very important because it
 allows not only to find which page is  going to be accessed but also when will
 it be accessed. The proposed model, \textbf{Customizable Sequential Behavior
