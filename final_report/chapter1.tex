@@ -33,18 +33,18 @@ Servers and \hyperref[itm:adex]{Exchanges}, \hyperref[itm:ssp]{Sell-Side Platfor
 
 The online advertising market is huge and its size has been increasing in money,
 campaigns and users. Both platforms that sell and buy space for ad placement
-want to understand what is their value and more important, what will be their
-value in the future. In both cases this value is mostly constrain by campaigns
-and users that are target for their campaigns.
+want to understand what is their value and more importantly, what will be their
+value in the future. In both cases this value is mostly constrained by campaigns
+and the users they want to target.
 
 Our goal is to forecast the availability of the users in the future so we can
 simulate the value of future campaigns over them.
 
-Since we do not know which characteristics the future campaigns will have, there
-is the need to forecast every detail available on the impressions, in order to
+Since we do not know which characteristics the future campaigns will have, every
+detail available on the impressions needs to be forecasted, in order to
 obtain the correct values when the queries are executed over the generated data.
 
-So, the main goal is to be able to generate a dataset able to be used on a campaign
+With this said, the main goal is to be able to generate a dataset able to be used on a campaign
 simulator, so we must be able to predict the values with the maximum detail
 possible.
 
@@ -53,17 +53,17 @@ impression in order to identify which impressions are compatible with each
 campaign. The result would be expressed by number of impressions per campaign and
 users target by every campaign, over time.
 
-The approach should also be independent on any parameter other than the
-date and the user id of the impression.
+The approach should also only need an impression's date and user id, with all
+other variables being optional.
 This constraint is imposed by the multiple sources of the dataset used, since
-each one of this sources could store different details and different types of
-parameters about each impressions, so we cannot really on the availability of
+each one of these sources could store different details and different types of
+parameters about each impression, so we cannot rely on the availability of
 such parameters.
 
 The approach should be able to generate data for any source
 with any parameters, based only on historical information.
 
-In form of conclusion, the main objectives are:
+To conclude, the approach's main goals are:
 \begin{itemize}
 \item Correctly predict volumes of activity on an ad network for a given time in
   the future based only in past data;
