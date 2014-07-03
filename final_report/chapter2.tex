@@ -286,10 +286,13 @@ to accurately predict the volumes of the inventory. Since the data has temporal
 information one possible approach is to use time series prediction to calculate
 future values of time series calculated from the datasets. \\
 
+There are various methods to solve this kind of problems, bellow some confusions
+of studies that have been done in this area are given.
+
 \cite{1716527} compared three forecasting techniques \emph{Support Vector
 Machines} (SVMs), \emph{Multiple Regression} (MR) and \emph{Multilayer
 Perceptron} (MLP), on power production values on multiple power plants. The
-\emph{MR} outperformed the other two methods on predicting those values. \\
+\emph{MR} outperformed the other two methods on predicting those values. 
 
 \cite{Sabry:2007kq} compared \emph{ARIMA} with logistic regressions algorithms
 to predict traffic on three Egyptian intercity roads. The average annual,
@@ -298,17 +301,20 @@ regression and \emph{ARIMA} algorithms. They concluded that \emph{ARIMA}
 outperforms the logistics regression methods in forecasting this traffic
 volumes.
 
+To address our problem the \emph{ARIMA} approach will be explored. More details
+about this approach are available on the section bellow.
+
 \subsubsection{Arima} \emph{ARIMA} also known as Box-Jenkins, is a modelling and
 forecasting approach. It combines three processes, the \emph{Autoregressive}
 (AR), differencing to strip off the integration (I) of the time series and
 \emph{Moving Average} (MA).
 
-Each one of this processes handle the random disturbance in its on
+Each one of these processes handle the random disturbance in its on
 way.\cite{Sabry:2007kq} The \emph{AR} part of this approach is the linear
 regression of the series against one or more prior values of the series. A time
 series is suceptible to capture noise shocks on a noisy environment and it may
-memorize this shocks for a while, the \emph{MA} term is used to capture the
-outcomes of this shocks in the future.\cite{1578206} The combination of this to
+memorize these shocks for a while, the \emph{MA} term is used to capture the
+outcomes of these shocks in the future.\cite{1578206} The combination of this to
 terms compose the \emph{ARMA} model.
 
 The \emph{ARMA} model assumes that the data is stationary, which is, the
@@ -320,7 +326,7 @@ non-stationary data by differencing.
 The three processes, AR (p), I (d) and MA (q) are combined and compose the ARIMA
 (p, q, d) model.
 
-\subsection{Data Mining Tools} Today there are lots of free tools on the
+\subsection{Data Mining Tools} Today there are several free tools on the
 internet which can help us to test and use data mining techniques. Some of the
 most used will be presented bellow.
 
@@ -348,16 +354,16 @@ than an ultra high frequency CPU, and the market trend is to develop many and
 multi core solution, it is always the best option for processing large
 quantities of data scalable software.
 
-According to their website, \emph{Mahout} has: \begin{itemize}
+%According to their website, \emph{Mahout} has: \begin{itemize}
 
-\item User and Item based recommenders \item Matrix factorization based
-recommenders \item K-Means, Fuzzy K-Means clustering \item Latent Dirichlet
-Allocation \item Singular value decomposition \item Logistic regression based
-classifier \item Complementary Naive Bayes classifier \item Random forest
-decision tree based classifier \item High performance java collections
-(previously colt collections) \item  A vibrant community
+%\item User and Item based recommenders \item Matrix factorization based
+%recommenders \item K-Means, Fuzzy K-Means clustering \item Latent Dirichlet
+%Allocation \item Singular value decomposition \item Logistic regression based
+%classifier \item Complementary Naive Bayes classifier \item Random forest
+%decision tree based classifier \item High performance java collections
+%(previously colt collections) \item  A vibrant community
 
-\end{itemize}
+%\end{itemize}
 
 \subsubsection{RapidMiner}
 
@@ -398,10 +404,21 @@ This model consists of dividing the dataset in parts
 model and other parts will only be used in the validation part, so that we can
 assess if the model is able to generalize the result or not. 
 
+The training set is the only part of the dataset that the training algorithm
+uses to generate the model, the validation set will be used to calculate the
+error when comparing the real result with the result given by the generated
+model.
+
 \paragraph{Sliding Window}
 
 This procedure selects its training data and validation data maintaining the
 chronological order of the data set\cite{Bensch_self-learningprediction}.
+
+This procedure can only be used in time series validation since it depends on
+time points being present in the dataset. It uses a certain window of examples
+for training, and the examples that follow (in terms of time) as testing
+examples. The window is moved across the example set and all performance
+measurements are averaged afterwards.
 
 \begin{figure}[!h] \begin{center} \leavevmode
 \includegraphics[width=0.66\textwidth]{swin} \caption{Sliding window validation}
