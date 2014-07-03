@@ -31,26 +31,66 @@ Servers and \hyperref[itm:adex]{Exchanges}, \hyperref[itm:ssp]{Sell-Side Platfor
 
 \section{Project} \label{sec:proj}
 
-The main objective of this project is to develop a library capable of generating
-future ad requests' logs from past recorded requests.
+The online advertising market is huge and its size has been increasing in money,
+campaigns and users. Both platforms that sell and buy space for ad placement
+want to understand what is their value and more important, what will be their
+value in the future. In both cases this value is mostly constrain by campaigns
+and users that are target for their campaigns.
 
-In order to address this problem multiple ways to aggregate impressions
-will be used,
-so they become more predictable. These aggregated impressions will be transformed in time
-series, to which suitable analysis methods are applied, in order to predict
-their future values.
-In order to give more detail to the results the generator will also be able to
-mimic past characteristics of the dataset into the future in order to capture
-behaviours that were invisible to the time series.
+Our goal is to forecast the availability of the users in the future so we can
+simulate the value of future campaigns over them.
 
-This generator will use real ad request' logs from various sources, stored in files.
-The generated files must respect the same structure as the original files.
+Since we do not know which characteristics the future campaigns will have, there
+is the need to forecast every detail available on the impressions, in order to
+obtain the correct values when the queries are executed over the generated data.
 
-The focus of this thesis is generating future ad requests' logs, which is just
-one part of the more complex problem of
-forecasting the behaviour of campaigns in the future. The generated results can
-later be
-used on a simulator of online advertising campaigns.
+So, the main goal is to be able to generate a dataset able to be used on a campaign
+simulator, so we must be able to predict the values with the maximum detail
+possible.
+
+This simulator needs to have available every detail possible about every
+impression in order to identify which impressions are compatible with each
+campaign. The result would be expressed by number of impressions per campaign and
+users target by every campaign, over time.
+
+The approach should also be independent on any parameter other than the
+date and the user id of the impression.
+This constraint is imposed by the multiple sources of the dataset used, since
+each one of this sources could store different details and different types of
+parameters about each impressions, so we cannot really on the availability of
+such parameters.
+
+The approach should be able to generate data for any source
+with any parameters, based only on historical information.
+
+In form of conclusion, the main objectives are:
+\begin{itemize}
+\item Correctly predict volumes of activity on an ad network for a given time in
+  the future based only in past data;
+\item Fill the volumes with impressions, with the maximum detail possible, to be
+  able to use the obtained result on a simulator.
+\end{itemize}
+
+%The main objective of this project is to develop a library capable of generating
+%future ad requests' logs from past recorded requests.
+
+%In order to address this problem multiple ways to aggregate impressions
+%will be used,
+%so they become more predictable. These aggregated impressions will be transformed in time
+%series, to which suitable analysis methods are applied, in order to predict
+%their future values.
+%In order to give more detail to the results the generator will also be able to
+%mimic past characteristics of the dataset into the future in order to capture
+%behaviours that were invisible to the time series.
+
+%This generator will use real ad request' logs from various sources, stored in files.
+%The generated files must respect the same structure as the original files.
+
+%The focus of this thesis is generating future ad requests' logs, which is just
+%one part of the more complex problem of
+%forecasting the behaviour of campaigns in the future. The generated results can
+%later be
+%used on a simulator of online advertising campaigns.
 %The resultant ad request log
 %will be validated using a simulator supplied by ShiftForward.
 
@@ -99,11 +139,11 @@ will visit and when will they do it.
 
 \section{Report Structure} \label{sec:struct}
 
-Besides this first introductory chapter, this report is divided into five additional chapters.
+Besides this first introductory chapter, this report is divided into four additional chapters.
 In Chapter~\ref{chap:sota} it is explained some basic knowledge about online marketing. In addiction, there is
-a small discusion on which of those methods are more adequate to help solve this problem.
-Chapter~\ref{chap:chap3} focus on give a better description of the problem and
-present the main objectives.
+a small discussion on which of those methods are more adequate to help solve this problem.
+%Chapter~\ref{chap:chap3} focus on give a better description of the problem and
+%present the main objectives.
 Chapter~\ref{chap:chap4} describes the proposed approach and also explains how
 the experimental setup was configured and designed.
 Chapter~\ref{chap:experiments} focus on the results and their analyses, it is on
