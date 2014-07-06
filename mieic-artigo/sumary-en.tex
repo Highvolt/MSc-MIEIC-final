@@ -18,7 +18,9 @@
 %% English version: comment first (maybe)
 \usepackage{indentfirst}        % portuguese standard for paragraphs
 %\usepackage{parskip}
-
+\usepackage{array}
+\newcolumntype{M}{ >{\centering\arraybackslash} m{1cm} }
+\newcolumntype{C}{ >{\centering\arraybackslash} m{2cm} }
 %% page layout
 \usepackage[a4paper,margin=30mm,noheadfoot]{geometry}
 
@@ -187,6 +189,42 @@ generated from the phase two combined with the data provided by the original
 dataset are used to \emph{generate a dataset} that represent a possible future of the
 web activity on the target network.
 \end{enumerate}
+
+\section{Results}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabular}{m{2cm}|CMM}
+  &  $\sigma$ (Real Data) & RMSE & MASE   \\ \hline
+ without segmentation & 3.33      & 19.61        & 0.6760   \\ \hline
+  baseline (copy past to future) & 3.33      & 19.61        & 0.6760   \\ \hline
+  segmentation per parameter (browser) & 3.33      & 19.61        & 0.6760   \\ \hline
+  segmentation datastream clustering (threshold 20) & 3.33      & 19.61        & 0.6760   \\ \hline
+\end{tabular}
+
+\caption[Volume
+impression forecast error, safari]{Error for impression volume
+forecast, using a 12h period without clustering}
+\label{tab:noquery}
+\end{table}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabular}{m{2cm}|CMM}
+  &  $\sigma$ (Real Data) & RMSE & MASE   \\ \hline
+ without segmentation & 3.33      & 19.61        & 0.6760   \\ \hline
+  baseline (copy past to future) & 3.33      & 19.61        & 0.6760   \\ \hline
+  segmentation per parameter (browser) & 3.33      & 19.61        & 0.6760   \\ \hline
+  segmentation datastream clustering (threshold 20) & 3.33      & 19.61        & 0.6760   \\ \hline
+\end{tabular}
+
+\caption[Volume
+impression forecast error, safari]{Error for impression volume
+forecast, using a 12h period without clustering}
+\label{tab:query}
+\end{table}
 
 
 
