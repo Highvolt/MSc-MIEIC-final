@@ -18,7 +18,9 @@
 %% English version: comment first (maybe)
 \usepackage{indentfirst}        % portuguese standard for paragraphs
 %\usepackage{parskip}
-
+\usepackage{array}
+\newcolumntype{M}{ >{\centering\arraybackslash} m{0.7cm} }
+\newcolumntype{C}{ >{\centering\arraybackslash} m{2cm} }
 %% page layout
 \usepackage[a4paper,margin=30mm,noheadfoot]{geometry}
 
@@ -44,10 +46,11 @@
 
 \begin{document}
 
-\title{\vspace*{-8mm}\textbf{\textsc{Modelo de Escrita de Resumos de\\Projecto/Dissertação: um Exemplo}}}
-\author{\emph{António Manuel Silva}\\[2mm]
-\small{Projecto/Dissertação realizado sob a orientação do \emph{Prof.\ José Marco Soares}}\\
-\small{na \emph{FazSoft Lda}}}
+\title{\vspace*{-8mm}\textbf{\textsc{Online Advertising: Forecasting and Synthesising Web Activity Based On Historical Data}}}
+\author{\emph{Pedro Manuel Santos Borges}\\[2mm]
+\small{Dissertação desenvolvida sob a supervisão do Prof. João Moreira, co-supervisão do Prof. Hugo Ferreira}\\
+\small{e supervisão da empresa do Eng. João Azevedo}\\
+\small{na \emph{ShiftForward, Lda}}}
 \date{}
 \maketitle
 %no page number 
@@ -57,127 +60,179 @@
 
 \begin{multicols}{2}
 
-\section{Motivação}\label{sec:motiva}
+\section{Enquadramento e Contexto} \label{sec:context}
 
-Neste documento apresentam-se alguns conselhos e instruções para a preparação dos resumos de projecto/dissertação. 
-Pede-se aos autores o favor de, dentro do possível, cumprirem com as instruções que são dadas, assim como com a estrutura apresentada, de forma a manter-se o mesmo aspecto em todos os resumos. 
-Nas sub-secções~\ref{sec:lingua} a ~\ref{sec:number} podem encontrar-se alguns detalhes sobre a formatação do documento. 
 
-Na secção ``Motivação'' deve ser apresentado o enquadramento do trabalho, dando ideia das necessidades que o mesmo cobre.
+O marketing online é uma indústria multibilionária em grande
+crescimento\cite{PricewaterhouseCoopers2013} na qual é expectável a
+continuidade desse mesmo crescimento rápido\cite{PricewaterhouseCoopers2013a}.
 
-\section{Objectivos}\label{sec:goals}
+Esta indústria tenta constantemente tornar-se mais eficiente, maximizando o
+lucro de ativos que já possui. Os utilizadores da Internet são os principais
+ativos dessa indústria, que ganha dinheiro explorando o seu comportamento e
+características, a fim de os atingir com a campanha perfeita. Cada campanha tem
+seus próprios parâmetros e regras, que limitam o universo de utilizadores-alvo.
 
-A secção ``Objectivos'' deve enunciar claramente os objectivos a atingir com o trabalho de projecto/dissertação, enquadrando-os na respectiva área de actividade a que o trabalho se destina. 
-Por exemplo, este documento tem como objectivos:
-\begin{itemize}
-\item Servir de modelo/exemplo do ponto de vista da dos resumos;
-\item Apresentar o aspecto gráfico que se pretende para os resumos;
-\item Disponibilizar \emph{templates} a quem pretenda utilizar \LaTeX.
-\end{itemize}
+O foco da indústria de marketing on-line são os utilizadores da internet e por
+isso, regista todos os rastos que estes deixam na internet. As acções futuras
+dos utilizadores da Internet permitem a medição do comportamento de uma
+campanha futura e, tendo acesso a esses dados, é possível tornar o inventário
+mais rentável. Portanto, o uso destes dados permite à indústria de publicidade
+online ajustar suas campanhas futuras de forma a melhor atingir o seu publico
+alvo. As campanhas são compostas por uma série de anúncios que partilham a mesma
+idéia principal que se quer transmitir. Para ser possível simular as campanhas num
+simulador estás são definidas
+como um conjunto de \emph{queries} sobre um \emph{dataset de
+utilizadores}. A utilização de uma simulação permite obter resultados rápidos,
+testar campanhas simultâneas e testar vários cenários possíveis. A utilização
+de uma simulação é a principal razão que justifica a necessidade de gerar dados
+que representem os pedidos efectuados por cada utilizador.
 
-\section{Descrição do Trabalho}\label{sec:work}
+As plataformas mais comuns que beneficiarão destes resultados são
+\emph{Custom-Built Ad Servers and Exchanges}, \emph{Sell-Side Platforms} (SSPs)
+and \emph{Demand-Side Platforms}(DSPs).
 
-Na secção ``Descrição do Trabalho'' (com este ou com outro nome que se julgue mais adequado) devem ser apresentadas as principais partes do trabalho, começando pela sua estruturação. Devem ser mencionadas as tecnologias utilizadas, com referências à sua interdependência e interligação dando especial ênfase aos componentes desenvolvidos pelo estudante no âmbito do trabalho em causa.
+\section{Projecto} \label{sec:proj}
 
-No presente documento, seguem-se 9 subsecções com instruções acerca da extensão da comunicação, margens, estilos e outras recomendações gerais acerca da elaboração da versão final dos resumos.
+O objectivo deste projecto é prever a disponibilidade de utilizadores no futuro
+para podermos simular campanhas publicitarias sobre eles.
 
-\subsection{Línguas Obrigatórias}\label{sec:lingua}
+Sendo que à partida não sabemos que características vão ter as campanhas,
+precisamos de prever todas as caracteristicas dos utilizadores de forma a
+conseguir determinar os volumes para cada campanha, através de \emph{queries}
+sobre os dados gerados. 
 
-Os resumos deverão ser apresentados, em ficheiros separados, em versões portuguesa e inglesa. 
-No resumo em Português e em caso de necessidade de utilização de termos em língua Inglesa, estes deverão ser devidamente salientados pela adopção da fonte em itálico, como, por exemplo, \emph{Ray-Tracing}.
+O principal objectivo deste projecto é gerar um conjunto de dados que possa ser
+usado num simulador de campanhas, por isso temos que prever os valores com o
+máximo detalhe.
 
-\subsection{Cabeçalho de Identificação}
+Este simulador precisa de ter disponível todos os detalhes que compões uma
+entrada no conjunto de dados (\emph{impression}), a dim de conseguir
+identificar que utilizador vai ser atingido por cada campanha. O resultado
+seria expresso pelo número de impressões por campanha e pelo numero de
+utilizadores únicos atingidos, ao longo do tempo.
 
-O cabeçalho de identificação deve ser centrado e inicia-se com o título da comunicação, em letras maiúsculas de tamanho 12 e em negrito. 
-Seguem-se, em linhas separadas e em tamanho 9, a identificação do estudante, da empresa e dos orientadores (estes dois numa única linha). 
-Todos os quatro nomes devem ser em itálico.
+Esta abordagem tem que ser capaz de utilizar apenas a data de uma impressão e
+ID do utilizadores, com todas as outras variáveis opcionais. Essa restrição é
+imposta pelas múltiplas origens que o conjunto de dados pode ter, uma vez que
+cada uma destas fontes pode armazenar detalhes diferentes e diferentes tipos de
+parâmetros sobre cada impressão, deste modo não podemos contar com a
+disponibilidade de algum parâmetro além destes dois.
 
-\subsection{Extensão do Artigo e Tipo de Letra}
+\section{Motivação e Objectivos} \label{sec:goals}
 
-Cada resumo deve ser formatado com texto a duas colunas, não devendo exceder duas páginas de formato A4. 
-\textbf{As duas colunas devem terminar sensivelmente à mesma altura}, em cada uma das páginas. 
+Nos últimos anos, o marketing online tem vindo a tornar-se um mercado mais
+complexo. De tal forma que hoje as campanhas tem um alvo muito bem definido,
+por regras e limitações. Isto representa um grande problema para os modelos de
+previsão mais simples. Estes normalmente não prevêem todos os parâmetros de um
+pedido de publicidade, diminuindo assim a informação disponível para cálculos
+de performance de uma campanha.
 
-O tipo de letra para o texto genérico deverá ser \emph{Times New Roman} com tamanho 9 e espaçamento simples entre linhas. 
-O espaçamento entre parágrafos deverá ser estendido a 1.5 linhas (0.5 linha de espaçamento extra).
+Algumas campanhas hoje em dia são muito especificas, mesmo em termos temporais,
+como por exemplo, os utilizadores que visitaram um site de e-commerce nas
+últimas 24 horas. Isto traz causalidade na equação, criando um novo paradigma,
+que faz os métodos mais tradicionais de previsão ineficazes. Para resolver este
+problema e ser capaz de obter respostas rápidas a consultas complexas de
+campanhas simultâneas, simulando os algoritmos executados por servidores de
+anúncios do cliente e, finalmente, paralelizar o cálculo dos resultados para o
+consultas, os pedidos futuros tem que estar disponíveis. 
 
-\subsection{Dimensões das Margens}
+O objetivo deste trabalho é desenvolver uma biblioteca capaz de gerar pedidos
+futuros de anúncios usando dados do passado da mesma rede. Esta biblioteca tem
+como um de seus principais objetivos a previsão de todos os parâmetros que
+caracterizam um pedido de anúncio. Para que o conjunto de pedidos gerados possa
+ser usado para consulta sobre qualquer parâmetro, ou seja, o conjunto de dados
+gerados (registo de pedidos) deve ter disponível os mesmo parâmetros que o
+original.
 
-As margens a manter à volta do texto deverão ser as constantes na Tab.~\ref{tab:medidas}.
-
-\begin{table}[H]
-  \centering
-  \caption{Margens expressas em centímetros}
-\begin{tabular}{c | c}
-	\hline
-\textbf{Espaçamento} & \textbf{Medida}\\
-	\hline
-	\hline
-        Margem Superior & 3 cm\\
-        Margem Inferior & 3 cm\\
-        Margem Esquerda & 3 cm\\
-        Margem Direita  & 3 cm\\
-        Entre Colunas   & 1.2 cm\\
-	\hline
-\end{tabular}
-  \label{tab:medidas}
-\end{table}
-
-\subsection{Corpo do Texto}
-
-Todos os títulos de secções e subsecções devem ser escritos em negrito e com um espaçamento para cima ligeiramente superior ao de um parágrafo normal. 
-Os títulos de níveis um e dois devem ter tamanhos, respectivamente, 11 e 9. 
-As ``subsubsecções'' devem ser evitadas.
-
-\subsection{Numeração das Secções}
-
-As secções deverão ser numeradas com início em "1", de acordo com os níveis e subníveis respectivos, usando-se o ponto como separador.
-
-\subsection{Figuras, Equações e Quadros}
-
-As figuras e as tabelas deverão ser centradas, sempre que possível, à largura da coluna de texto em que se
-inserem (Tab.~\ref{tab:medidas} e Fig.~\ref{fig:figura}). 
-As figuras e tabelas cujas dimensões não o permitam, podem ser centradas à largura da página.
+\section{Abordagem}
 
 \begin{figure}[H]
-\centerline{\includegraphics[scale=.6]{figura.png}}
-\caption{Esta é a legenda da figura}  
-\label{fig:figura}
-\end{figure}
+\centering
+\includegraphics[width=0.25\textwidth]{high_level} \caption{Arquitectura de alto
+nivel da abordagem} \label{fig:highlevel_arch} \end{figure}
 
-As legendas das figuras, a negrito, devem ser colocadas na sua parte inferior, contendo a respectiva numeração antecedida do termo \textbf{Fig.} 
-O mesmo é aplicável às tabelas, excepto que a legenda deve ser iniciada pelo termo \textbf{Tab.}\ e deve ser colocada acima da tabela respectiva. 
-Devem ser evitadas figuras ou outros elementos com cores.
+Como representado na Figura~\ref{fig:highlevel_arch} mostra, o objectivo da
+abordagem proposta é gerar os dados futuros dos pedidos numa rede relacionada
+com a publicidade online, usando apenas registos passados.
+Esta previsão deve manter as tendências do passado e manter coerência dos dados.
 
-\begin{equation}
-  S_{L,i} = S_{L,i-1} . (1-S_{P,i-1}) = \prod_{k=0}^{i-1} (1-S_{p,k}) \label{eq:cif}
-\end{equation}
-% \begin{eqnarray}
-% S_{L,i} &=& S_{L,i-1} . (1-S_{P,i-1}) \nonumber\\
-%        &=& \prod_{k=0}^{i-1} (1-S_{p,k}) \label{eq:cif}
-% \end{eqnarray}
+A abordagem pode ser dividida em três fases principais:
+\begin{enumerate}
+\item \emph{Segmentação}, o principal objectivo desta fase é dividir os dados
+  em subconjuntos, mais pequenos e mais previsíveis, a fim de melhorar os
+  resultados das fases seguintes, principalmente quando há muitos dados
+  disponíveis.
 
-As equações deverão conter a respectiva numeração na mesma linha de texto e à sua direita, entre parêntesis, como se mostra no exemplo da Equação~\ref{eq:cif}.
+\item A segunda fase compreende a \emph{revisão dos volumes}, de valores que
+  caracterizam o tráfego da rede, usando métodos de previsão de series
+  temporais(usando por exemplo \emph{ARIMA}).
 
-As figuras deverão ser numeradas a partir do número 1 e com uma única sequência, i.e., sem reinício em cada secção. 
-O mesmo deve suceder com as equações e com as tabelas.
+\item A terceira fase do processo, utiliza os valores gerados pelas duas fases
+  anteriores e combinando-os com o conjunto de dados do passado,
+  \emph{gerar um conjunto de dados} que representa um possível futuro do trafego da rede. 
+\end{enumerate}
 
-\subsection{Numeração de Páginas}\label{sec:number}
+\section{Resultados}
 
-As páginas \textbf{NÃO} devem ser numeradas.
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabular}{m{2cm}|CMM}
+  &  $\sigma$ (Dados reais) & RMSE & MASE   \\ \hline
+ Sem segmentação & 2224.74 & 1237.99 & 0.1958 \\ \hline
+  \emph{baseline} (100 segmentos) & 2224.74 & 1352.42 & 0.2174 \\ \hline
+  segmentação por parametro (\emph{browser}) & 2224.74 & 1226.60 & 0.1884 \\ \hline
+  segmentação por \emph{datastream clustering} (\emph{threshold} 20) & 2224.74 & 1786.43 & 0.2927 \\ \hline
+\end{tabular}
 
-\subsection{Codificação dos Caracteres}\label{sec:encomding}
+\caption[]{Previsão para o volume de impressões de um conjunto de dados real}
+\label{tab:noquery}
+\end{table}
 
-Este exemplo está escrito em UTF-8; para outras codificações deverá
-ser alterado \texttt{\\usepackage[utf8]\{inputenc\}}.
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabular}{m{2cm}|CMM}
+  &  $\sigma$ (Dados reais) & RMSE & MASE   \\ \hline
+ Sem segmentação & 6.70 & 9.24 & 1.2511 \\ \hline
+ \emph{baseline} (100 segmentos) & 6.70 & 6.88 & 0.7896 \\ \hline
+ segmentação por parametro (\emph{browser}) & 6.70 & 10.75 & 1.3883 \\ \hline
+ segmentação por \emph{datastream clustering} (\emph{threshold} 20) & 6.70 & 15.93 & 2.5960 \\ \hline
+\end{tabular}
 
+\caption[]{Previsão para o volume de impressões de um conjunto de dados real, pesquisa por
+''Portugal''}
+\label{tab:query}
+\end{table}
 
-\section{Conclusões}\label{sec:conclui}
+Em praticamente todos os casos de teste obtiveram melhores resultados quando a
+fase de segmentação foi realizada(alguns exemplos na tabela~ref{tab:noquery}
+and ~\ref{tab:query}). Os resultados calculados foram apenas num número pequeno
+de pesquisas, podendo ter um resultado diferente quando usados no ambiente de
+simulador.
 
-Espera-se que este documento possa contribuir para uma melhor qualidade dos resumos dos projectos/dissertações do MIEIC/FEUP.
+\section{Cumprimento dos Objectivos}
 
-Documentos que não respeitem este aspecto gráfico serão liminarmente recusados, ficando os respectivos autores em falta em relação à sua entrega.
+Propomos o uso das três fases. A primeira fase permite melhores previsões para
+determinadas características, a segunda permite prever os volumes futuros dos
+valores que caracterizam o conjunto de dados e, finalmente, a terceira fase
+preenche o conjunto futuro usando os volumes previstos e seguindo as tendências
+e dados fornecidas pelo conjunto de dados do passado. Os nossos resultados
+demostram um melhoria moderada dos resultados quando é feita segmentação.
 
-Para as dissertações existem regras definidas noutro lado~\cite{kn:Mat93}.
+\section{Trabalho futuro}
+
+Diferentes abordagens em cada fase poderiam ser exploradas de forma a obter
+melhores resultados. Na fase de segmentação outros algoritmos de segmentação
+poderiam ser utilizados, por exemplo segmentação recursiva por parâmetro.
+Acredito que esta abordagem teria bons resultados quando muitos dados
+estivessem disponíveis.
+Na previsão de volumes outras techiniques e algoritmos poderam ser testados
+como por exemplo \emph{MLP}, \emph{multilayer perceptron}.
+Na fase de gerar o conjunto de dados, conhecimento adicional sobre como cada
+parametro é construido poderia ser usado em conjunto com novas metricas
+(percentagem de novas cidades, por exemplo).
 
 %%English version: comment first, uncomment second
 \bibliographystyle{unsrt-pt}  % numeric, unsorted refs
