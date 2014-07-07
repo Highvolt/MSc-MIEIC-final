@@ -19,7 +19,7 @@
 \usepackage{indentfirst}        % portuguese standard for paragraphs
 %\usepackage{parskip}
 \usepackage{array}
-\newcolumntype{M}{ >{\centering\arraybackslash} m{1cm} }
+\newcolumntype{M}{ >{\centering\arraybackslash} m{0.7cm} }
 \newcolumntype{C}{ >{\centering\arraybackslash} m{2cm} }
 %% page layout
 \usepackage[a4paper,margin=30mm,noheadfoot]{geometry}
@@ -87,14 +87,7 @@ Servers and Exchanges, Sell-Side Platforms (SSPs) and
 Demand-Side Platforms
 (DSPs).
 
-
 \section{Project} \label{sec:proj}
-
-The online advertising market is huge and its size has been increasing in money,
-campaigns and users. Both platforms that sell and buy space for ad placement
-want to understand what is their value and more importantly, what will be their
-value in the future. In both cases this value is mostly constrained by campaigns
-and the users they want to target.
 
 Our goal is to forecast the availability of the users in the future so we can
 simulate the value of future campaigns over them.
@@ -119,17 +112,6 @@ each one of these sources could store different details and different types of
 parameters about each impression, so we cannot rely on the availability of
 such parameters.
 
-The approach should be able to generate data for any source
-with any parameters, based only on historical information.
-
-To conclude, the approach's main goals are to:
-\begin{itemize}
-\item Correctly predict volumes of activity on an ad network for a given time in
-  the future based only in past data;
-\item Fill the volumes with impressions, with the maximum detail possible, to be
-  able to use the obtained result on a simulator.
-\end{itemize}
-
 \section{Motivation and Goals} \label{sec:goals}
 
 In the last few years, the online marketing has been getting more complex. In
@@ -137,7 +119,6 @@ such a way that today campaigns have a very well defined target, with
 sets of rules and limitations. This poses a big problem to
 simpler prediction models that normally don't predict all the parameters of the
 ad request, this way limiting the parameters where queries can be done.
-
 
 Nowadays, some online ads can only be imprinted if a set of very specific requirements has been fulfilled, for example,
 the users had to visit an e-commerce site in the last 24 hours. This brings causality into the equation, creating a new paradigm that makes 
@@ -155,15 +136,11 @@ This library will have as one of its main goals the prediction of all the parame
 ad request with the purpose of being able to query over any parameter, in other
 words, the generated dataset (ad requests log) must have the same attributes as the original.
 
-The prediction of this kind of future data is rather complex since it is
-necessary to find out which users will appear in the future and which websites they
-will visit and when will they do it.
-
 \section{Approach}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.3\textwidth]{high_level} \caption{ High level overview
+\includegraphics[width=0.25\textwidth]{high_level} \caption{ High level overview
 of the approach } \label{fig:highlevel_arch} \end{figure}
 
 As the figure~\ref{fig:highlevel_arch} makes clear, the goal of the
@@ -177,8 +154,7 @@ This approach can be divided into three main phases:
 \item \emph{Segmentation},
 which its main purpose is divide the dataset in smaller and more predictable
 datasets, in order to improve the results obtained after the second phase, mostly when there
-are large quantities of data available. Datastream clustering and segmentation
-by parameters are used in this phase.
+are large quantities of data available.
 
 \item The second phase is where the \emph{forecast of the volumes} that characterize the traffic on
   the network are done, using time series prediction methods (experiments were
@@ -197,15 +173,13 @@ web activity on the target network.
 \footnotesize
 \begin{tabular}{m{2cm}|CMM}
   &  $\sigma$ (Real Data) & RMSE & MASE   \\ \hline
- without segmentation & 3.33      & 19.61        & 0.6760   \\ \hline
-  baseline (copy past to future) & 3.33      & 19.61        & 0.6760   \\ \hline
-  segmentation per parameter (browser) & 3.33      & 19.61        & 0.6760   \\ \hline
-  segmentation datastream clustering (threshold 20) & 3.33      & 19.61        & 0.6760   \\ \hline
+ without segmentation & 2224.74 & 1237.99 & 0.1958 \\ \hline
+  baseline (100 segments) & 2224.74 & 1352.42 & 0.2174 \\ \hline
+  segmentation per parameter (browser) & 2224.74 & 1226.60 & 0.1884 \\ \hline
+  segmentation datastream clustering (threshold 20) & 2224.74 & 1786.43 & 0.2927 \\ \hline
 \end{tabular}
 
-\caption[Volume
-impression forecast error, safari]{Error for impression volume
-forecast, using a 12h period without clustering}
+\caption[]{Impression volume forecasting on a real dataset}
 \label{tab:noquery}
 \end{table}
 
@@ -214,20 +188,46 @@ forecast, using a 12h period without clustering}
 \footnotesize
 \begin{tabular}{m{2cm}|CMM}
   &  $\sigma$ (Real Data) & RMSE & MASE   \\ \hline
- without segmentation & 3.33      & 19.61        & 0.6760   \\ \hline
-  baseline (copy past to future) & 3.33      & 19.61        & 0.6760   \\ \hline
-  segmentation per parameter (browser) & 3.33      & 19.61        & 0.6760   \\ \hline
-  segmentation datastream clustering (threshold 20) & 3.33      & 19.61        & 0.6760   \\ \hline
+ without segmentation & 6.70 & 9.24 & 1.2511 \\ \hline
+  baseline (100 segments) & 6.70 & 6.88 & 0.7896 \\ \hline
+  segmentation per parameter (browser) & 6.70 & 10.75 & 1.3883 \\ \hline
+  segmentation datastream clustering (threshold 20) & 6.70 & 15.93 & 2.5960 \\ \hline
 \end{tabular}
 
-\caption[Volume
-impression forecast error, safari]{Error for impression volume
-forecast, using a 12h period without clustering}
+\caption[]{Impression volume forecasting on real dataset, queried by
+''Portugal''}
 \label{tab:query}
 \end{table}
 
+In about every test case, the results that used the segmentation phase got better
+results, when compared to a non-segmented approach. (some examples on Table
+~\ref{tab:noquery} and ~\ref{tab:query})
+These results were only compared to a small number of queries, so the results can
+be completely different when used in its goal environment, the
+online advertising campaigns impact on that particular network.
 
+\section{Objectives Fulfilment}
 
+We proposed the use of the three phase approach. The
+first phase allows better predictions for certain characteristics, the second
+phase allows the prediction of volumes in the future, and lastly the third phase
+fills the predicted future data with additional information from the past while
+following the tends of the predicted volumes.
+Our results show that the usage of dataset segmentation returns good to moderate
+improvements while predicting the volumes.
+
+\section{Future Work}
+
+In order to achieve better results, some other approaches for each phase
+could be explored. Other algorithms of segmentation phase for example the usage
+recursive parameter segmentation. For example, segment the whole dataset by
+browser and then by country. It is my believe that this approach would get good
+results if a huge volume of data were available.
+On the volume prediction other algorithms and techiniques like \emph{MLP},
+multilayer perceptron, could be used.
+On the dataset generation phase, the knowledge for the constitution of some
+attributes and additional volume paramters (example, percentage of new cities)
+could help improve some of the results.
 
 %%English version: comment first, uncomment second
 %\bibliographystyle{unsrt-pt}  % numeric, unsorted refs
