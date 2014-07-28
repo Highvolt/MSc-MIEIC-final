@@ -26,7 +26,8 @@ This should be done in order to preserve tendencies and into data coherency.
 This approach can be divided into three main phases:
 \begin{enumerate}
 \item \emph{Segmentation},
-which its main purpose is divide the dataset in smaller and more predictable
+  which its main purpose is divide the dataset in smaller (by reducing the
+  number of instances) and more predictable
 datasets, in order to improve the results obtained after the second phase, mostly when there
 are large quantities of data available.
 
@@ -73,7 +74,7 @@ distance between impressions can be described as:
   distance_{x,y}= \sum\limits_{i=0}^n d_i
 \end{equation*}
 \begin{equation*}
-\text{where } d_i = \begin{cases} \text{1 if } x_i != y_x\\
+\text{where } d_i = \begin{cases} \text{1 if } x_i != y_i\\
 \text{0 otherwise}\end{cases} \text{ and x, y are two impressions from the
 dataset}
 \end{equation*}
@@ -84,8 +85,8 @@ dataset}
   \SetNlSty{texttt}{(}{)}
   \KwData{$lines$, all impressions available on the dataset; $threshold$,
   maximum distance to be considered member of a certain cluster.}
-  \KwResult{A list of clusters, each one characterized by the $centroid$ and a list of
-  offsets representing the position of each impression on the dataset.}
+  \KwResult{A list of clusters, each one characterized by the $medoid$
+    (it is defined by and impression) and a list of  offsets representing the position of each impression on the dataset.}
   \BlankLine
 
   \Repeat{no more impressions}{
@@ -266,8 +267,8 @@ In order to be valid, these variables have to respect these constraints:
   users for a specific period;
 \item the number of users must be less or equal to the sum of number of first
   occurrence users;
-\item the number of new users and number of users that appear on the one hour
-periods prior to this period that belong to the same interval;
+%\item the number of new users and number of users that appear on the one hour
+%periods prior to this period that belong to the same interval;
 \item the number of first occurrence users plus the number of new users must be
   equal or less than the number of users for the time period.
 \end{itemize}
